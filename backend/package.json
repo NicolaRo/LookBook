@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-  "test": "mocha \"test/controllerTest/articleControllerTest/**/*.js\" --exit"
+  "test": "mocha \"test/controllerTest/**/*.js\" --exit"
 },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

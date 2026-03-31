@@ -16,7 +16,7 @@ const articleController = require ('../../../controllers/articleController');
 const Article = require ('../../../models/Article');
 
 //Descrivo il gruppo di test relativo al controller
-describe ('getArticleController', ()=> {
+describe ('getArticle Controller', ()=> {
     
     //afterEach dopo ogni test ripulisce gli stub
     afterEach(()=> {
