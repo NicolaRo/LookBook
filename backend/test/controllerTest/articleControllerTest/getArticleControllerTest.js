@@ -53,7 +53,7 @@ describe ('getArticle Controller', ()=> {
         await articleController.getArticle(req, res);
    
 
-        // --- ASSERT ---
+        //ASSERT
 
         //Verifico che Article.find() sia stata chiamata
         expect(findStub.calledOnce).to.be.true;
