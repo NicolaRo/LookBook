@@ -77,10 +77,10 @@ const getArticleById = async (req, res) => {
     try {
         const article = await Article.findById(req.params.id);
 
-        if(!article)
-
-        //Controllo errori con HTTP Status Code 
+        if(!article) {
+            //Controllo errori con HTTP Status Code 
         return res.status(404).json({message: "ID Articolo non trovato"});
+        }
 
         //2.5 Restituisce articolo
         return res.status(200).json(article);

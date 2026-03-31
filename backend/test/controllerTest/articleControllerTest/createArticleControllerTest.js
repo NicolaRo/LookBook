@@ -1,8 +1,8 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
 
-const { createArticle } = require("../../controllers/articleController");
-const Article = require("../../models/Article");
+const { createArticle } = require("../../../controllers/articleController");
+const Article = require("../../../models/Article");
 
 describe("createArticle Controller", () => {
 
