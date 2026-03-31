@@ -16,7 +16,7 @@ const articleController = require ('../../../controllers/articleController');
 const Article = require ('../../../models/Article');
 
 //Descrivo il gruppo di test relativo al controller
-describe ('ArticleController', ()=> {
+describe ('getArticleController', ()=> {
     
     //afterEach dopo ogni test ripulisce gli stub
     afterEach(()=> {
@@ -27,7 +27,7 @@ describe ('ArticleController', ()=> {
     
     it('should return 200 and all articles when DB call succeeds', async () => {
 
-        // --- ARRANGE ---
+        //ARRANGE
         const fakeArticle = [{
             categoria: "T-shirt",
             brand: "nike",
@@ -47,7 +47,7 @@ describe ('ArticleController', ()=> {
             json: sinon.spy()
         };
 
-        // --- ACT ---
+        //ACT
 
         //chiamo il controller con i finti req / res
         await articleController.getArticle(req, res);

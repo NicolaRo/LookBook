@@ -109,7 +109,7 @@ const updateArticle = async (req, res) => {
             return res.status(404).json({message: "Articolo non trovato"});
 
             //3.3 Aggiorna l'articolo
-            return res.json(article);
+            return res.status(200).json(article);
     } catch (error) {
 
         //Controllo errori con HTTP Status Code

@@ -1,3 +1,12 @@
+/* HTTP Status code da testare: 
+1. createArticle:
+1.1.1 HTTP status 400: Dati Articolo mancante
+1.1.2 HTTP status 400: Foto mancante
+
+1.2 HTTP status 201: Articolo creato
+1.2 HTTP status 500: Errore generico
+*/
+
 const { expect } = require("chai");
 const sinon = require("sinon");
 
