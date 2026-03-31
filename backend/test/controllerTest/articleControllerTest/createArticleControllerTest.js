@@ -54,7 +54,6 @@ describe("createArticle Controller", () => {
             body:{
                 categoria: "T-shirt",
                 brand: "nike",
-                stato: "Usato"
             },
             file: {
                 path: "fake/path.jpg"
@@ -103,6 +102,11 @@ describe("createArticle Controller", () => {
             _id: "123fakeArticleId"
         };
 
+        const res = {
+            status: sinon.stub().returnsThis(),
+            json: sinon.spy()
+        };
+
         const createStub = sinon.stub(Article, "create").resolves(fakeArticle);
 
         //ACT 
@@ -112,7 +116,6 @@ describe("createArticle Controller", () => {
         expect(res.status.calledWith(201)).to.be.true;
         expect(res.json.calledWith(fakeArticle)).to.be.true;
         expect(createStub.calledOnce).to.be.true;
-        expect (createStub.calledWith).to.be.true;
         expect (createStub.calledWith({
             categoria: "T-shirt",
             brand: "nike",

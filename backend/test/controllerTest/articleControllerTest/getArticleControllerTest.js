@@ -68,9 +68,9 @@ describe ('ArticleController', ()=> {
     it('should return 200 and empty array when no articles are found', async ()=> {
 
         //ARRANGE
-        const findStub = sinon.stub(Article.find()).resolves([]);
+        const findStub = sinon.stub(Article, 'find').resolves([]);
 
-        const req = {quesry: {} };
+        const req = {query: {} };
 
         const res = {
             status: sinon.stub().returnsThis(),
@@ -80,7 +80,7 @@ describe ('ArticleController', ()=> {
         await articleController.getArticle(req, res);
 
         //ASSERT
-        expect(findStub.called.Once).to.be.true;
+        expect(findStub.calledOnce).to.be.true;
         expect(res.status.calledOnceWith(200)).to.be.true;
         expect(res.json.calledOnceWithMatch([])).to.be.true;
     });
@@ -92,7 +92,7 @@ describe ('ArticleController', ()=> {
         //ARRANGE
 
         //simulo che il DB non trovi l'articolo ricercato
-        const findByIdStub = sinon.stub(Article, 'find').resolves([]);
+        const findByIdStub = sinon.stub(Article, 'findById').resolves(null);
 
         //Creo req con params.id (qualsiasi id non esistente)
         const req = {
@@ -121,9 +121,9 @@ describe ('ArticleController', ()=> {
     it('should return 500 if database throw error', async () => {
 
         //ARRANGE
-        const findStub = sinon.stub(Article, 'find').rejects( new Error("DB failure"));
+        const findStub = sinon.stub(Article, 'findById').rejects( new Error("DB failure"));
 
-        const req = { query: {} };
+        const req = { params: {id: 'any-id'} };
 
         const res = {
             status: sinon.stub().returnsThis(),
