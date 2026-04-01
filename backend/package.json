@@ -5,14 +5,14 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-  "test": "mocha \"test/controllerTest/**/*.js\" --exit"
-},
+    "test": "mocha \"test/controllerTest/**/*.js\" --exit"
+  },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.80.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "multer": "^2.1.1"
+    "multer": "^2.1.1",
+    "openai": "^6.33.0"
   },
   "devDependencies": {
     "chai": "^4.3.7",
