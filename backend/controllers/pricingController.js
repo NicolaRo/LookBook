@@ -26,6 +26,10 @@ const callLLM = async ({categoria, brand, stato, foto }) => {
 //2. Creo il pricing
 const createPricing = async (req, res) => {
 
+    //Estraggo i dati dalla request
+    const  {articleId}= req.params;
+    const {categoria, brand, stato, foto} = req.body;
+
     //Dichiaro variabile artiche visibile in tutto il try
     let article;
 
@@ -66,4 +70,8 @@ const createPricing = async (req, res) => {
         res.status(500).json({message: "DB failure"});
     };
     
+};
+module.exports = {
+    callLLM,
+    createPricing
 };
