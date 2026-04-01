@@ -3,16 +3,14 @@ const mongoose = require("mongoose");
 
 //Definisco i paramtri del DB "Article"
 const articleSchema = new mongoose.Schema({
-
     sessionId: {
         type: String,
-        ref: "Session", //Non serve importare tutto Session, uso "ref" che fa riferimento al DB
         required: true
     },
     categoria:{
         genere: {
             type: String,
-            enum: ["Abbigliamento uomo", "Abbigliamento donna"],
+            enum: ["Abbigliamento uomo", "Abbigliamento donna", "Abbigliamento bambino", "Abbigliamento bambina"],
             required: true
         },
         tipo: {
@@ -30,22 +28,36 @@ const articleSchema = new mongoose.Schema({
         enum: ["nuovo", "buono", "usato"],
         required: true
     },
-    foto: {
-        type: String,
-    },
-    valutazione: { 
-        prezzo: {
-         type: Number,
-         min: 0.00,
-         required: true
-       }, 
-        motivazione: { 
-         type: String,
-         minlength: 2,
-         required: true}
-       }
-},{timestamps: true});
+    pricing: {
+        suggested_price: {
+            type: Number,
+            min: 0
+        },
+        range: {
+            min:{
+                type: Number,
+                min: 0
+            },
+            max: {
+                type: Number,
+                min: 0
+            }
+        },
+        motivation: {
+            type: String,
+            minlength: 2,
+            trim: true
+        },
+        selling_tips:{
+            type: String,
+            minlength: 2,
+            trim: true
+        }
+    }
+}, {timestamps: true});
 
+//Creo il model
 const Article = mongoose.model("Article", articleSchema);
 
+//Esporto il model
 module.exports = Article;
