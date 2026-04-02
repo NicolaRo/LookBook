@@ -10,10 +10,12 @@
 
 //Import l'oggetto dal modello
 const Article = require("../models/Article");
+const Session = require ("../models/Session")//***
+    
 
 // ### --- CREO UN PRICING --- ###
 
-//1. Creo callLLM funzione asincrona i cui params sono categoria, brand, stato e foto
+//2. Creo callLLM funzione asincrona i cui params sono categoria, brand, stato e foto
 const callLLM = async ({categoria, brand, stato, foto }) => {
     return {
         suggested_price: 50,
@@ -23,12 +25,25 @@ const callLLM = async ({categoria, brand, stato, foto }) => {
     };
 }
 
-//2. Creo il pricing
+//3. Creo il pricing
 const createPricing = async (req, res) => {
 
     //Estraggo i dati dalla request
     const  {articleId}= req.params;
     const {categoria, brand, stato, foto} = req.body;
+    const {sessionId, name, messages} = req.body; //*** 
+ 
+    let session; //***
+
+    try {
+        //Recupero sessionId
+        session = await Session.findOne({sessionId});//***
+
+        if(!session) //***
+            return res.status(404).json({message: "Session non trovata"});//***
+    } catch (error) {//***
+        return res.status(500).json({message: error.message});//***
+    };
 
     //Dichiaro variabile artiche visibile in tutto il try
     let article;
@@ -50,20 +65,31 @@ const createPricing = async (req, res) => {
             categoria,
             brand,
             stato,
-            foto
+            foto,
+            messages: session.messages//***
         };
 
         //Simulazione chiamata LLM: restituisce prezzo, range, motivazione e selling_tips
         const llmResponse = await callLLM(llmInput);
 
         //Aggiorno l'articolo 
-        article.pricing = llmResponse
+        article.pricing = llmResponse;
+
+        session.messages.push( {//***
+            role: "user",
+            content: `Valuta questo articolo: ${categoria}, ${brand}, ${stato}`
+        });
+        session.messages.push({//***
+            role: "assistant",
+            content: JSON.stringify(llmResponse)
+        });
         
         //Salvo gli aggiornamenti sul DB
         await article.save();
+        await session.save();//***
     
         //Rispondo al frontend
-        res.status(200).json ({article});
+        res.status(200).json ({article, session});//***
     
     } catch (err) {
         console.error(err);

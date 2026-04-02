@@ -48,11 +48,10 @@ const articleSchema = new mongoose.Schema({
             minlength: 2,
             trim: true
         },
-        selling_tips:{
+        selling_tips:[{ 
             type: String,
             minlength: 2,
-            trim: true
-        }
+            trim: true}]
     }
 }, {timestamps: true});
 
