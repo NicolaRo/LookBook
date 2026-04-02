@@ -1,8 +1,11 @@
 /* Responsabilità di llmService.js
 1. Istanziare il client OpenAI con la API key dal .env
 2. Costruire un prompt con i dati dell'articolo
-3. Chiamare l'API
-4. Parsare la risposta e restituire { suggested_price, range, motivation, selling_tips } */
+    2.1 System prompt  — chi è l'LLM e cosa deve fare
+    2.2 User message   — i dati dell'articolo + la foto in base64
+3. Chiamata API   — openai.chat.completions.create(...)
+4. Parsing        — JSON.parse della risposta
+*/
 
 //Importo LLM OpenAI 
 const OpenAI = require ('openai');
@@ -11,3 +14,33 @@ const OpenAI = require ('openai');
 const openai = new OpenAI ({
     apiKey: process.env.OPENAI_API_KEY
 });
+
+const callLLM = async ({categoria, brand, stato, foto, messages}) => {
+    try {
+        const response = await openai.chat.completions.create ({
+            model: "gpt-4o-mini",
+            messages: [
+                {
+                    role: "system",
+                    content: " Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa:{ suggested_price: <numero>,range: {min: <numero>, max: <numero> },motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
+                }, {
+                    role: "user",
+                    content: [
+                        {type: "text", text:`Valuta questo articolo: ${categoria}, brand ${brand}, stato${stato}`},
+                        {type: "image_url", image_url: {url:`data:image/jpeg;base64,${foto}`}}
+                    ]
+                }
+            ],
+            
+        });
+
+        const raw = response.choices[0].message.content;
+            return JSON.parse(raw);
+    } catch (error) {
+        throw new Error (`LLM error: ${error.message}`);
+    }
+};
+
+
+
+module.exports = {callLLM};

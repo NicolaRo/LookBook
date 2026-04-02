@@ -11,21 +11,12 @@
 //Import l'oggetto dal modello
 const Article = require("../models/Article");
 const Session = require ("../models/Session")//***
+const {callLLM} = require ("../services/llmService");
     
 
 // ### --- CREO UN PRICING --- ###
 
-//2. Creo callLLM funzione asincrona i cui params sono categoria, brand, stato e foto
-const callLLM = async ({categoria, brand, stato, foto }) => {
-    return {
-        suggested_price: 50,
-        range: {min: 45, max: 55},
-        motivation: "Marca famosa, condizioni ottime",
-        selling_tips: `Pubblica con questi tags: ${brand}, ${stato}`
-    };
-}
-
-//3. Creo il pricing
+//1. Creo il pricing
 const createPricing = async (req, res) => {
 
     //Estraggo i dati dalla request
@@ -98,6 +89,5 @@ const createPricing = async (req, res) => {
     
 };
 module.exports = {
-    callLLM,
     createPricing
 };
