@@ -20,8 +20,11 @@ const createPricing = async (req, res) => {
 
     //Estraggo i dati dalla request
     const  {articleId}= req.params;
+    console.log('articleId ricevuto', articleId);
+
     const {categoria, brand, stato, foto} = req.body;
     const {sessionId, name, messages} = req.body; //*** 
+    console.log('sessionId ricevuto',sessionId);
  
     let session; //***
 
@@ -66,7 +69,7 @@ const createPricing = async (req, res) => {
 
         session.messages.push( {//***
             role: "user",
-            content: `Valuta questo articolo: ${categoria}, ${brand}, ${stato}`
+            content: `Valuta questo articolo: ${categoria.genere}, ${categoria.tipo},${brand}, ${stato}`
         });
         session.messages.push({//***
             role: "assistant",

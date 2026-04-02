@@ -15,8 +15,13 @@ const app = express();
 //Importo mongoose
 const mongoose = require ('mongoose');
 
+//Importo le routes
+const sessionRoutes = require('./routes/sessionRoutes');
+const articleRoutes= require('./routes/articleRoutes');
 //Importo i Middleware
 app.use(express.json());
+app.use('/api/sessions', sessionRoutes);
+app.use('/api/articles', articleRoutes);
 
 //Connetto DB ed avvio il server
 const connectDB = async () => {

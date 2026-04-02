@@ -27,24 +27,26 @@ const Article = require ("../models/Article");
 const createArticle = async (req, res) => {
     try {
         //1.1 Riceve json dal middleware/query dal client
-        const { categoria, brand, stato} = req.body;
+        const { sessionId, categoria, brand, stato, foto} = req.body;
 
         //1.2 Valida i dati controllo errori
-        if(!req.file)
+        if(!foto)
             return res.status(400).json({message:"Foto articolo mancante"});
 
-        if(!categoria || ! brand || !stato)
+        if(!sessionId || !categoria || ! brand || !stato)
 
             //Controllo errori con HTTP Status Code 
             return res.status(400).json({message:"Dati articolo mancanti"});
 
         //1.3 Crea il prodotto nel DB
         const article = await Article.create({
+            sessionId,
             categoria,
             brand,
             stato,
-            foto: req.file.path,
+            foto
         });
+
         //1.4 Conferma dati salvati HTTP 201
         return res.status(201).json(article);
     } catch(error) {
@@ -71,7 +73,6 @@ const getArticle = async (req, res) => {
         return res.status(500).json ({message: error.message});
     }
 };
-
 //2.4 Recupera articolo specifico
 const getArticleById = async (req, res) => {
     try {

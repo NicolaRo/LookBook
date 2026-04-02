@@ -30,7 +30,7 @@ const createSession = async (req, res) => {
         const {sessionId, name, messages} = req.body;
 
         //1.2 Valida i dati controllo errori
-        if (!sessionId || !name || !messages)
+        if (!sessionId || !name )
 
             return res.status(400).json({message: "Dati sessione mancanti"});
         const session = await Session.create({
