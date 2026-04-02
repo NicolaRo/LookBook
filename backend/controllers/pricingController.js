@@ -11,8 +11,7 @@
 //Import l'oggetto dal modello
 const Article = require("../models/Article");
 const Session = require ("../models/Session")//***
-const {callLLM} = require ("../services/llmService");
-    
+const llmService = require ("../services/llmService");
 
 // ### --- CREO UN PRICING --- ###
 
@@ -61,8 +60,7 @@ const createPricing = async (req, res) => {
         };
 
         //Simulazione chiamata LLM: restituisce prezzo, range, motivazione e selling_tips
-        const llmResponse = await callLLM(llmInput);
-
+        const llmResponse = await llmService.callLLM(llmInput);
         //Aggiorno l'articolo 
         article.pricing = llmResponse;
 

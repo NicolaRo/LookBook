@@ -10,12 +10,15 @@
 //Importo LLM OpenAI 
 const OpenAI = require ('openai');
 
-//Istanzio il client
+
+
+const callLLM = async ({categoria, brand, stato, foto, messages}) => {
+
+    //Istanzio il client
 const openai = new OpenAI ({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-const callLLM = async ({categoria, brand, stato, foto, messages}) => {
     try {
         const response = await openai.chat.completions.create ({
             model: "gpt-4o-mini",
