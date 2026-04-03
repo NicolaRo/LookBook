@@ -10,7 +10,7 @@ Relazioni:
 
 //Importo configureStore ed il reducer della slice
 import {configureStore} from '@reduxjs/toolkit';
-import appReducer from './appSlice';
+import appReducer from '../features/appSlice';
 
 //Creo lo store
 const store = configureStore ({

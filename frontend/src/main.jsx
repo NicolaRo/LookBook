@@ -24,9 +24,9 @@ import store from './app/store.js';
 
 //Intuisco che questo serva ad includere provider store={store} nella gestione del DOM? Mi spieghi questo passaggio per favore?
 ReactDOM.createRoot(document.getElementById('root')).render( 
-  <React.strictMode>
+  <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <App/>
     </Provider>
-  </React.strictMode>
+  </React.StrictMode>
 );

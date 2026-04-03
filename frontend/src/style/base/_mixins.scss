@@ -1,4 +1,5 @@
 /* _-_-_ MEDIA QUERIES E FUNZIONI _-_-_ */
+@use './variables' as *;
 
 // mixins per media queries
 @mixin respond ($breakpoint) {

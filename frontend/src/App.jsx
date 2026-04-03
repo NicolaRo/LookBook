@@ -13,7 +13,7 @@ Qui avvengono:
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStatus } from './features/appSlice';
-import './App.css'
+import ChatAI from './components/Chat';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,12 +27,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>LookBook - Valutazione capi usati con AI</h1>
-      <p>Stato attuale: {status}</p>
-      <button onClick={goToForm}>Compila la Valutazione</button>
+    <div>
+      <p>Status corrente: {status}</p>
+  
+      <button onClick={goToForm}>
+        Vai al form
+      </button>
+  
+      <ChatAI
+        inizio={true}
+        form={true}
+        pricing={true}
+        valutato={true}
+      />
     </div>
   );
 }
-
+console.log(ChatAI);
 export default App

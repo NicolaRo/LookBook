@@ -9,7 +9,7 @@ Relazioni:
 -aggiornato dopo azioni (form submit, pricing, ecc.). */
 
 //Importo createSlice da Redux Toolkit
-import {createSlice} from '@redux/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 //Definisco l'initialState ed eventuale errore
 const initialState = {
