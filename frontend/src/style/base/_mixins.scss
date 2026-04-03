@@ -1,0 +1,37 @@
+/* _-_-_ MEDIA QUERIES E FUNZIONI _-_-_ */
+
+// mixins per media queries
+@mixin respond ($breakpoint) {
+    /* Se "breakpoint" è uguale a "xs" (smartphone vecchio) */
+    @if $breakpoint == xs {
+    /*imposta una larghezza minima uguale a 320px */
+        @media (min-width: $xs) {@content;}
+    }
+    /* Se "breakpoint" è uguale a "sm" (smartphone standard) */
+    @else if $breakpoint == sm {
+        /* imposta una larghezza minima uguale a 480px */
+        @media (min-width: $sm) {@content;}
+    }
+    /* Se "breakpoint" è uguale a "md" (tablet) */
+    @else if $breakpoint == md {
+        /* imposta una larghezza minima uguale a 780px */
+        @media (min-width: $md) {@content;}
+
+        /* Se "breakpoint è uguale a "lg" (laptop) */
+    } @else if $breakpoint == lg {
+        /* imposta una larghezza minima uguale a 1040px */
+        @media (min-width: $lg) {@content;}
+
+        /* Se "breakpoint" è uguale "xl" (desktop) */
+    } @else if $breakpoint == xl {
+        /* imposta una larghezza minima uguale a 1440px */
+        @media (min-width: $xl) {@content;}
+    }
+};
+
+/* MIXIN PER CENTRATURA FLESSIBILE */
+@mixin flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

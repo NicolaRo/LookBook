@@ -1,0 +1,41 @@
+/* -_-_- IMPORT MODULI DI BASE -_-_- */
+@import './base/mixsins';
+@import 'normalize.css';
+@import './base/reset';
+@import './base/variables';
+@import './base/mixins';
+/* -_-_- STILE DI BASE DELL'APP -_-_-  */
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+.App { // base mobile-first (sotto 480px)
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-md;
+  width: 100vw;
+  overflow-x: hidden;
+  @include respond (xs) {}// larghezza minima (≥350px)
+  @include respond (sm) {}// larghezza minima (≥480)
+  @include respond(md) {}// larghezza minima (≥780px)
+  @include respond (lg) {}// larghezza minima (≥1024px)
+  @include respond (xl){} // larghezza minima (≥1440px)
+  }
+  
+
+html {
+  font-size: 16px; // 1rem = 16px
+  scroll-behavior: smooth; // transizioni "smooth" durante lo scroll 
+}
+
+body {
+  font-family: 'poppins';
+  background-color: $glass-background; // definito in _variables.scss
+  color: $color-text;
+  min-height: 100vh; // corpo sempre alto quanto l'intera finestra
+  display: flex; // Lo imposto qua così a cascata tutti i "figli" otterranno la struttura flessibile
+  flex-direction: column; // best practice per layout verticali 
+}

@@ -1,0 +1,39 @@
+/* _-_-_ BREAKPOINTS - taglie dello schermo _-_-_ */
+
+$xs: 320px; // Extra small: smartphone vecchio <350px
+$sm: 480px; // Small: smartphone standard
+$md: 780px; // Medium: tablet
+$lg: 1024px; // Large: laptop
+$xl: 1440px; //Extra large: desktop
+
+/* _-_-_ PALETTE COLORI _-_-_ */
+$color-primary: #62c370;
+$color-primary: #62c370;
+$color-accent: #397e43c7;
+$glass-background: rgba(255, 255, 255, 0.488);
+$glass-backdrop: blur (4px);
+$color-text: #012b03;
+
+// Palette bottoni
+$button-text: #ffff;
+$color-close: rgba(255, 0, 0, 0.524);
+$color-open: rgba(98, 195, 113, 0.5803921569);
+$glass-primary:#17b52e7e;
+
+// Glassmorphism (stile Apple)
+
+$glass-bg: rgba(255,255,255,0.14);   // sfondo vetro
+$glass-border: 2px solid rgba(255, 255, 255, 0.450);
+$glass-shadow: 0 6px 24px rgba(8, 30, 10, 0.12);
+$glass-radius: 12px;
+$glass-box-shadow: 
+0 8px 32px 0 rgba(0, 0, 0, 0.37),
+inset 0 1px 0 0 rgba(255, 255, 255, 0.3)
+;
+
+/* _-_-_ SPACING _-_-_ */
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 2rem;
+$space-xl: 4rem;
