@@ -1,9 +1,8 @@
 /* -_-_- IMPORT MODULI DI BASE -_-_- */
-@import './base/mixsins';
 @import 'normalize.css';
-@import './base/reset';
-@import './base/variables';
-@import './base/mixins';
+@import './base/_reset';
+@import './base/_variables';
+@import './base/_mixins';
 /* -_-_- STILE DI BASE DELL'APP -_-_-  */
 * {
   box-sizing: border-box;
