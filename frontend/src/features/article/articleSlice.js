@@ -11,12 +11,14 @@ Relazioni:
 
 //Importo createSlice da Redux Toolkit
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+
+//Importo anche le funzioni per creare articolo ed ottenere articolo e prezzo
 import {createArticle, getArticlePricing} from '../../../services/api';
 
 
 //Definisco l'initialState ed eventuale errore
 const initialState = {
-    status: 'IDLE',
+status: 'IDLE', // IDLE | FORM | CREATED | PRICING_LOADING | PRICED
     error: null,
     articleId: null,
     pricingResult: null

@@ -12,15 +12,21 @@ Relazioni:
 import {configureStore} from '@reduxjs/toolkit';
 import appReducer from '../features/appSlice';
 
+import articleReducer from '../features/article/articleSlice';
+import chatReducer from '../features/chat/chatSlice';
+import pricingReducer from '../features/pricing/pricingSlice';
+
 //Creo lo store
 const store = configureStore ({
     reducer: {
         app: appReducer, //Collego la slice "app" allo store
+        article: articleReducer,
+        chat: chatReducer,
+        pricing: pricingReducer
     },
 });
 export default store;
 
 /* RIASSUNTO DEL FILE
 configureStore crea un Redux pronto all'uso.
-reducer accetta un oggetto: ogni chiave diventa una slice dello state (store.getState().app).
-posso aggiungere altre slices in futuro (srticle, chat, pricing) importandole ed aggiungendole all'oggetto reducer. */
+reducer accetta un oggetto: ogni chiave diventa una slice dello state (store.getState().app).*/
