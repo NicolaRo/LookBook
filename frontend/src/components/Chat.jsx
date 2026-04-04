@@ -13,23 +13,30 @@ Renderizza:
 -ArticleForm
 -PricingResult */
 
-function ChatAI ({ inizio, form, pricing, valutato}) {
-    if(!inizio || !form || !pricing || !valutato) {
-        return <p>Caricamento Assistente di vendita, attendere prego...</p>
-    }
+//Importo:
+//useSelector per leggere i Redux
+//Message
+//ArticleForm
+
+import {useSelector} from 'react-redux';
+import Message from './Message';
+import ArticleForm from './ArticleForm';
+
+function Chat() {
+    const messages = useSelector ((state)=> state.chat.messages);
+    const status = useSelector((state)=> state.app.status);
 
     return (
         <div className="assistente-AI-container">
             <h1 className="chat-title">LookBook Assistente di vendita</h1>
             <div className="display-chat">
-            <textarea
-                className="text-input"
-                placeholder="Scrivi qui all'assistente AI..."
-            />
-            <button className="bottone-invia">Invia messaggio</button>
+                {messages.map((msg,index)=> (
+                    <Message key={index} role={msg.role} content={msg.content}/>
+                ))}
+                </div>
+                {status === 'IDLE' && <ArticleForm/>}
             </div>
-        </div>
     );
 }
 
-export default ChatAI;
+export default Chat;
