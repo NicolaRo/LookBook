@@ -109,9 +109,10 @@ function ArticleForm () {
             />
         </div>
         <div className="container-stato">
-            <button onClick={() => setStato('Nuovo')}Nuovo/>
-            <button onClick={() => setStato('Buono')}Buono/>
-            <button onClick={() => setStato('Usato')}Usato/>
+            <button onClick={() => setStato('Nuovo')}>Nuovo</button>
+            <button onClick={() => setStato('Buono')}>Buono</button>
+            <button onClick={() => setStato('Usato')}>Usato</button>
+            
         </div>
         <button onClick =  {handleSubmit}>Invia</button>
         

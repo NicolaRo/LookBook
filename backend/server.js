@@ -15,10 +15,18 @@ const app = express();
 //Importo mongoose
 const mongoose = require ('mongoose');
 
+//Importo cors
+const cors = require ('cors');
+
 //Importo le routes
 const sessionRoutes = require('./routes/sessionRoutes');
 const articleRoutes= require('./routes/articleRoutes');
 //Importo i Middleware
+
+app.use(cors({
+    origin:'http://localhost:5173'
+}));
+
 app.use(express.json());
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/articles', articleRoutes);
