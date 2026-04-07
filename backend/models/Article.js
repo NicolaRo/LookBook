@@ -25,7 +25,7 @@ const articleSchema = new mongoose.Schema({
     },
     stato: {
         type: String,
-        enum: ["nuovo", "buono", "usato"],
+        enum: ["Nuovo", "Buono", "Usato"],
         required: true
     },
     pricing: {

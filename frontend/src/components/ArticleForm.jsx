@@ -25,19 +25,25 @@ function ArticleForm () {
     const [foto, setFoto] = useState(null);
     const [categoriaOpen, setCategoriaOpen] = useState(false);
     const [errore, setErrore] = useState('');
+    const [loadingFoto, setLoadingFoto] = useState(false);
 
     //inizializzo dispatch
     const dispatch = useDispatch ();
     
     //Ottengo la foto convertita in stringa da fileToBase64.js
     const handleFotoChange = async (file) => {
+        setLoadingFoto(true);//✅ Inizio caricamento
         const base64 = await fileToBase64(file);
         setFoto(base64);
+        setLoadingFoto(false); //✅ Fine caricamento
     }
 
     //Comunico cambio di state
     const handleSubmit = () => {
-
+        if(loadingFoto){
+            setErrore('Caricamento foto in corso, attendere...');
+            return;
+        }
         //Controllo che tutti i campi siano presenti
         if(!categoria.genere || !categoria.tipo || !brand || !foto) {
             setErrore('Compila tutti i campi e riprova');

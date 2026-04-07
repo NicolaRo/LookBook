@@ -18,22 +18,31 @@ const llmService = require ("../services/llmService");
 //1. Creo il pricing
 const createPricing = async (req, res) => {
 
+    console.log('🔥 createPricing chiamata');
+
     //Estraggo i dati dalla request
     const  {articleId}= req.params;
-    console.log('articleId ricevuto', articleId);
+    console.log('📦 articleId:', articleId);
 
     const {categoria, brand, stato, foto} = req.body;
-    const {sessionId, name, messages} = req.body; //*** 
-    console.log('sessionId ricevuto',sessionId);
+    
+    const sessionId = req.headers['x-session-id'];
  
-    let session; //***
+    if(!sessionId) {
+        return res.status(400).json({message: "SessionId mancante negli header"});
+    }
+    let session;
 
     try {
         //Recupero sessionId
-        session = await Session.findOne({sessionId});//***
+        session = await Session.findOne({sessionId});
 
-        if(!session) //***
-            return res.status(404).json({message: "Session non trovata"});//***
+        if(!session){
+            session = await Session.create ({
+                sessionId,
+                messages: []
+            });
+        }
     } catch (error) {//***
         return res.status(500).json({message: error.message});//***
     };
@@ -59,8 +68,10 @@ const createPricing = async (req, res) => {
             brand,
             stato,
             foto,
-            messages: session.messages//***
+            messages: session.messages || []//***
         };
+
+        console.log('🤖 chiamata LLM con:', llmInput);
 
         //Simulazione chiamata LLM: restituisce prezzo, range, motivazione e selling_tips
         const llmResponse = await llmService.callLLM(llmInput);
@@ -69,7 +80,7 @@ const createPricing = async (req, res) => {
 
         session.messages.push( {//***
             role: "user",
-            content: `Valuta questo articolo: ${categoria.genere}, ${categoria.tipo},${brand}, ${stato}`
+            content: `Valuta questo articolo: ${categoria.genere || ''}, ${categoria.tipo || ''},${brand}, ${stato}`
         });
         session.messages.push({//***
             role: "assistant",

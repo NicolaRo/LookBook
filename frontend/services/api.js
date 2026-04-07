@@ -32,18 +32,19 @@ const BASE_URL = import.meta.env.VITE_API_URL // da .en del frontend
         return (response.json()) //Ritorna {_id, categoria, brand}
 } */
 
-        
+const sessionId = localStorage.getItem('sessionId');
+
 export const createArticle = async (formData) => {
     const response = await fetch(`${BASE_URL}/api/articles`, {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json' // ✅ Serve a far capire a Express che è JSON
+            'Content-Type': 'application/json', // ✅ Serve a far capire a Express che è JSON
+            'x-session-id': sessionId //✅ Aggiungo sessionId da passare a pricingController
         },
         body: JSON.stringify(formData) // ✅ Serialize JSON
     });
 
     if (!response.ok) throw new Error("Errore creazione articolo");
-
     return response.json();
 }
 //Creo il pricing
@@ -52,10 +53,13 @@ export const getArticlePricing = async (articleId) => {
     //Attendo risposta dal "POST" invio articleIs a pricing
     const response = await fetch(`${BASE_URL}/api/articles/${articleId}/pricing`, {
         method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'x-session-id': sessionId //✅ Aggiungo sessionId da passare a pricingController
+        }
     })
 
     if(!response.ok) throw new Error ("Errore pricing")
-
         //Altrimenti ottiene in risposta un json con i dati
         return response.json() //Ritorna {suggested_price, range, motivation, selling_tips}
 }

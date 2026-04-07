@@ -25,14 +25,16 @@ const Article = require ("../models/Article");
 //### --- CREO UN ARTICOLO --- ###
 //1. Creare un articolo nel DB a partire dall'imput utente
 const createArticle = async (req, res) => {
-    console.log('📨 req.headers:', req.headers);
-    console.log('📨 req.body:', req.body);
+    const sessionId = req.headers ['x-session-id']; //✅ Legge sessionId
+    const { categoria, brand, stato, foto} = req.body;
+    if(!sessionId) {
+        return res.status(400).json({message: "SessionId mancante"});
+    }
 
+    console.log('📨 sessionId:', sessionId);
+    console.log('📨 stato:', stato);
+    
     try {
-        //1.1 Riceve json dal middleware/query dal client
-        const { categoria, brand, stato, foto} = req.body;
-
-        //1.2 Valida i dati controllo errori
         if(!foto)
             return res.status(400).json({message:"Foto articolo mancante"});
 
@@ -43,6 +45,7 @@ const createArticle = async (req, res) => {
 
         //1.3 Crea il prodotto nel DB
         const article = await Article.create({
+            sessionId,
             categoria,
             brand,
             stato,
@@ -52,8 +55,8 @@ const createArticle = async (req, res) => {
         //1.4 Conferma dati salvati HTTP 201
         return res.status(201).json(article);
     } catch(error) {
-
         //Controllo errori con HTTP Status Code 
+        console.error('ERRORE CREATE ARTICLE:', error);
         return res.status(500).json ({message: error.message});
     }
 }

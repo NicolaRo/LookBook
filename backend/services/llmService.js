@@ -10,40 +10,45 @@
 //Importo LLM OpenAI 
 const OpenAI = require ('openai');
 
-
-
-const callLLM = async ({categoria, brand, stato, foto, messages}) => {
-
+const callLLM = async ({categoria, brand, stato, foto, messages}) => { 
     //Istanzio il client
-const openai = new OpenAI ({
-    apiKey: process.env.OPENAI_API_KEY
-});
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY
+    });
+    const categoriaStr = `${categoria.genere || ''}, ${categoria.tipo || ''}`;
 
-    try {
-        const response = await openai.chat.completions.create ({
+    try{
+        const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: [
                 {
                     role: "system",
-                    content: " Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa:{ suggested_price: <numero>,range: {min: <numero>, max: <numero> },motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
-                }, {
-                    role: "user",
+                    content: "Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
+                },
+                ...messages, //Memoria conversazionale
+                {
+                    role:"user",
                     content: [
-                        {type: "text", text:`Valuta questo articolo: ${categoria}, brand ${brand}, stato${stato}`},
-                        {type: "image_url", image_url: {url:`data:image/jpeg;base64,${foto}`}}
+                        {
+                        type: "text",
+                        text: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}`
+                        },
+                        {
+                            type: "image_url",
+                            image_url: {
+                                url: `data:image/jpeg;base64,${foto}`
+                            }
+                        }
                     ]
                 }
-            ],
-            
+            ]
         });
-
         const raw = response.choices[0].message.content;
-            return JSON.parse(raw);
+        return JSON.parse(raw);
     } catch (error) {
-        throw new Error (`LLM error: ${error.message}`);
+        console.error("LLM ERROR:", error.message);
+        throw new Error(`LLM error: ${error.message}`);
     }
 };
 
-
-
-module.exports = {callLLM};
+module.esports = {callLLM};
