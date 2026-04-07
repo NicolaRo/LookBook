@@ -14,11 +14,13 @@ Relazioni:
 const BASE_URL = import.meta.env.VITE_API_URL // da .en del frontend
 
 //Creo l'articolo da.. 
-export const createArticle = async (formData) => {
+/* export const createArticle = async (formData) => {
     //Attendo risposta dal "POST" invio articles
     const response = await fetch (`${BASE_URL}/api/articles`, {
         method: "POST",
-        body: JSON.stringify(formData)
+        headers: {
+            body: JSON.stringify(formData)
+        });
     })
 
     //Se response.ok === true se status HTTP è 200-299
@@ -28,8 +30,22 @@ export const createArticle = async (formData) => {
 
         //Altrimenti ottiene in risposta un json con i dati
         return (response.json()) //Ritorna {_id, categoria, brand}
-}
+} */
 
+        
+export const createArticle = async (formData) => {
+    const response = await fetch(`${BASE_URL}/api/articles`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json' // ✅ Serve a far capire a Express che è JSON
+        },
+        body: JSON.stringify(formData) // ✅ Serialize JSON
+    });
+
+    if (!response.ok) throw new Error("Errore creazione articolo");
+
+    return response.json();
+}
 //Creo il pricing
 export const getArticlePricing = async (articleId) => {
 

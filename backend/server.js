@@ -27,7 +27,7 @@ app.use(cors({
     origin:'http://localhost:5173'
 }));
 
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));//Imposto limite immagini a 10MB
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/articles', articleRoutes);
 
