@@ -15,7 +15,7 @@ const articleSchema = new mongoose.Schema({
         },
         tipo: {
             type: String,
-            enum: ["Pantaloni", "Jeans", "T-shirt", "Abito", "Giacca", "Calzature", "Accessori"],
+            enum: ["Pantaloni", "Jeans", "T-Shirt", "Abito", "Giacca", "Calzature", "Accessori"],
             required: true
         }
     },

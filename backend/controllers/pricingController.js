@@ -75,8 +75,8 @@ const createPricing = async (req, res) => {
             categoria,
             brand,
             stato,
-            foto,
-            messages: session.messages || []//***
+            foto:null,
+            messages: session.messages || []
         };
         //Pulizia e validazione foto
         if (foto && typeof foto === 'string') {
@@ -106,7 +106,6 @@ const createPricing = async (req, res) => {
             llmInput.foto = base64Payload;
             } else {
                 console.warn('⚠️ foto non valida o mancante');
-                llmInput.foto = null;
             }
 
         const llmRaw = await llmService.callLLM(llmInput);

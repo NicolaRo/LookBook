@@ -29,7 +29,7 @@ describe ('getArticle Controller', ()=> {
 
         //ARRANGE
         const fakeArticle = [{
-            categoria: "T-shirt",
+            categoria: "T-Shirt",
             brand: "nike",
             stato:"Usato",
             _id: "123fakeArticleId"

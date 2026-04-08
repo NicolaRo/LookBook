@@ -23,7 +23,7 @@ describe("createArticle Controller", () => {
 
         const req = {
             body: {
-                categoria: "T-shirt",
+                categoria: "T-Shirt",
                 brand: "nike",
                 stato: "Usato"
             },
@@ -32,7 +32,7 @@ describe("createArticle Controller", () => {
 
         //fakeArticle 
         const fakeArticle = {
-            categoria: "T-shirt",
+            categoria: "T-Shirt",
             brand: "nike",
             stato:"Usato",
             _id: "123fakeArticleId"
@@ -61,7 +61,7 @@ describe("createArticle Controller", () => {
     it('should return 400 if required data are missing', async ()=> {
         const req = {
             body:{
-                categoria: "T-shirt",
+                categoria: "T-Shirt",
                 brand: "nike",
             },
             file: {
@@ -94,7 +94,7 @@ describe("createArticle Controller", () => {
     it('should create article and return 201', async () => {
         const req = {
             body:{
-                categoria: "T-shirt",
+                categoria: "T-Shirt",
                 brand: "nike",
                 stato: "Usato"
             },
@@ -104,7 +104,7 @@ describe("createArticle Controller", () => {
         };
 
         const fakeArticle = {
-            categoria: "T-shirt",
+            categoria: "T-Shirt",
             brand: "nike",
             stato: "Usato",
             foto: "fake/path.jpg",
@@ -126,7 +126,7 @@ describe("createArticle Controller", () => {
         expect(res.json.calledWith(fakeArticle)).to.be.true;
         expect(createStub.calledOnce).to.be.true;
         expect (createStub.calledWith({
-            categoria: "T-shirt",
+            categoria: "TSshirt",
             brand: "nike",
             stato: "Usato",
             foto: "fake/path.jpg"
@@ -137,7 +137,7 @@ describe("createArticle Controller", () => {
 it('should return 500 if database throw error', async()=> {
     const req = {
         body:{
-            categoria: "T-shirt",
+            categoria: "T-Shirt",
             brand: "nike",
             stato: "Usato"
         },
