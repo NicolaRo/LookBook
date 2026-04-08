@@ -14,8 +14,7 @@ const OpenAI = require ('openai');
 function isValidBase64Image(data) {
     if(!data || typeof data !== 'string') return false;
 
-    const match = data.match(/^data:image\/(png|jpeg|jpg|gif|webp);base64,[A-Za-z0-9+/=]+$/);
-    return match !== null;
+    return /^[A-Za-z0-9+/]+={0,2}$/.test(data);
 }
 
 const callLLM = async ({categoria, brand, stato, foto, messages}) => { 
@@ -42,18 +41,7 @@ const callLLM = async ({categoria, brand, stato, foto, messages}) => {
                 ...messages, //Memoria conversazionale
                 {
                     role:"user",
-                    content: [
-                        {
-                        type: "text",
-                        text: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}`
-                        },
-                        {
-                            type: "image_url",
-                            image_url: {
-                                url: `data:image/jpeg;base64,${foto}`
-                            }
-                        }
-                    ]
+                    content: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Base64 immagine: ${foto}`
                 }
             ]
         });

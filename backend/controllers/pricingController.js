@@ -102,8 +102,8 @@ const createPricing = async (req, res) => {
                     mimeType = prefix.split(',')[0].replace('data:','');
                 }
             } 
-            
-            llmInput.foto = `data:image/png;base64,${base64Payload}`;
+
+            llmInput.foto = base64Payload;
             } else {
                 console.warn('⚠️ foto non valida o mancante');
                 llmInput.foto = null;
