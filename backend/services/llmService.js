@@ -7,8 +7,6 @@
 4. Parsing        — JSON.parse della risposta
 */
 
-//Importo LLM OpenAI 
-const OpenAI = require ('openai');
 
 //Funzione per validare l'immagine base64
 function isValidBase64Image(data) {
@@ -25,28 +23,36 @@ const callLLM = async ({categoria, brand, stato, foto, messages}) => {
     }
 
     //Istanzio il client OpenAI
+    const OpenAI = require ('openai');
     const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY
     });
     const categoriaStr = `${categoria.genere || ''}, ${categoria.tipo || ''}`;
 
+    const tempMessages = [
+        {
+            role:"system",
+            content:"Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
+        },
+        ...messages.filter(msg => !msg.content.startsWith('data:image')), //Rimuovo eventuali foto accumulate
+        {
+            role:"user",
+            content:`Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Base64 immagine: ${foto}`
+        }
+    ];
+    //Chiamata LLM
     try{
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
-            messages: [
-                {
-                    role: "system",
-                    content: "Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
-                },
-                ...messages, //Memoria conversazionale
-                {
-                    role:"user",
-                    content: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Base64 immagine: ${foto}`
-                }
-            ]
+            messages: tempMessages
         });
         const raw = response.choices[0].message.content;
+
+        //Aggiorno la sessione con la parte testuale (SENZA foto)
+        messages.push({role: 'assistant', content: raw});
+        
         return JSON.parse(raw);
+   
     } catch (error) {
         console.error("LLM ERROR:", error.message);
         throw new Error(`LLM error: ${error.message}`);
