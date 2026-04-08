@@ -28,6 +28,10 @@ const articleSchema = new mongoose.Schema({
         enum: ["Nuovo", "Buono", "Usato"],
         required: true
     },
+    foto: {
+        type: String,
+        required: true
+    },
     pricing: {
         suggested_price: {
             type: Number,

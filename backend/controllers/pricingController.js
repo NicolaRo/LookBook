@@ -24,13 +24,14 @@ const createPricing = async (req, res) => {
     const  {articleId}= req.params;
     console.log('📦 articleId:', articleId);
 
-    const {categoria, brand, stato, foto} = req.body;
-    
-    const sessionId = req.headers['x-session-id'];
+    const sessionId = req.headers['x-session-id']?.trim();
  
     if(!sessionId) {
         return res.status(400).json({message: "SessionId mancante negli header"});
     }
+
+    console.log('🧪 sessionId RAW:', sessionId, typeof sessionId);
+
     let session;
 
     try {
@@ -43,6 +44,7 @@ const createPricing = async (req, res) => {
                 messages: []
             });
         }
+        console.log ('🧠 session trovata o creata:', session.sessionId);
     } catch (error) {//***
         return res.status(500).json({message: error.message});//***
     };
@@ -56,12 +58,18 @@ const createPricing = async (req, res) => {
 
         if(!article)
             return res.status(404).json({message: "Articolo non trovato"});
-        
+
     } catch (error) {
         return res.status(500).json({message: error.message});
     };
 
+    const categoria = article.categoria;
+    const brand = article.brand;
+    const stato = article.stato;
+    const foto = article.foto;
+
     try {
+       
         //Preparo input per LLM
         const llmInput = {
             categoria,
@@ -70,34 +78,65 @@ const createPricing = async (req, res) => {
             foto,
             messages: session.messages || []//***
         };
+        //Pulizia e validazione foto
+        if (foto && typeof foto === 'string') {
 
+            //Estrae payload base64 
+            let base64Payload = foto.includes(',')? foto.split(',')[1]:foto;
+            
+            //Rimozione spazi, newline, tab
+            base64Payload = base64Payload.replace(/\s/g,'');
+
+            //Verifica dimensione foto (4MB)
+            const sizeInMB = (base64Payload.length * 3 / 4) / (1024 * 1024);
+            if(sizeInMB > 4) {
+                console.warn(`⚠️ foto troppo grande (${sizeInMB.toFixed(2)} MB), taglio a 4MB`);
+                const maxLength = Math.floor(4 * 1024 * 1024 * 4 /3);
+                base64Payload = base64Payload.substring(0, maxLength);
+            }
+            //Ricostruisco la stringa completa per LLM
+            let mimeType = 'image/png'; //default
+            if(foto.includes(',')) {
+                const prefix = foto.split(',')[0];
+                if(prefix.includes('image/')){
+                    mimeType = prefix.split(',')[0].replace('data:','');
+                }
+            } 
+            
+            llmInput.foto = `data:image/png;base64,${base64Payload}`;
+            } else {
+                console.warn('⚠️ foto non valida o mancante');
+                llmInput.foto = null;
+            }
+
+        const llmRaw = await llmService.callLLM(llmInput);
         console.log('🤖 chiamata LLM con:', llmInput);
 
-        //Simulazione chiamata LLM: restituisce prezzo, range, motivazione e selling_tips
-        const llmResponse = await llmService.callLLM(llmInput);
-        //Aggiorno l'articolo 
-        article.pricing = llmResponse;
+        let llmResponse;
 
-        session.messages.push( {//***
-            role: "user",
-            content: `Valuta questo articolo: ${categoria.genere || ''}, ${categoria.tipo || ''},${brand}, ${stato}`
-        });
-        session.messages.push({//***
-            role: "assistant",
-            content: JSON.stringify(llmResponse)
-        });
+        try {
+            llmResponse = JSON.parse(JSON.stringify(llmRaw));
+            
+        } catch (parseErr) {
+                console.error("❌ JSON parsing LLM failed:", parseErr.message);
+                return res.status(500).json({message: "Errore parsing risposta LLM"});
+            }
         
-        //Salvo gli aggiornamenti sul DB
-        await article.save();
-        await session.save();//***
-    
-        //Rispondo al frontend
-        res.status(200).json ({article, session});//***
-    
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({message: "DB failure"});
-    };
+            // Aggiorno articolo e session
+            article.pricing = llmResponse;
+            await article.save();
+            
+            session.messages.push(...llmInput.messages);
+            await session.save();
+        
+            console.log('🤖 risposta LLM:', llmResponse);
+        
+            res.status(200).json({ article, session });
+        
+        } catch (err) {
+            console.error("❌ LLM call failed:", err.message);
+            res.status(500).json({ message: "Errore chiamata LLM" });
+        }
     
 };
 module.exports = {

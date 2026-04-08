@@ -10,8 +10,22 @@
 //Importo LLM OpenAI 
 const OpenAI = require ('openai');
 
+//Funzione per validare l'immagine base64
+function isValidBase64Image(data) {
+    if(!data || typeof data !== 'string') return false;
+
+    const match = data.match(/^data:image\/(png|jpeg|jpg|gif|webp);base64,[A-Za-z0-9+/=]+$/);
+    return match !== null;
+}
+
 const callLLM = async ({categoria, brand, stato, foto, messages}) => { 
-    //Istanzio il client
+    //Validazione foto prima di inviare all'LLM
+    if(foto &&!isValidBase64Image(foto)) {
+        console.error('❌ LLM call aborted: invalid base64 image');
+        throw new Error ('Invalid base64 image format');
+    }
+
+    //Istanzio il client OpenAI
     const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY
     });
@@ -51,4 +65,4 @@ const callLLM = async ({categoria, brand, stato, foto, messages}) => {
     }
 };
 
-module.esports = {callLLM};
+module.exports = {callLLM};
