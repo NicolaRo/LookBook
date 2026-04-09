@@ -26,12 +26,12 @@ function PricingResult() {
         <div className="container-pricing-result">
             <h1 className="pricing-result-title">Ecco la tua valutazione di vendita</h1>
             <div className="pricing-result-content">
-                <h4>Prezzo suggerito: ${suggested_price}</h4>
-                <h4>Range: ${range.min} - €{range.max}</h4>
-                <h4>Motivazione: {motivation}</h4>
+                <p><strong>Prezzo suggerito: </strong>${suggested_price}</p>
+                <p><strong>Range:</strong>${range.min} - €{range.max}</p>
+                <p><strong>Motivazione:</strong>{motivation}</p>
                 {selling_tips && selling_tips.length > 0 && (
                     <>
-                    <h4>Consigli per la vendita</h4>
+                    <p>Consigli per la vendita</p>
                     <ul>
                         {selling_tips.map((tip, index) => (
                             <li key={index}>{tip}</li>
