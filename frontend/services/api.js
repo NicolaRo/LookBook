@@ -32,14 +32,25 @@ const BASE_URL = import.meta.env.VITE_API_URL // da .en del frontend
         return (response.json()) //Ritorna {_id, categoria, brand}
 } */
 
-const sessionId = localStorage.getItem('sessionId');
+function getSessionId() {
+    let sessionId = sessionStorage.getItem('sessionId');
+
+    if(!sessionId) {
+        sessionId = crypto.randomUUID();
+        sessionStorage.setItem('sessionId', sessionId);
+        console.log('🆕 Nuova sessionId creata:', sessionId);
+    } else {
+        console.log('♻️ sessionId esistente:', sessionId);
+    }
+    return sessionId;
+}
 
 export const createArticle = async (formData) => {
     const response = await fetch(`${BASE_URL}/api/articles`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json', // ✅ Serve a far capire a Express che è JSON
-            'x-session-id': sessionId //✅ Aggiungo sessionId da passare a pricingController
+            'x-session-id': getSessionId() //✅ Aggiungo sessionId da passare a pricingController
         },
         body: JSON.stringify(formData) // ✅ Serialize JSON
     });
@@ -55,7 +66,7 @@ export const getArticlePricing = async (articleId) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'x-session-id': sessionId //✅ Aggiungo sessionId da passare a pricingController
+            'x-session-id': getSessionId() //✅ Aggiungo sessionId da passare a pricingController
         }
     })
 
