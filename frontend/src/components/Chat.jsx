@@ -21,6 +21,7 @@ Renderizza:
 import {useSelector} from 'react-redux';
 import Message from './Message';
 import ArticleForm from './ArticleForm';
+import PricingResult from './PricingResult';
 
 function Chat() {
     const messages = useSelector ((state)=> state.chat.messages);
@@ -35,6 +36,7 @@ function Chat() {
                 ))}
                 </div>
                 {status === 'IDLE' && <ArticleForm/>}
+                <PricingResult/>
             </div>
     );
 }
