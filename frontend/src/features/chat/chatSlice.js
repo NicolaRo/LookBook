@@ -25,7 +25,7 @@ export const chatSlice = createSlice({
     updateLastMessage: (state, action) => {
         const lastIndex = state.messages.length-1;
         if(lastIndex >=0) {
-            state.message[lastIndex] = {
+            state.messages[lastIndex] = {
                 ...state.messages[lastIndex],
                 ...action.payload
             };
