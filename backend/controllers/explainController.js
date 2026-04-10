@@ -15,6 +15,11 @@ const explainPricing = async (req, res) => {
     } return res.status(500).json({message: err.message});
 
     const pricing = article.pricing;
+    if (!pricing || !pricing.suggested_price) {
+        return res.status(400).json ({
+            message:"Pricing non disponibile"
+        });
+    }
 
     const question = req.query.question || "Spiega questo pricing";
     

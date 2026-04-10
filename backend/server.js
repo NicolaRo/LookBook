@@ -21,6 +21,7 @@ const cors = require ('cors');
 //Importo le routes
 const sessionRoutes = require('./routes/sessionRoutes');
 const articleRoutes= require('./routes/articleRoutes');
+const explainRoutes= require('./routes/explainRoutes');
 //Importo i Middleware
 
 app.use(cors({
@@ -30,6 +31,7 @@ app.use(cors({
 app.use(express.json({limit: '10mb'}));//Imposto limite immagini a 10MB
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/articles', articleRoutes);
+app.use('/api/articles', explainRoutes);
 
 //Connetto DB ed avvio il server
 const connectDB = async () => {
