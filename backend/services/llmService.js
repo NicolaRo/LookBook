@@ -57,9 +57,12 @@ const callLLM = async ({categoria, brand, stato, foto, messages}) => {
             messages: tempMessages
         });
         const raw = response.choices[0].message.content;
-        
-        return JSON.parse(raw);
-   
+        try {
+            return JSON.parse(raw);
+        } catch (e) {
+            console.error("Invalid LLM JSON:", raw);
+            throw new Error("LLM returned invalid JSON");
+        }
     } catch (error) {
         console.error("LLM ERROR:", error.message);
         throw new Error(`LLM error: ${error.message}`);
