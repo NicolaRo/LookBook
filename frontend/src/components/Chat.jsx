@@ -68,33 +68,33 @@ function Chat() {
   return (
     <div className="assistente-AI-container">
       <h1 className="chat-title">LookBook Assistente di vendita</h1>
+  
+      {/* CHAT */}
       <div className="display-chat">
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} content={msg.content} />
         ))}
-        <div className="display-chat">
-            {messages.map((msg, index) => (
-                <Message key={index} role={msg.role} content={msg.content}/>
-            ))}
-            {status === "LOADING" && (
-                <div className="loading-state">
-                    Valutando l'articolo...
-                </div>
-            )}
-        </div>
+  
+        {status === "LOADING" && (
+          <Message role="assistant" content="Valutando l'articolo..." />
+        )}
       </div>
+  
+      {/* FORM */}
       {status === "IDLE" && <ArticleForm />}
-      <PricingResult />
+  
+      {/* EXPLAIN INPUT */}
       <textarea
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="Hai una domanda sulla valutazione ricevuta?"
       />
+  
       <button onClick={handleExplain} type="button">
         Invia
       </button>
     </div>
-  );
+  );  
 }
 
 export default Chat;
