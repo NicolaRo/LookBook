@@ -8,27 +8,33 @@ Relazioni:
 -app.jsx dispatcha nuovi messaggi  */
 
 //Importo createSlice da Redux Toolkit
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 //Definisco l'initialState ed eventuale errore
 const initialState = {
-    messages: []
+  messages: [],
 };
 
 export const chatSlice = createSlice({
-        name: 'chat',
-        initialState,
-        reducers: {
-            addMessage: (state, action) => {
-                state.messages.push(action.payload); // Aggiorna lo status
-            },            
+  name: "chat",
+  initialState,
+  reducers: {
+    addMessage: (state, action) => {
+      state.messages.push(action.payload); // Aggiorna lo status
+    },
+    updateLastMessage: (state, action) => {
+        const lastIndex = state.messages.length-1;
+        if(lastIndex >=0) {
+            state.message[lastIndex] = {
+                ...state.messages[lastIndex],
+                ...action.payload
+            };
         }
-    })
+      },
+  },
+});
 
-    
-
-
-export const {addMessage} = chatSlice.actions;
+export const { addMessage, updateLastMessage } = chatSlice.actions;
 
 //Reducer per lo store
 export default chatSlice.reducer;

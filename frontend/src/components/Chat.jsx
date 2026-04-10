@@ -24,14 +24,16 @@ import ArticleForm from "./ArticleForm";
 import PricingResult from "./PricingResult";
 import { useState } from "react";
 import { explainPricing } from "../../services/api";
+import { useDispatch } from "react-redux";
+import { addMessage, updateLastMessage } from "../features/chat/chatSlice";
 
 function Chat() {
   const messages = useSelector((state) => state.chat.messages);
   const status = useSelector((state) => state.app.status);
   const articleId = useSelector((state) => state.article.articleId);
+  const dispatch = useDispatch();
 
   const [question, setQuestion] = useState("");
-  const [explaination, setExplaination] = useState(null);
 
   const handleExplain = async () => {
     console.log("STEP 1 - click ok");
@@ -41,21 +43,26 @@ function Chat() {
       alert("Article ID mancante");
       return;
     }
-    {explaination && (
-    <div style={{ marginTop: "10px" }}>
-        {explaination}
-    </div>
-)}
+
+    //1. Messaggio di loading
+    dispatch(addMessage({
+        role: "assistant",
+        content: "Sto valutando l'articolo..."
+    }));
     
     console.log("ARTICLE ID:", articleId);
     console.log("QUESTION:", question);
 
+    //2. Chiamata API
     const res = await explainPricing(articleId, question);
     console.log("STEP 2 - response:", res);
 
 
-    setExplaination(res.explaination);
-    
+    //3. Sostituisco messaggio di loading con la risposta
+    dispatch(updateLastMessage({
+        content: res.explaination
+    }));
+
   };
 
   return (
@@ -76,7 +83,6 @@ function Chat() {
       <button onClick={handleExplain} type="button">
         Invia
       </button>
-      {explaination && <div style={{ marginTop: "10px" }}>{explaination}</div>}
     </div>
   );
 }
