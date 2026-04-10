@@ -7,66 +7,121 @@
 4. Parsing        — JSON.parse della risposta
 */
 
-
-//Funzione per validare l'immagine base64
+//Funzione per validare /l'immagine base64
 function isValidBase64Image(data) {
-    if(!data || typeof data !== 'string') return false;
+  if (!data || typeof data !== "string") return false;
 
-    return /^[A-Za-z0-9+/]+={0,2}$/.test(data);
+  return typeof data === "string" && data.length > 100;
 }
 
-const callLLM = async ({categoria, brand, stato, foto, messages}) => { 
-    //Validazione foto prima di inviare all'LLM
-    if(foto &&!isValidBase64Image(foto)) {
-        console.error('❌ LLM call aborted: invalid base64 image');
-        throw new Error ('Invalid base64 image format');
-    }
+const callLLM = async ({ categoria, brand, stato, foto, messages }) => {
+  //Validazione foto prima di inviare all'LLM
+  if (foto && !isValidBase64Image(foto)) {
+    console.error("❌ LLM call aborted: invalid base64 image");
+    throw new Error("Invalid base64 image format");
+  }
 
-    //Istanzio il client OpenAI
-    const OpenAI = require ('openai');
-    const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY
-    });
-    const categoriaStr = `${categoria.genere || ''}, ${categoria.tipo || ''}`;
+  //Istanzio il client OpenAI
+  const OpenAI = require("openai");
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const categoriaStr = `${categoria.genere || ""}, ${categoria.tipo || ""}`;
 
-    const tempMessages = [
+  const tempMessages = [
+    {
+      role: "system",
+      content:
+        "Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}",
+    },
+    {
+      role: "user",
+      content: [
         {
-            role:"system",
-            content:"Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
+          type: "text",
+          text: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Immagine inclusa`,
         },
         {
-            role:"user",
-            content: [
-                {
-                    type: "text",
-                    text: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Immagine inclusa`
-                },
-                {
-                    type: "image_url",
-                    image_url: {
-                        url: `data:image/png;base64,${foto}`
-                    }
-                }
-            ]
-        }
-    ];
-    //Chiamata LLM
-    try{
-        const response = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: tempMessages
-        });
-        const raw = response.choices[0].message.content;
-        try {
-            return JSON.parse(raw);
-        } catch (e) {
-            console.error("Invalid LLM JSON:", raw);
-            throw new Error("LLM returned invalid JSON");
-        }
-    } catch (error) {
-        console.error("LLM ERROR:", error.message);
-        throw new Error(`LLM error: ${error.message}`);
+          type: "image_url",
+          image_url: {
+            url: `data:image/png;base64,${foto}`,
+          },
+        },
+      ],
+    },
+  ];
+  //Chiamata LLM
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: tempMessages,
+    });
+    const raw = response.choices[0].message.content;
+    try {
+      return JSON.parse(raw);
+    } catch (e) {
+      console.error("Invalid LLM JSON:", raw);
+      throw new Error("LLM returned invalid JSON");
     }
+  } catch (error) {
+    console.error("LLM ERROR:", error.message);
+    throw new Error(`LLM error: ${error.message}`);
+  }
 };
 
-module.exports = {callLLM};
+const explainPricing = async ({ article, pricing, question }) => {
+  const OpenAI = require("openai");
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const messages = [
+    {
+      role: "system",
+      content: `
+Sei un esperto di pricing di moda second hand.
+
+Devi spiegare in modo semplice e chiaro perché un prezzo è stato assegnato.
+
+NON devi ricalcolare il prezzo.
+NON devi inventare nuovi valori.
+
+Rispondi in JSON:
+{
+  explanation: string
+}
+`,
+    },
+    {
+      role: "user",
+      content: `
+Articolo:
+- Categoria: ${article.categoria.genere} ${article.categoria.tipo}
+- Brand: ${article.brand}
+- Stato: ${article.stato}
+
+Pricing:
+- Prezzo suggerito: ${pricing.suggested_price}
+- Range: ${pricing.range.min}-${pricing.range.max}
+- Motivazione: ${pricing.motivation}
+
+Domanda utente:
+${question}
+`,
+    },
+  ];
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages,
+  });
+
+  const raw = response.choiches[0].message.content;
+
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error("Invalid explain JSON", raw);
+    throw new Error("LLM explain returned invalid JSON");
+  }
+};
+
+module.exports = { callLLM, explainPricing };

@@ -7,11 +7,8 @@
     1.4 Conferma che la sessione è stata salvata HTTP 201
 
 2. Leggere i dati dell'articolo per passarli all'LLM
-    2.1 Recupera tutte le sessioni salvate nel DB
-    2.2 Filtro per "argomento", "data", "stato"
-    2.3 Restituisce array sessioni -> HTTP 200
-    2.4 Recupera sessione specifica ->findById(req.params.id)
-    2.5 Restituisce sessione
+    2.1 Recupera sessione specifica ->findById(req.params.id)
+    2.2 Restituisce sessione
 
 3. Eliminare sessioni concluse per mantenere DB pulito e leggero
     3.1 Ottengo sessionID da query 
@@ -48,23 +45,8 @@ const createSession = async (req, res) => {
 }
 
 //### --- LEGGO UNA SESSIONE -- ###
-// 2. Recupera tutte le sessioni salvate nel DB
+// 2. Recupera la sessione salvata nel DB
 
-//2.1 Recupera tutte le sessioni salvate nel DB
-const getSession = async (req, res) => {
-    try {
-        const session = await Session.find();
-
-        //2.2 Filtro per "argomento", "data", "stato"
-
-        //2.3 Restituisce array sessioni -> HTTP 200
-        return res.status(200).json(session);
-    } catch (error) {
-        return res.status(500).json ({message: error.message});
-    }
-};
-
-//2.4 Recupera sessione specifica ->findOne({sessionId: req.params.id})
 const getSessionById = async (req, res) => {
     try {
         //Leggo sessionId da localStorage non quello di MongoDB
@@ -81,7 +63,7 @@ const getSessionById = async (req, res) => {
     }
 };
 
-//### --- ELIMINO UNA SESSIONE --- ###
+/* //### --- ELIMINO UNA SESSIONE --- ###
 //3 Eliminare sessioni concluse per mantenere DB pulito e leggero
 
 //3.1 Ottengo sessionID da query 
@@ -97,11 +79,9 @@ const deleteSession = async (req, res) => {
     } catch (error) {
         return res.status(500).json({message: error.message});
     }
-};
+}; */
 
 module.exports = {
     createSession,
-    getSession,
     getSessionById,
-    deleteSession
 };
