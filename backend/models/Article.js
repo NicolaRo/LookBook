@@ -56,7 +56,21 @@ const articleSchema = new mongoose.Schema({
             type: String,
             minlength: 2,
             trim: true}]
-    }
+    },
+    followups : [
+        {
+            question: {
+                type: String,
+                required: true,
+                trim: true
+            },
+            answer: {
+                type: String,
+                required: true,
+                trim: true
+            }
+        }
+    ]
 }, {timestamps: true});
 
 //Creo il model
