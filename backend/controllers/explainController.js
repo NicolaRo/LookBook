@@ -12,7 +12,8 @@ const explainPricing = async (req, res) => {
             return res.status(404).json({ message: "Articolo non trovato"});
         }
     } catch (err) {
-    } return res.status(500).json({message: err.message});
+        return res.status(500).json({ message: err.message });
+    }
 
     const pricing = article.pricing;
     if (!pricing || !pricing.suggested_price) {
@@ -29,11 +30,11 @@ const explainPricing = async (req, res) => {
             pricing,
             question
         });
-        return res.status(200).json({
-            explaination
-        });
+        return res.status(200).json(explaination);
     } catch (err) {
-        return res.status(500).json ({message: "Errore LLM explain"})
+        console.error("🔥 LLM explain error:", err);
+    
+        return res.status(500).json ({message: err.message});
     }
 };
 

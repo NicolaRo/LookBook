@@ -87,7 +87,7 @@ NON devi inventare nuovi valori.
 
 Rispondi in JSON:
 {
-  explanation: string
+  explaination: string
 }
 `,
     },
@@ -113,8 +113,9 @@ ${question}
     model: "gpt-4o-mini",
     messages,
   });
+  console.log("OPENAI RAW:", response);
 
-  const raw = response.choiches[0].message.content;
+  const raw = response.choices[0].message?.content;
 
   try {
     return JSON.parse(raw);

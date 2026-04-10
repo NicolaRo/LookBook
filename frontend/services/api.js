@@ -74,3 +74,12 @@ export const getArticlePricing = async (articleId) => {
         //Altrimenti ottiene in risposta un json con i dati
         return response.json() //Ritorna {suggested_price, range, motivation, selling_tips}
 }
+
+export const explainPricing = async (articleId, question) => {
+    const res = await fetch(
+        `http://localhost:3000/api/articles/${articleId}/explain?question=${encodeURIComponent(question)}`
+    );
+
+    const data = await res.json();
+    return data;
+};
