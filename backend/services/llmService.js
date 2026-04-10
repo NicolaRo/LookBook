@@ -34,10 +34,20 @@ const callLLM = async ({categoria, brand, stato, foto, messages}) => {
             role:"system",
             content:"Sei un esperto di moda second hand. Il tuo compito è valutare capi di abbigliamento e restituire una stima di prezzo coerente col mercato. Rispondi SOLO con un oggetto JSON valido, senza testo aggiuntivo, senza markdown, senza backtick. La struttura deve essere esattamente questa: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}"
         },
-        ...messages.filter(msg => !msg.content.startsWith('data:image')), //Rimuovo eventuali foto accumulate
         {
             role:"user",
-            content:`Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Base64 immagine: ${foto}`
+            content: [
+                {
+                    type: "text",
+                    text: `Valuta questo articolo: ${categoriaStr}, brand ${brand}, stato ${stato}, Immagine inclusa`
+                },
+                {
+                    type: "image_url",
+                    image_url: {
+                        url: `data:image/png;base64,${foto}`
+                    }
+                }
+            ]
         }
     ];
     //Chiamata LLM
@@ -47,9 +57,6 @@ const callLLM = async ({categoria, brand, stato, foto, messages}) => {
             messages: tempMessages
         });
         const raw = response.choices[0].message.content;
-
-        //Aggiorno la sessione con la parte testuale (SENZA foto)
-        messages.push({role: 'assistant', content: raw});
         
         return JSON.parse(raw);
    
