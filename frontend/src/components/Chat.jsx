@@ -72,6 +72,16 @@ function Chat() {
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} content={msg.content} />
         ))}
+        <div className="display-chat">
+            {messages.map((msg, index) => (
+                <Message key={index} role={msg.role} content={msg.content}/>
+            ))}
+            {status === "LOADING" && (
+                <div className="loading-state">
+                    Valutando l'articolo...
+                </div>
+            )}
+        </div>
       </div>
       {status === "IDLE" && <ArticleForm />}
       <PricingResult />

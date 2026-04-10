@@ -49,6 +49,10 @@ function ArticleForm () {
             setErrore('Compila tutti i campi e riprova');
             return;
         }
+
+        // Set loading globale
+        dispatch({type: "app/setStatus", payload: "LOADING"});
+
         dispatch(submitArticleAndPrice({categoria, brand, stato, foto }));
     }
 
