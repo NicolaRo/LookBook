@@ -10,7 +10,6 @@
 
 //Import l'oggetto dal modello
 const Article = require("../models/Article");
-const Session = require("../models/Session"); //***
 const llmService = require("../services/llmService");
 
 // ### --- CREO UN PRICING --- ###
@@ -22,32 +21,6 @@ const createPricing = async (req, res) => {
   //Estraggo i dati dalla request
   const { articleId } = req.params;
   console.log("📦 articleId:", articleId);
-
-  const sessionId = req.headers["x-session-id"]?.trim();
-
-  if (!sessionId) {
-    return res.status(400).json({ message: "SessionId mancante negli header" });
-  }
-
-  console.log("🧪 sessionId RAW:", sessionId, typeof sessionId);
-
-  let session;
-
-  try {
-    //Recupero sessionId
-    session = await Session.findOne({ sessionId });
-
-    if (!session) {
-      session = await Session.create({
-        sessionId,
-        messages: [],
-      });
-    }
-    console.log("🧠 session trovata o creata:", session.sessionId);
-  } catch (error) {
-    //***
-    return res.status(500).json({ message: error.message }); //***
-  }
 
   //Dichiaro variabile artiche visibile in tutto il try
   let article;
@@ -67,22 +40,6 @@ const createPricing = async (req, res) => {
   const stato = article.stato;
   const foto = article.foto;
 
-  //Filtro i messaggi per rimuovere le foto e mantenere contesto
-  const filteredMessages = (session.messages || [])
-    .slice(-3)
-    .filter(
-      (msg, index, self) =>
-        index === self.findIndex((m) => m.content === msg.content)
-    )
-    .map((msg) => {
-      const cleanMsg = { ...msg };
-
-      delete cleanMsg.foto;
-
-      delete cleanMsg.image;
-      return cleanMsg;
-    });
-
   try {
     //Preparo input per LLM
     const llmInput = {
@@ -90,7 +47,6 @@ const createPricing = async (req, res) => {
       brand,
       stato,
       foto: null,
-      messages: filteredMessages,
     };
     //Pulizia e validazione foto
     if (foto && typeof foto === "string") {
@@ -103,11 +59,7 @@ const createPricing = async (req, res) => {
       //Verifica dimensione foto (4MB)
       const sizeInMB = (base64Payload.length * 3) / 4 / (1024 * 1024);
       if (sizeInMB > 4) {
-        console.warn(
-          `⚠️ foto troppo grande (${sizeInMB.toFixed(2)} MB), taglio a 4MB`
-        );
-        const maxLength = Math.floor((4 * 1024 * 1024 * 4) / 3);
-        base64Payload = base64Payload.substring(0, maxLength);
+        console.warn(`⚠️ foto troppo grande (${sizeInMB.toFixed(2)} MB)`);
       }
       //Ricostruisco la stringa completa per LLM
       let mimeType = "image/png"; //default
@@ -139,14 +91,9 @@ const createPricing = async (req, res) => {
     article.pricing = llmResponse;
     await article.save();
 
-    session.messages.push({
-        role:'assistant',
-        content: JSON.stringify(llmResponse)
-    });
-
     console.log("🤖 risposta LLM:", llmResponse);
 
-    res.status(200).json({ article, session });
+    res.status(200).json({ article});
   } catch (err) {
     console.error("❌ LLM call failed:", err.message);
     res.status(500).json({ message: "Errore chiamata LLM" });
