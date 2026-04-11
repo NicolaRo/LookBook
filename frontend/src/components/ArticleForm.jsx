@@ -58,52 +58,42 @@ function ArticleForm () {
 
     return (
         <>
-        <div className="categoria-genere-ontainer">
+        <div className="categoria-genere-container">
             <p>Scegli la categoria articolo</p>
-            <input
-            type="button"
-            name="Categoria"
-            id="Categoria"
-            required
-            placeholder="Categoria"/>
-            <button onClick={()=> setCategoriaOpen(!categoriaOpen)}>Scegli categoria</button>
+    
+            <button className={`button ${categoriaOpen ? "active" : ""}`} onClick={()=> setCategoriaOpen(!categoriaOpen)}>Categorie</button>
             {categoriaOpen && (
-                <div>
-                    <button className="tag-genere" onClick={() => setCategoria({ ...categoria, genere: 'Abbigliamento uomo'})}>
+                <div className="container-tags-genere">
+                    <button className={`tag-genere ${categoria ? "active" : ""}`} onClick={() => setCategoria({ ...categoria, genere: 'Abbigliamento uomo'})}>
                         Uomo
                     </button>
-                    <button onClick={() => setCategoria({...categoria, genere: 'Abbigliamento donna'})}>
+                    <button className={`tag-genere ${categoria ? "active" : ""}`} onClick={() => setCategoria({...categoria, genere: 'Abbigliamento donna'})}>
                         Donna
                     </button>
-                    <button onClick={() => setCategoria({...categoria, genere: 'Abbigliamento bambino'})}>
+                    <button className={`tag-genere ${categoria ? "active" : ""}`} onClick={() => setCategoria({...categoria, genere: 'Abbigliamento bambino'})}>
                         Bambino
                     </button>
-                    <button onClick={() => setCategoria({...categoria, genere: 'Abbigliamento bambina'})}>
+                    <button className={`tag-genere ${categoria ? "active" : ""}`} onClick={() => setCategoria({...categoria, genere: 'Abbigliamento bambina'})}>
                         Bambina
                     </button>
                 </div>
             )}
-        </div>
-        <div className="container-categoria">
-            <p>Scegli </p>
-            <input
-                type="button"
-                name="Tipo"
-                id="Tipo"
-                required
-                placeholder="Tipo"/>
+
+<div className="container-categoria">            
                 {categoria.genere && (
-                    <div>
-                        <button onClick={() => setCategoria({...categoria, tipo:'Pantaloni'})}>Pantaloni</button>
-                        <button onClick= {() => setCategoria({...categoria, tipo:'Jeans'})}> Jeans</button>
-                        <button onClick={() => setCategoria({...categoria, tipo:'T-Shirt'})}>T-Shirt</button>
-                        <button onClick= {() => setCategoria({...categoria, tipo:'Abito'})}> Abito</button>
-                        <button onClick={() => setCategoria({...categoria, tipo:'Giacca'})}>Giacca</button>
-                        <button onClick= {() => setCategoria({...categoria, tipo:'Calzature'})}> Calzature</button>
-                        <button onClick= {() => setCategoria({...categoria, tipo:'Accessori'})}> Accessori</button>
+                    <div className="container-tags-categoria">
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick={() => setCategoria({...categoria, tipo:'Pantaloni'})}>Pantaloni</button>
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick= {() => setCategoria({...categoria, tipo:'Jeans'})}> Jeans</button>
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick={() => setCategoria({...categoria, tipo:'T-Shirt'})}>T-Shirt</button>
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick= {() => setCategoria({...categoria, tipo:'Abito'})}> Abito</button>
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick={() => setCategoria({...categoria, tipo:'Giacca'})}>Giacca</button>
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick= {() => setCategoria({...categoria, tipo:'Calzature'})}> Calzature</button>
+                        <button className={`tag-categoria ${categoria ? "active" : ""}`} onClick= {() => setCategoria({...categoria, tipo:'Accessori'})}> Accessori</button>
                     </div>
                 )}
             </div>
+        </div>
+        
         <div className="upload-foto-container">
             <div>
                 <input type = "file" onChange={(e) => handleFotoChange(e.target.files[0])}/>
@@ -111,7 +101,8 @@ function ArticleForm () {
             </div>
         </div>
         <div className ="container-brand">
-        <input
+            <h3>Indica il brand dell'articolo:</h3>
+        <input className="input-textarea"
             type="text"
             value ={brand}
             onChange ={ (e) => setBrand(e.target.value)}
@@ -119,12 +110,14 @@ function ArticleForm () {
             />
         </div>
         <div className="container-stato">
-            <button onClick={() => setStato('Nuovo')}>Nuovo</button>
-            <button onClick={() => setStato('Buono')}>Buono</button>
-            <button onClick={() => setStato('Usato')}>Usato</button>
-            
+            <div className="container-tag-stato">
+            <button className="button" onClick={() => setStato('Nuovo')}>Nuovo</button>
+            <button className="button" onClick={() => setStato('Buono')}>Buono</button>
+            <button className="button" onClick={() => setStato('Usato')}>Usato</button>
+            </div>
+            <button className="button-valuta" onClick =  {handleSubmit}>Valuta articolo</button>
         </div>
-        <button onClick =  {handleSubmit}>Valuta articolo</button>
+        
         
         </>
         

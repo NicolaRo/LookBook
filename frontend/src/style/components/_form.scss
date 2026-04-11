@@ -1,0 +1,116 @@
+.assistente-AI-container {
+    width: auto;
+    max-width: 600px;
+    margin: 2rem auto;
+    border: 0.15rem solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+  
+    .chat-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+  
+    .display-chat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  
+      .text-input {
+        width: 100%;
+        min-height: 100px;
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        resize: vertical;
+      }
+  
+      .bottone-invia {
+        align-self: flex-end;
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+
+.categoria-genere-container {
+border: 1px solid;
+border-radius: 8px;
+padding: 1rem;
+background: linear-gradient(135deg, rgba(11, 3, 251, 0.5), rgb(156, 51, 255));
+border-color: white;
+}
+
+.container-tags-genere{
+  
+  border-color: white;
+  background-color: blueviolet;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-evenly;
+  border-radius: 6px;
+}
+
+.upload-foto-container {
+  margin: 1rem;
+  background-color: cadetblue;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.container-brand {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.container-stato {
+  margin-bottom: 1rem;
+  background-color: aliceblue;
+  border: 1px solid;
+  padding: 15px 0 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.container-tag-stato {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.container-tags-categoria {
+  padding: 1rem;
+  background-color: darkseagreen;
+  border: 1px solid;
+  border-radius: 6px;
+}
+
+.input-textarea{
+  display: flex;
+  justify-content: center;
+  border-color: blueviolet;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.chat-textarea {
+  display: flex;
+  justify-content: center;
+  border-color: mediumspringgreen;
+  border-radius: 6px;
+  padding: 0.5rem;
+}

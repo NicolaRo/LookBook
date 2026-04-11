@@ -82,13 +82,13 @@ function Chat() {
       
   
       {/* EXPLAIN INPUT */}
-      <textarea
+      <textarea className="chat-textarea"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="Hai una domanda sulla valutazione ricevuta?"
       />
   
-      <button onClick={handleExplain} type="button">
+      <button className="button" onClick={handleExplain} type="button">
         Invia
       </button>
     </div>

@@ -15,6 +15,7 @@ import ReactDOM from 'react-dom/client'; //Accede al DOM e monta l'app in un nod
 import {Provider} from 'react-redux'; //Provider serve ad "iniettare" lo store Redux in tutta l'app
 import 'normalize.css';
 import App from './App.jsx';
+import './style/main.scss';
 
 
 

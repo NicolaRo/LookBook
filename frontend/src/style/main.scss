@@ -3,13 +3,24 @@
 @use './base/_reset';
 @use './base/_variables' as *;
 @use './base/_mixins' as *;
+@use './components/form' as *;
 @use './components/chat' as *;
+@use './components/buttons' as *;
+@use './base/states' as *;
 /* -_-_- STILE DI BASE DELL'APP -_-_-  */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin:0;
   padding:0;
 } 
+
+ul {
+  list-style: none;
+  padding: 0;
+}
 
 .App { // base mobile-first (sotto 480px)
   display:flex;
@@ -32,7 +43,7 @@ html {
 }
 
 body {
-  font-family: 'poppins';
+  font-family: 'Poppins', sans-;
   background-color: $glass-background; // definito in _variables.scss
   color: $color-text;
   min-height: 100vh; // corpo sempre alto quanto l'intera finestra

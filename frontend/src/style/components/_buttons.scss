@@ -1,0 +1,44 @@
+.button {
+    padding: 0.25rem;
+    border: 1px solid;
+    border-radius: 6px;
+    background-color: aliceblue;
+    margin-top: 1rem;
+    &.active {
+        opacity: 0.70;
+        transform: translateY(2px);
+    }
+}
+
+.tag-genere {
+    margin: 5px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 3px;
+    &.active {
+        opacity: 0.70;
+        transform: translateY(2px);
+    }
+}
+
+.tag-categoria {
+    margin: 5px;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 3px;
+  background-color: antiquewhite;
+  &.active {
+    opacity: 0.70;
+    transform: translateY(2px);
+}
+}
+
+.button-valuta {
+    padding: 0.25rem;
+    border: 1px solid;
+    border-radius: 6px;
+    background-color: aliceblue;
+    margin-top: 1rem;
+    max-width: 13rem ;
+    display: flex;
+}
