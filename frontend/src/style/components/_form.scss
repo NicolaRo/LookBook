@@ -45,21 +45,26 @@
   }
 
 .categoria-genere-container {
-border: 1px solid;
-border-radius: 8px;
-padding: 1rem;
-background: linear-gradient(135deg, rgba(11, 3, 251, 0.5), rgb(156, 51, 255));
-border-color: white;
-}
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(11, 3, 251, 0.5), rgb(156, 51, 255));
+  border-color: white;
+    &active{
+      border-radius: 6px 6px 0 0;
+    }
+  }
 
 .container-tags-genere{
-  
   border-color: white;
   background-color: blueviolet;
   display: flex;
+  flex-direction: column;
   padding: 1rem;
   justify-content: space-evenly;
   border-radius: 6px;
+  border-color: white;
+  
 }
 
 .upload-foto-container {
@@ -68,6 +73,7 @@ border-color: white;
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid;
+  color: #d8ffed;
 }
 
 .container-brand {
@@ -78,12 +84,13 @@ border-color: white;
 .container-stato {
   margin-bottom: 1rem;
   background-color: aliceblue;
-  border: 1px solid;
-  padding: 15px 0 15px 0;
+  border-color: blueviolet;
+  padding: 0.5rem 0 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
+  margin-top: 0.5rem;
 }
 
 .container-tag-stato {
@@ -94,9 +101,8 @@ border-color: white;
 
 .container-tags-categoria {
   padding: 1rem;
-  background-color: darkseagreen;
-  border: 1px solid;
-  border-radius: 6px;
+  background: linear-gradient(to top, rgba(251, 3, 239, 0.5), rgba(156, 51, 255, 0));
+  border-radius: 0 0 6px 6px;
 }
 
 .input-textarea{
@@ -105,6 +111,7 @@ border-color: white;
   border-color: blueviolet;
   border-radius: 6px;
   padding: 0.5rem;
+  margin-top:0.5rem;
 }
 
 .chat-textarea {
@@ -113,4 +120,5 @@ border-color: white;
   border-color: mediumspringgreen;
   border-radius: 6px;
   padding: 0.5rem;
+  margin-top: 1rem;
 }
