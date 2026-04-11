@@ -16,6 +16,9 @@ import {useSelector} from 'react-redux';
 
 function PricingResult() {
     const pricingResult = useSelector ((state)=> state.pricing.pricingResult);
+    const articleStatus = useSelector ((state)=> state.article.status);
+
+    if(articleStatus === 'IDLE') return null; 
 
     if(!pricingResult || !pricingResult.article?.pricing) {
         return <p>Valutando l'articolo...</p>
