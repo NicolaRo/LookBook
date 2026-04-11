@@ -47,7 +47,7 @@ function Chat() {
     //1. Messaggio di loading
     dispatch(addMessage({
         role: "assistant",
-        content: "Sto valutando l'articolo..."
+        content: "Elaboro risposta..."
     }));
     
     console.log("ARTICLE ID:", articleId);
@@ -74,14 +74,16 @@ function Chat() {
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} content={msg.content} />
         ))}
-  
+{/*   
         {status === "LOADING" && (
           <Message role="assistant" content="Valutando l'articolo..." />
-        )}
+        )} */}
       </div>
   
       {/* FORM */}
       {status === "IDLE" && <ArticleForm />}
+
+      <PricingResult/>
   
       {/* EXPLAIN INPUT */}
       <textarea

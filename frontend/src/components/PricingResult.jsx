@@ -18,7 +18,7 @@ function PricingResult() {
     const pricingResult = useSelector ((state)=> state.pricing.pricingResult);
 
     if(!pricingResult || !pricingResult.article?.pricing) {
-        return <p>Nessun pricing disponinbile.</p>
+        return <p>Valutando l'articolo...</p>
     }
     const {suggested_price, range, motivation, selling_tips} = pricingResult.article.pricing;
     

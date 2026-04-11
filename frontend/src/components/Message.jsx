@@ -8,7 +8,9 @@ NON HA logica di STATO */
 
 function Message({role, content}) {
     return (
-        <div>{role}:{content}</div>
+        <div className={`message ${role === "user" ? "message--user" : "message--assistant"}`}>
+            <p>{content}</p>
+        </div>
     );
     }
 
