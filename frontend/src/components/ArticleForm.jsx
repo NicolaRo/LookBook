@@ -58,7 +58,7 @@ function ArticleForm() {
     <>
       {/* CATEGORIE */}
       <div className="categoria-genere-container">
-        <p>Scegli la categoria articolo</p>
+        <h3>Scegli la categoria articolo</h3>
 
         <button
           className={`button ${categoriaOpen ? "active" : ""}`}
@@ -82,7 +82,7 @@ function ArticleForm() {
                 });
               }}
             >
-              Uomo
+              🕺 Uomo
             </button>
 
             <button
@@ -97,7 +97,7 @@ function ArticleForm() {
                 });
               }}
             >
-              Donna
+              💃 Donna
             </button>
 
             <button
@@ -112,7 +112,7 @@ function ArticleForm() {
                 });
               }}
             >
-              Bambino
+              👦🏻 Bambino
             </button>
 
             <button
@@ -127,7 +127,7 @@ function ArticleForm() {
                 });
               }}
             >
-              Bambina
+             👧 Bambina
             </button>
             </div>
             
@@ -143,7 +143,7 @@ function ArticleForm() {
                 setCategoria({ ...categoria, tipo: "Pantaloni" })
               }
             >
-              Pantaloni
+              👖 Pantaloni
             </button>
 
             <button
@@ -152,7 +152,7 @@ function ArticleForm() {
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Jeans" })}
             >
-              Jeans
+              👖 Jeans
             </button>
 
             <button
@@ -161,7 +161,7 @@ function ArticleForm() {
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "T-Shirt" })}
             >
-              T-Shirt
+             👕 T-Shirt
             </button>
 
             <button
@@ -170,7 +170,7 @@ function ArticleForm() {
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Abito" })}
             >
-              Abito
+             👗 Abito
             </button>
 
             <button
@@ -179,7 +179,7 @@ function ArticleForm() {
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Giacca" })}
             >
-              Giacca
+             🧥 Giacca
             </button>
 
             <button
@@ -190,7 +190,7 @@ function ArticleForm() {
                 setCategoria({ ...categoria, tipo: "Calzature" })
               }
             >
-              Calzature
+             👞 Calzature
             </button>
 
             <button
@@ -201,7 +201,7 @@ function ArticleForm() {
                 setCategoria({ ...categoria, tipo: "Accessori" })
               }
             >
-              Accessori
+             👜 Accessori
             </button>
           </div>
         )}
