@@ -68,22 +68,18 @@ function Chat() {
   return (
     <div className="assistente-AI-container">
       <h1 className="chat-title">LookBook Assistente di vendita</h1>
-  
+  <PricingResult/>
       {/* CHAT */}
       <div className="display-chat">
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} content={msg.content} />
         ))}
-{/*   
-        {status === "LOADING" && (
-          <Message role="assistant" content="Valutando l'articolo..." />
-        )} */}
       </div>
   
       {/* FORM */}
       {status === "IDLE" && <ArticleForm />}
 
-      <PricingResult/>
+      
   
       {/* EXPLAIN INPUT */}
       <textarea

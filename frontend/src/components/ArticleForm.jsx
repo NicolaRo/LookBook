@@ -124,7 +124,7 @@ function ArticleForm () {
             <button onClick={() => setStato('Usato')}>Usato</button>
             
         </div>
-        <button onClick =  {handleSubmit}>Invia</button>
+        <button onClick =  {handleSubmit}>Valuta articolo</button>
         
         </>
         

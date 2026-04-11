@@ -13,7 +13,7 @@ import React from 'react'; //Necessario perchè JSX viene trasformato in React.c
 import { StrictMode } from 'react' //Wrapper che aiuta a rilevate problemi in fase di sviluppo
 import ReactDOM from 'react-dom/client'; //Accede al DOM e monta l'app in un nodo specifico
 import {Provider} from 'react-redux'; //Provider serve ad "iniettare" lo store Redux in tutta l'app
-import './style/main.scss';
+import 'normalize.css';
 import App from './App.jsx';
 
 
