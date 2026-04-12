@@ -80,12 +80,14 @@ function Chat() {
   )}
   {status === "PRICED" && <PricingResult/>}
       {/* CHAT */}
-      <div className="display-chat">
+      {messages.length > 0 && (
+        <div className="display-chat">
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} content={msg.content} />
         ))}
       </div>
-  
+      )}
+      
       {/* FORM */}
       {status === "IDLE" && <ArticleForm />}
 
