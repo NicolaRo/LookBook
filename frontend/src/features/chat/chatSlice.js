@@ -37,7 +37,7 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { addMessage, updateLastMessage } = chatSlice.actions;
+export const { addMessage, updateLastMessage, resetChat } = chatSlice.actions;
 
 //Reducer per lo store
 export default chatSlice.reducer;

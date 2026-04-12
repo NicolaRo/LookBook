@@ -110,7 +110,7 @@ const articleSlice = createSlice({
 
 
 
-export const {setStatus, setError} = articleSlice.actions;
+export const {setStatus, setError, resetApp} = articleSlice.actions;
 
 //Reducer per lo store 
 export default articleSlice.reducer
