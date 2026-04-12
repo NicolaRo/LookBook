@@ -68,7 +68,10 @@ function Chat() {
   return (
     <div className="assistente-AI-container">
       <h1 className="chat-title">LookBook Assistente di vendita</h1>
-  {status === "PRICING_LOADING" && <p>Valutando l'articolo...</p>}
+  {status === "PRICING_LOADING" &&  <p>Valutando l'articolo...</p>}
+  {status === "PRICING_LOADING" && (
+    <div className="spinner"></div>
+  )}
   {status === "PRICED" && <PricingResult/>}
       {/* CHAT */}
       <div className="display-chat">
