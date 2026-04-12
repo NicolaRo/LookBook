@@ -42,3 +42,22 @@
     max-width: 13rem ;
     display: flex;
 }
+
+.button-red{
+    margin: 1rem;
+    padding: 0.25rem;
+    background-color: rgba(247, 129, 129, 0.994);
+    border-radius: 8px;
+    border-color: white;
+}
+.button-send{
+    background-color: #0093ff;
+  border: solid 1px #ff00cb;
+  font-size: 2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  margin: 0.5rem;
+  color: white;
+}

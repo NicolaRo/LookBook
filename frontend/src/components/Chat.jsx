@@ -44,7 +44,13 @@ function Chat() {
       return;
     }
 
-    //1. Messaggio di loading
+    //Salvo il messaggio dell'utente
+    dispatch(addMessage({
+      role:"user",
+      content: question
+    }));
+    
+    //Mostro messaggio di loading
     dispatch(addMessage({
         role: "assistant",
         content: "Elaboro risposta..."
@@ -53,12 +59,12 @@ function Chat() {
     console.log("ARTICLE ID:", articleId);
     console.log("QUESTION:", question);
 
-    //2. Chiamata API
+    //Chiamata API
     const res = await explainPricing(articleId, question);
     console.log("STEP 2 - response:", res);
 
 
-    //3. Sostituisco messaggio di loading con la risposta
+    //Sostituisco messaggio di loading con la risposta
     dispatch(updateLastMessage({
         content: res.explaination
     }));
@@ -86,15 +92,23 @@ function Chat() {
       
   
       {/* EXPLAIN INPUT */}
-      <textarea className="chat-textarea"
+      <div className="container-textarea">
+         <textarea className="chat-textarea"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="Hai una domanda sulla valutazione ricevuta?"
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && !e.shiftKey){
+            e.preventDefault();
+            handleExplain()
+          }
+        }}
       />
-  
-      <button className="button" onClick={handleExplain} type="button">
-        Invia
+      <button className="button-send" onClick={handleExplain} type="button">
+        ➤
       </button>
+      </div>
+     
     </div>
   );  
 }

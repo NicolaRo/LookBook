@@ -43,7 +43,7 @@ function PricingResult() {
     return (
         <>
         <div className="container-pricing-result">
-            <button className="button" onClick ={() => setShowModal (true)}>❮ Torna al form</button>
+            <button className="button-red" onClick ={() => setShowModal (true)}>❮ Torna al form</button>
             <h1 className="pricing-result-title">Ecco la tua valutazione di vendita</h1>
             <div className="pricing-result-content">
                 <p><strong>💰 Prezzo suggerito: </strong>${suggested_price}</p>
@@ -66,7 +66,7 @@ function PricingResult() {
                 <div className = "modal">
                     <p>⚠️ Tornando al form perderai la valutazione ricevuta. Continuare?</p>
                     <button className = "button" onClick = {handleReset}>Si, torna al form</button>
-                    <button className="button" onClick = {() => setShowModal(false)}>Annulla</button>
+                    <button className="button-red" onClick = {() => setShowModal(false)}>Annulla</button>
                 </div>
             </div>
         )}

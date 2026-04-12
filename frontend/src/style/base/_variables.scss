@@ -25,11 +25,8 @@ $glass-primary:#17b52e7e;
 $glass-bg: rgba(255,255,255,0.14);   // sfondo vetro
 $glass-border: 2px solid rgba(255, 255, 255, 0.450);
 $glass-shadow: 0 6px 24px rgba(8, 30, 10, 0.12);
-$glass-radius: 12px;
-$glass-box-shadow: 
-0 8px 32px 0 rgba(0, 0, 0, 0.37),
-inset 0 1px 0 0 rgba(255, 255, 255, 0.3)
-;
+$radius: 12px;
+$shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
 
 /* _-_-_ SPACING _-_-_ */
 $space-xs: 0.25rem;

@@ -1,3 +1,4 @@
+
 .pricing-result-content {
     background-color: blanchedalmond;
   margin-bottom: 1rem;
@@ -41,4 +42,70 @@ li.active::before {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.display-chat{
+  padding: 0.5rem;
+  border-radius: 8px;
+  max-height: 25rem;
+  overflow-x: scroll;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-image: linear-gradient(45deg, rgb(0, 81, 255), rgba(252, 5, 203, 0.703));
+}
+.container-textarea{
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-textarea {
+  display: flex;
+  justify-content: center;
+  border-color: #fa00ea;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.modal{
+  background-color: #c59bf7bd;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid white;
+}
+
+.message--assistant {
+  color: white;
+  background-color: rgba(236, 127, 255, 0.71);
+  padding: 1rem 5rem 1rem 1rem;
+  max-width: 80%;
+  align-self:start;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px 0 rgba(93, 1, 98, 0.37), inset 0 1px 0 0 rgba(149, 1, 255, 0.3);
+}
+
+.message--user{
+  color: white;
+  background-color: rgba(127, 163, 255, 0.701);
+  padding: 1rem 1rem 1rem 5rem;
+  max-width: 80%;
+  align-self:end;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px 0 rgba(2, 107, 255, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
 }
