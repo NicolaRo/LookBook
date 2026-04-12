@@ -50,7 +50,6 @@ function ArticleForm() {
       return;
     }
 
-    dispatch({ type: "app/setStatus", payload: "LOADING" });
     dispatch(submitArticleAndPrice({ categoria, brand, stato, foto }));
   };
 

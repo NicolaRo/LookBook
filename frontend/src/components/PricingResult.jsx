@@ -20,9 +20,6 @@ function PricingResult() {
 
     if(articleStatus === 'IDLE') return null; 
 
-    if(!pricingResult || !pricingResult.article?.pricing) {
-        return <p>Valutando l'articolo...</p>
-    }
     const {suggested_price, range, motivation, selling_tips} = pricingResult.article.pricing;
     
     return (

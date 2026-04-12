@@ -31,6 +31,9 @@ export const chatSlice = createSlice({
             };
         }
       },
+      resetChat: state => {
+        state.messages = [];
+      },
   },
 });
 

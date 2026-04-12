@@ -15,6 +15,9 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 //Importo anche le funzioni per creare articolo ed ottenere articolo e prezzo
 import {createArticle, getArticlePricing} from '../../../services/api';
 
+//Importo setStatus da appSlice
+import {setStatus as setAppStatus} from '../appSlice';
+
 
 //Definisco l'initialState ed eventuale errore
 const initialState = {
@@ -46,11 +49,16 @@ export const submitArticleAndPrice = createAsyncThunk (
     async (formData, {dispatch}) => {
 
         //Step 1 - crea articolo
+        dispatch(setAppStatus('PRICING_LOADING'));
+
         const articleResult = await dispatch (submitArticle(formData))
         const articleId = articleResult.payload._id
 
         //Step 2 - chiedi pricing utilizzando l'id appena ricevuto
-        await dispatch (submitPricing(articleId))
+        await dispatch (submitPricing(articleId));
+
+        //Step 3 - tutto completato
+        dispatch(setAppStatus('PRICED'));
     }
 )
 //Creo la slice con i reducers base: 
@@ -68,6 +76,8 @@ const articleSlice = createSlice({
         resetApp: (state) => {
             state.status = 'IDLE';
             state.error = null; 
+            state.articleId = null;
+            state.pricingResult = null;
         },
     },
     extraReducers: (builder) => {
