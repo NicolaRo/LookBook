@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import Message from "./Message";
 import ArticleForm from "./ArticleForm";
 import PricingResult from "./PricingResult";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { explainPricing } from "../../services/api";
 import { useDispatch } from "react-redux";
 import { addMessage, updateLastMessage } from "../features/chat/chatSlice";
@@ -31,7 +31,14 @@ function Chat() {
   const messages = useSelector((state) => state.chat.messages);
   const status = useSelector((state) => state.app.status);
   const articleId = useSelector((state) => state.article.articleId);
+  const bottomRef = useRef(null);
+
+  useEffect(()=>{
+    bottomRef.current?.scrollIntoView({behavior: "smooth"});
+  },[messages]);
+
   const dispatch = useDispatch();
+
 
   const [question, setQuestion] = useState("");
 
@@ -68,6 +75,7 @@ function Chat() {
     dispatch(updateLastMessage({
         content: res.explaination
     }));
+    setQuestion("");
 
   };
 
@@ -85,6 +93,7 @@ function Chat() {
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} content={msg.content} />
         ))}
+        <div ref={bottomRef} />
       </div>
       )}
       
