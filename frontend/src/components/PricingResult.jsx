@@ -2,6 +2,7 @@
 
 Legge da Redux:
 -pricing.data
+che ottiene da pricingSlice via Redux store.
 
 Mostra: 
 -prezzo
@@ -10,22 +11,26 @@ Mostra:
 -tips
  */
 
-//Importo
+//Importo i componenti
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {resetApp} from '../features/appSlice';
-import {resetApp as resetArticle} from  '../features/article/articleSlice';
+import {resetArticle} from  '../features/article/articleSlice';
 import {resetChat} from '../features/chat/chatSlice';
 
 
-
+//Funzione principale del componente
 function PricingResult() {
+
+    //Prendo PricingResult ed articleStatus
     const pricingResult = useSelector ((state)=> state.pricing.pricingResult);
     const articleStatus = useSelector ((state)=> state.article.status);
 
+    //dispatch lancia le azioni verso lo store per aggiornare lo stato globale
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
+    //Con handleReset ripristino gli stati di default dei sub-componenti
     const handleReset = () => {
         dispatch(resetApp());
         dispatch(resetArticle());
@@ -35,6 +40,7 @@ function PricingResult() {
 
     if(articleStatus === 'IDLE') return null; 
 
+    //Controllo la presenza di un pricing, se non ancora disponibile restituisco un messaggio
     if(!pricingResult || !pricingResult.article?.pricing) {
         return <p>Valutando l'articolo...</p>
     }

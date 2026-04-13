@@ -1,5 +1,4 @@
-/* Componente principale della UI chat.
-
+/* 
 Responsabilità
 -Mostra i messaggi
 -Decide cosa renderizzare (form, pricing, loading)
@@ -15,18 +14,25 @@ Renderizza:
 
 //Importo:
 //useSelector per leggere i Redux
-//Message
-//ArticleForm
+//useState per cambiamenti di stato
+//useRef per per referenziare l'ultimo messaggio e quindi scrollare la chat per visualizzare sempre l'ultimo messaggio 
+//useEffect per applicare un effetto stilato nel css
+//useDispatch per consentire aggiornamento di stato globale
+
+//Message componente che gestisce i messaggi
+//ArticleForm componente compilato dall'utente
 
 import { useSelector } from "react-redux";
-import Message from "./Message";
-import ArticleForm from "./ArticleForm";
-import PricingResult from "./PricingResult";
 import { useState, useRef, useEffect } from "react";
 import { explainPricing } from "../../services/api";
 import { useDispatch } from "react-redux";
 import { addMessage, updateLastMessage } from "../features/chat/chatSlice";
 
+import Message from "./Message";
+import ArticleForm from "./ArticleForm";
+import PricingResult from "./PricingResult";
+
+//Funzione principale del componente
 function Chat() {
   const messages = useSelector((state) => state.chat.messages);
   const status = useSelector((state) => state.app.status);
@@ -42,6 +48,7 @@ function Chat() {
 
   const [question, setQuestion] = useState("");
 
+  //Funzione per gestire la risposta dell'LLM
   const handleExplain = async () => {
     console.log("STEP 1 - click ok");
 
@@ -62,9 +69,6 @@ function Chat() {
         role: "assistant",
         content: "Elaboro risposta..."
     }));
-    
-    console.log("ARTICLE ID:", articleId);
-    console.log("QUESTION:", question);
 
     //Chiamata API
     const res = await explainPricing(articleId, question);
@@ -115,8 +119,6 @@ function Chat() {
       {/* FORM */}
       {status === "IDLE" && <ArticleForm />}
 
-      
-  
       {/* EXPLAIN INPUT */}
       <div className="container-textarea">
          <textarea className="chat-textarea"

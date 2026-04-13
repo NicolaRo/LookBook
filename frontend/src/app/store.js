@@ -1,4 +1,4 @@
-/* store.js è il "contenitore" dello stato.
+/* store.js è il "contenitore" dello stato dei componenti
 
 Qui creo lo store Redux globale.
 
@@ -26,7 +26,3 @@ const store = configureStore ({
     },
 });
 export default store;
-
-/* RIASSUNTO DEL FILE
-configureStore crea un Redux pronto all'uso.
-reducer accetta un oggetto: ogni chiave diventa una slice dello state (store.getState().app).*/

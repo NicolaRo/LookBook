@@ -2,6 +2,9 @@
 
 Contiene:
 articleId
+pricingResult
+gli status
+gli errori
 (eventualmente dati articolo)
 
 Relazioni:
@@ -21,14 +24,14 @@ import {setStatus as setAppStatus} from '../appSlice';
 
 //Definisco l'initialState ed eventuale errore
 const initialState = {
-status: 'IDLE', // IDLE | FORM | CREATED | PRICING_LOADING | PRICED
+status: 'IDLE', // IDLE | PRICING_LOADING | PRICED
     error: null,
     articleId: null,
     pricingResult: null
 };
 
 //THUNK - Coordinatore asincrono dei cambi di state
-export const submitArticle = createAsyncThunk (
+const submitArticle = createAsyncThunk (
     'article/createArticle',
     async (formData) => {
         const data = await createArticle(formData) // Chiama api.js
@@ -73,7 +76,7 @@ const articleSlice = createSlice({
         setError: (state, action) => {
             state.error = action.payload; //Aggiorna l'errore
         },
-        resetApp: (state) => {
+        resetArticle: (state) => {
             state.status = 'IDLE';
             state.error = null; 
             state.articleId = null;
@@ -110,7 +113,7 @@ const articleSlice = createSlice({
 
 
 
-export const {setStatus, setError, resetApp} = articleSlice.actions;
+export const {setStatus, setError, resetArticle} = articleSlice.actions;
 
 //Reducer per lo store 
 export default articleSlice.reducer

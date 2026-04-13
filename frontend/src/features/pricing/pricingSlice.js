@@ -6,8 +6,8 @@ loading
 error
 
 Relazioni:
--procingResult.jsx legge data
--app.jsx dispatcha start/success/failure */
+-pricingResult.jsx legge data
+*/
 
 //Importo createSlice da Redux Toolkit
 import {createSlice} from '@reduxjs/toolkit';
@@ -19,6 +19,8 @@ const initialState = {
     error: null,
     pricingResult: null
 };
+
+//pricingSlice per gestire i casi di caricamento, successo o fallimento della visualizzazione della valutazione
 const pricingSlice = createSlice ({ 
     name:'pricing',
     initialState,

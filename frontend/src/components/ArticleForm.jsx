@@ -2,22 +2,25 @@
 
 Responsabilità:
 -Raccogliere input utente:
--Convertire immagine in base64
 -Dispatch createArticle
 
 NON CHIAMA DIRETTAMENTE LE API (idealmente -> via Redux) */
 
 //Importo:
-//gli states di React per gestire l'inviio del form
+//gli states di React per gestire l'invio del form
 //fileToBase64 per la conversione della foto
-//sumbmitArticleAndPrice per gestire loading nella UI
-//useDispatch
+//submitArticleAndPrice raccoglie gli input utente crea il Json e lo manda all'LLM
+
 import { useState } from "react";
 import fileToBase64 from "../../services/utils/fileToBase64";
 import { submitArticleAndPrice } from "../features/article/articleSlice";
 import { useDispatch } from "react-redux";
 
+
+//Funzione principale del componente
 function ArticleForm() {
+
+  //Imposto lo stato dei sub-componenti per rendere "cliccati" i bottoni
   const [brand, setBrand] = useState("");
   const [categoria, setCategoria] = useState({ genere: "", tipo: "" });
   const [stato, setStato] = useState("");
@@ -30,8 +33,10 @@ function ArticleForm() {
   const [errore, setErrore] = useState("");
   const [loadingFoto, setLoadingFoto] = useState(false);
 
+  //Dispatch comunica il cambio di stato di un componente
   const dispatch = useDispatch();
 
+  //Qui ottengo il file caricato in formato base64 per passarlo all'LLM
   const handleFotoChange = async (file) => {
     setLoadingFoto(true);
     const base64 = await fileToBase64(file);
@@ -39,6 +44,7 @@ function ArticleForm() {
     setLoadingFoto(false);
   };
 
+  //Carico le informazioni dell'articolo
   const handleSubmit = () => {
     if (loadingFoto) {
       setErrore("Caricamento foto in corso, attendere...");
@@ -59,6 +65,9 @@ function ArticleForm() {
       <div className="categoria-genere-container">
         <h3>Scegli la categoria articolo</h3>
 
+
+
+        {/* Quando cliccato, il bottone apre il contenitore catagoria (setCategoriaOpen)*/}
         <button
           className={`button ${categoriaOpen ? "active" : ""}`}
           onClick={() => setCategoriaOpen(!categoriaOpen)}

@@ -1,11 +1,11 @@
 /* Gestisce i messaggi della chat.
 
-Array di messaggi: {role: "user / "assistant, test}
+Array di messaggi: {role: "user / "assistant, text}
 
 Relazioni: 
 -chat.jsx legge i messaggi
 -message.jsx li renderizza
--app.jsx dispatcha nuovi messaggi  */
+ */
 
 //Importo createSlice da Redux Toolkit
 import { createSlice } from "@reduxjs/toolkit";
@@ -20,9 +20,9 @@ export const chatSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action) => {
-      state.messages.push(action.payload); // Aggiorna lo status
+      state.messages.push(action.payload); //Aggiunge i messaggi dei rispettivi role: "user" ed "assistant"
     },
-    updateLastMessage: (state, action) => {
+    updateLastMessage: (state, action) => { //Aggiorna il messaggio 
         const lastIndex = state.messages.length-1;
         if(lastIndex >=0) {
             state.messages[lastIndex] = {
@@ -31,7 +31,7 @@ export const chatSlice = createSlice({
             };
         }
       },
-      resetChat: state => {
+      resetChat: state => { //Ripulisce la chat
         state.messages = [];
       },
   },

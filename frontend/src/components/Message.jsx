@@ -2,7 +2,7 @@
 
 Riceve props:
 -role
--text
+-content
 
 NON HA logica di STATO */
 
