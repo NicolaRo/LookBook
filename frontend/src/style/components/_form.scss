@@ -1,33 +1,30 @@
 .assistente-AI-container {
-    width: auto;
-    max-width: 600px;
-    margin: 2rem auto;
-    border: 0.15rem solid #dcaff1;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: #f9f9f9;
-  
-    .chat-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-  
-    .display-chat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-  
-      .text-input {
-        width: 100%;
-        min-height: 100px;
-        padding: 0.5rem;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        resize: vertical;
-      }
-    }
-  }
+  width: auto;
+  max-width: 600px;
+  margin: 2rem auto;
+  border: 0.15rem solid #dcaff1;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #d5ebfe;
+
+}
+
+.chat-title {
+  text-align: center;
+  color: teal; 
+
+}
+.image-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.img-AI-assistent{
+  height: 15rem;
+  width: 13rem;
+  align-self: center;
+  box-shadow: #ff72ff;
+}
 
 .categoria-genere-container {
   border: 1px solid;

@@ -90,7 +90,13 @@ function Chat() {
 
   return (
     <div className="assistente-AI-container">
-      <h1 className="chat-title">LookBook Assistente di vendita</h1>
+      
+      <h1 className="chat-title">LookBook</h1>
+      <div className ="image-container">
+      <img className="img-AI-assistent" src="LookBook-AI-agent.png" alt="Illustrazione assistente artificiale fashion"/>
+      <h1 className="chat-title">Il tuo Assistente AI di vendita</h1>
+      </div>
+      
   {status === "PRICING_LOADING" &&  <p>Valutando l'articolo...</p>}
   {status === "PRICING_LOADING" && (
     <div className="spinner"></div>
