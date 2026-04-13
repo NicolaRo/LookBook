@@ -1,4 +1,4 @@
-//Importo mongoose, definisce i parametri del DB
+//Importo mongoose, imposta lo schema con cui vengono salvati i dati nel DB
 const mongoose = require("mongoose");
 
 //Definisco i paramtri del DB "Article"
@@ -29,6 +29,7 @@ const articleSchema = new mongoose.Schema({
         required: true
     },
     foto: {
+        //Stringa in base64 convertita da fileToBase64.js -> frontend
         type: String,
         required: true
     },
@@ -73,8 +74,6 @@ const articleSchema = new mongoose.Schema({
     ]
 }, {timestamps: true});
 
-//Creo il model
 const Article = mongoose.model("Article", articleSchema);
 
-//Esporto il model
 module.exports = Article;

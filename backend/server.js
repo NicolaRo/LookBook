@@ -22,7 +22,6 @@ const cors = require ('cors');
 const sessionRoutes = require('./routes/sessionRoutes');
 const articleRoutes= require('./routes/articleRoutes');
 const explainRoutes= require('./routes/explainRoutes');
-//Importo i Middleware
 
 app.use(cors({
     origin:'http://localhost:5173'
@@ -39,8 +38,6 @@ const connectDB = async () => {
         //Tenta la connessione
         const conn = await mongoose.connect(process.env.MONGODB_URI);
 
-    console.log(`📦 MongoDB connesso: ${conn.connection.host}`);
-    console.log(`🗄️  Database: ${conn.connection.name}`);
     } catch (error) {
         console.error('❌ Errore connessione MongoDB:', error.message);
 
@@ -56,11 +53,11 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
-module.exports = connectDB;
-
 //Chiama connectDB e avvia il server
 connectDB().then(() => {
     app.listen(process.env.PORT || 3000, () => {
         console.log('🚀 Server in ascolto sulla porta 3000');
     });
 });
+
+module.exports = connectDB;

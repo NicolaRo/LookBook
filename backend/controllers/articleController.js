@@ -8,13 +8,11 @@
 
 2. Leggere i dati dell'articolo per passarli all'LLM
     2.1 Recupera tutti gli articoli -> Article.find()
-    2.2 Filtro per "Categoria", "Brand", "Stato"
-    2.3 Restituisce array articoli -> HTTP 200
-    2.4 Recupera articolo specifico ->findById(req.params.id)
-    2.5 Restituisce articolo
+    2.2 Restituisce array articoli -> HTTP 200
+    2.3 Recupera articolo specifico ->findById(req.params.id)
 
 3. Aggiornare il DB Articolo con la valutazione prezzo
-    3.1 Riceve Id articolo
+    3.1 Riceve Id articolo 
     3.2 Controllo errori -> se l'articolo non esiste HTTP 404
     3.3 Aggiorna l'articolo -> Article.findByIdAndUpdate(id, filtri,{stato: usato});
 */
@@ -25,23 +23,21 @@ const Article = require ("../models/Article");
 //### --- CREO UN ARTICOLO --- ###
 //1. Creare un articolo nel DB a partire dall'imput utente
 const createArticle = async (req, res) => {
-    const sessionId = req.headers ['x-session-id']; //✅ Legge sessionId
+    const sessionId = req.headers ['x-session-id']; //Legge sessionId
     const { categoria, brand, stato, foto} = req.body;
     if(!sessionId) {
         return res.status(400).json({message: "SessionId mancante"});
     }
-
-    console.log('📨 sessionId:', sessionId);
-    console.log('📨 stato:', stato);
     
     try {
-        if(!foto)
-            return res.status(400).json({message:"Foto articolo mancante"});
-
+        
         if(!categoria || ! brand || !stato)
 
             //Controllo errori con HTTP Status Code 
             return res.status(400).json({message:"Dati articolo mancanti"});
+        
+        if(!foto)
+            return res.status(400).json({message:"Foto articolo mancante"});
 
         //1.3 Crea il prodotto nel DB
         const article = await Article.create({

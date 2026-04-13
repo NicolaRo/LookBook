@@ -1,10 +1,9 @@
-//Importo Mongoose: definisce i parametri del DB
+//Importo Mongoose, imposta lo schema con cui vengono salvati i dati nel DB
 const mongoose = require("mongoose");
 
 //Definisco i parametri del DB "Session"
 const sessionSchema = new mongoose.Schema({
     
-    //parametri session
     sessionId :{
         type: String,
         unique: true,

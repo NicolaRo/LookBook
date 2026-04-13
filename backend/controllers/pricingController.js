@@ -16,13 +16,11 @@ const llmService = require("../services/llmService");
 
 //1. Creo il pricing
 const createPricing = async (req, res) => {
-  console.log("🔥 createPricing chiamata");
 
   //Estraggo i dati dalla request
   const { articleId } = req.params;
-  console.log("📦 articleId:", articleId);
 
-  //Dichiaro variabile artiche visibile in tutto il try
+  //Dichiaro variabile article visibile in tutto il try
   let article;
 
   try {
@@ -75,8 +73,8 @@ const createPricing = async (req, res) => {
       console.warn("⚠️ foto non valida o mancante");
     }
 
+    //Contenuto chiamata llm
     const llmRaw = await llmService.callLLM(llmInput);
-    console.log("🤖 chiamata LLM con:", llmInput);
 
     let llmResponse;
 
