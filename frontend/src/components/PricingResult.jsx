@@ -46,8 +46,8 @@ function PricingResult() {
             <button className="button-red" onClick ={() => setShowModal (true)}>❮ Torna al form</button>
             <h2 className="pricing-result-title">Ecco la tua valutazione di vendita</h2>
             <div className="pricing-result-content">
-                <p><strong>💰 Prezzo suggerito: </strong>${suggested_price}</p>
-                <p><strong>🧭 Range: </strong>${range.min} - €{range.max}</p>
+                <p><strong>💰 Prezzo suggerito: </strong>€{suggested_price}</p>
+                <p><strong>🧭 Range: </strong>€{range.min} - €{range.max}</p>
                 <p><strong>🕵🏻‍♂️ Motivazione: </strong>{motivation}</p>
                 {selling_tips && selling_tips.length > 0 && (
                     <>

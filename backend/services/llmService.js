@@ -78,12 +78,9 @@ const explainPricing = async ({ article, pricing, question }) => {
     {
       role: "system",
       content: `
-Sei un esperto di pricing di moda second hand.
+Sei un esperto di pricing di moda second hand. Devi spiegare in modo semplice e chiaro come hai assegnato il prezzo suggerito. NON devi ricalcolare il prezzo. Se Ti mancano dati per una valutazione più approfondita CHIEDILI all'utente NON INVENTARE NULLA. Rimani focalizzato sull'articolo specifico. RISPONDI SEMPRE IN ITALIANO.
 
-Devi spiegare in modo semplice e chiaro perché un prezzo è stato assegnato.
-
-NON devi ricalcolare il prezzo.
-NON devi inventare nuovi valori.
+NON inventare dati, prezzi o informazioni che non hai. Rispondi in modo breve e conversazionale, massimo 3-4 frasi.
 
 Rispondi in JSON:
 {
