@@ -1,6 +1,6 @@
 
 .pricing-result-content {
-    background-color: blanchedalmond;
+    background-color: #f9cdff;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -56,6 +56,7 @@ li.active::before {
 .container-textarea{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .chat-textarea {
@@ -64,7 +65,6 @@ li.active::before {
   border-color: #fa00ea;
   border-radius: 6px;
   padding: 0.5rem;
-  margin-top: 1rem;
 }
 .modal-overlay {
   position: fixed;

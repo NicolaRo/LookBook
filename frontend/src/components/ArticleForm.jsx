@@ -266,9 +266,11 @@ function ArticleForm() {
   </button>
 </div>
       </div>
+      <div className="container-button-valuta">
       <button className="button-valuta" onClick={handleSubmit}>
           Valuta articolo
         </button>
+      </div>
       </div>
     </>
   );
