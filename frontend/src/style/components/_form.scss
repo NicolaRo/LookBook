@@ -1,17 +1,18 @@
+@use '../base/variables' as *;
+
 .assistente-AI-container {
   width: auto;
-  max-width: 600px;
-  margin: 2rem auto;
-  border: 0.15rem solid #dcaff1;
-  border-radius: 8px;
-  padding: 1rem;
+  margin: $space-md auto;
+  border: $border;
+  border-radius: $radius;
+  padding: $space-md;
   background-color: #d5ebfe;
 
 }
 
 .chat-title {
   text-align: center;
-  color: teal; 
+  color: $color-accent; 
 
 }
 .image-container{
@@ -23,76 +24,69 @@
   height: 15rem;
   width: 13rem;
   align-self: center;
-  box-shadow: #ff72ff;
 }
 
 .categoria-genere-container {
-  border: 1px solid;
-  border-radius: 8px;
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba(11, 3, 251, 0.5), rgb(156, 51, 255));
-  border-color: white;
+  border-radius: $radius;
+  padding: $space-md;
+  background: $linear-gradient;
     &active{
       border-radius: 6px 6px 0 0;
     }
   }
 
 .container-tags-genere{
-  border-color: white;
   background-color: blueviolet;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: $space-md;
   justify-content: space-evenly;
-  border-radius: 6px;
-  border-color: white;
-  
+  border-radius: $radius;
 }
 
 .upload-foto-container {
   margin: 1rem;
-  background-color: cadetblue;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ff72ff;
-  color: #d8ffed;
+  background-color: $color-accent;
+  padding: $space-md;
+  border-radius: $radius;
+  border: $border;
+  color: $color-text;
 }
 
 .container-brand {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: $space-lg;
+  margin-bottom: $space-lg;
 }
 
 .container-stato {
-  margin-bottom: 1rem;
-  background: linear-gradient(to bottom, rgba(11, 3, 251, 0), rgba(251, 3, 239, 0.646));
-  border-color: blueviolet;
-  padding: 0.5rem 0 1rem 0;
+  margin-bottom: $space-md;
+  background: linear-gradient(to bottom, rgba(11, 3, 251, 0), $color-accent);
+  padding: $space-sm 0 $space-md 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 8px;
-  margin-top: 0.5rem;
+  border-radius: $radius;
+  margin-top: $space-sm;
 }
 
 .container-tag-stato {
   display: flex;
   justify-content: space-evenly;
-  gap: 1rem;
+  gap: $space-md;
 }
 
 .container-tags-categoria {
-  padding: 1rem;
-  background: linear-gradient(to top, rgba(251, 3, 239, 0.5), rgba(156, 51, 255, 0));
-  border-radius: 0 0 6px 6px;
+  padding: $space-md;
+  background: $transparent-container;
+  border-radius: 0 0 $radius $radius;
 }
 
 .input-textarea{
   display: flex;
   justify-content: center;
-  border-color: blueviolet;
-  border-radius: 6px;
-  padding: 0.5rem;
-  margin-top:0.5rem;
+  border:$border;
+  border-radius: $radius;
+  padding: $space-sm;
+  margin-top:$space-sm;
 }
 

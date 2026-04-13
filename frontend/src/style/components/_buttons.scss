@@ -1,9 +1,10 @@
+@use '../base/variables' as *;
 .button {
     padding: 0.25rem;
-    border: 1px solid #ff72ff;
-    border-radius: 6px;
+    border: $border;
+    border-radius: $radius;
     background-color: aliceblue;
-    margin-top: 1rem;
+    margin-top: $space-md;
     &.active {
         opacity: 0.70;
         transform: translateY(2px);
@@ -12,8 +13,8 @@
 
 .tag-genere {
     margin: 5px;
-    border: 1px solid;
-    border-radius: 6px;
+    border: $border;
+    border-radius: $radius;
     padding: 3px;
     &.active {
         opacity: 0.70;
@@ -23,8 +24,8 @@
 
 .tag-categoria {
     margin: 5px;
-  border: 1px solid;
-  border-radius: 6px;
+  border: $border;
+  border-radius: $radius;
   padding: 3px;
   background-color: antiquewhite;
   &.active {
@@ -39,11 +40,11 @@
     justify-content: end;
 }
 .button-valuta {
-    padding: 1rem;
-  border: 1px solid #ff72ff;
-  border-radius: 6px;
-  background-color: cadetblue;
-  margin-top: 1rem;
+  padding: $space-md;
+  border: $border;
+  border-radius: $radius;
+  background-color:$color-accent;
+  margin-top: $space-md;
   max-width: 13rem;
   display: flex;
   flex-direction: row-reverse;
@@ -54,17 +55,17 @@
 }
 
 .button-red{
-    margin: 1rem;
-    padding: 0.25rem;
-    background-color: rgba(247, 129, 129, 0.994);
-    border-radius: 8px;
+    margin: $space-md;
+    padding: $space-sm;
+    background-color: $color-close;
+    border-radius: $radius;
     border-color: white;
 }
 .button-send{
     background-color: #0093ff;
-  border: solid 1px #ff00cb;
+  border: $border;
   font-size: 2rem;
-  padding: 0.5rem;
+  padding: $space-sm;
   border-radius: 50%;
   height: 3.5rem;
   width: 3.5rem;
