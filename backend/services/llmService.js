@@ -14,6 +14,12 @@ function isValidBase64Image(data) {
   return typeof data === "string" && data.length > 100;
 }
 
+//Istanzio il client OpenAI
+const OpenAI = require("openai");
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
 const callLLM = async ({ categoria, brand, stato, foto, messages }) => {
   //Validazione foto prima di inviare all'LLM
   if (foto && !isValidBase64Image(foto)) {
@@ -21,11 +27,7 @@ const callLLM = async ({ categoria, brand, stato, foto, messages }) => {
     throw new Error("Invalid base64 image format");
   }
 
-  //Istanzio il client OpenAI
-  const OpenAI = require("openai");
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+  
   const categoriaStr = `${categoria.genere || ""}, ${categoria.tipo || ""}`;
 
   const tempMessages = [
@@ -70,10 +72,7 @@ const callLLM = async ({ categoria, brand, stato, foto, messages }) => {
 };
 
 const explainPricing = async ({ article, pricing, question }) => {
-  const OpenAI = require("openai");
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+  
   const messages = [
     {
       role: "system",
@@ -110,7 +109,6 @@ ${question}
     model: "gpt-4o-mini",
     messages,
   });
-  console.log("OPENAI RAW:", response);
 
   const raw = response.choices[0].message?.content;
 

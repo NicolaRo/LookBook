@@ -59,14 +59,6 @@ const createPricing = async (req, res) => {
       if (sizeInMB > 4) {
         console.warn(`⚠️ foto troppo grande (${sizeInMB.toFixed(2)} MB)`);
       }
-      //Ricostruisco la stringa completa per LLM
-      let mimeType = "image/png"; //default
-      if (foto.includes(",")) {
-        const prefix = foto.split(",")[0];
-        if (prefix.includes("image/")) {
-          mimeType = prefix.split(",")[0].replace("data:", "");
-        }
-      }
 
       llmInput.foto = base64Payload;
     } else {
@@ -76,20 +68,9 @@ const createPricing = async (req, res) => {
     //Contenuto chiamata llm
     const llmRaw = await llmService.callLLM(llmInput);
 
-    let llmResponse;
-
-    try {
-      llmResponse = JSON.parse(JSON.stringify(llmRaw));
-    } catch (parseErr) {
-      console.error("❌ JSON parsing LLM failed:", parseErr.message);
-      return res.status(500).json({ message: "Errore parsing risposta LLM" });
-    }
-
     // Aggiorno articolo e session
-    article.pricing = llmResponse;
+    article.pricing = llmRaw;
     await article.save();
-
-    console.log("🤖 risposta LLM:", llmResponse);
 
     res.status(200).json({ article});
   } catch (err) {

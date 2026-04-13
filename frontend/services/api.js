@@ -49,7 +49,7 @@ export const getArticlePricing = async (articleId) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'x-session-id': getSessionId() //✅ Aggiungo sessionId da passare a pricingController
+            'x-session-id': getSessionId() //Aggiungo sessionId da passare a pricingController
         }
     })
 
