@@ -71,7 +71,16 @@ function Chat() {
     console.log("STEP 2 - response:", res);
 
 
-    //Sostituisco messaggio di loading con la risposta
+    //Sostituisco messaggio di loading con la risposta e richiamo le lettere di
+    //risposta ogni 0,2sec
+    const fullText = res.explaination;
+    let currentText = "";
+    for (let i = 0; i < fullText.length; i++) {
+      setTimeout(() => {
+        currentText += fullText[i];
+        dispatch(updateLastMessage({content: currentText}));
+      }, i*20);
+    }
     dispatch(updateLastMessage({
         content: res.explaination
     }));
