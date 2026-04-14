@@ -47,7 +47,7 @@ Le configurazioni sensibili e la logica AI sono isolate e non modificabili diret
 
 ## 📸 Screenshot
 
-![App Screenshot](./screenshot.png)
+![App Screenshot](./Screenshot LookBook.png)
 
 Link all'App - LookBook - Assistente AI moda
 https://ailookbook.netlify.app/
