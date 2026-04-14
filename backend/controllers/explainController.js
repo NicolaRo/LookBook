@@ -1,3 +1,10 @@
+/* Responsabibilità del file: explainController
+1. prendere la risposta llm, 
+2. prendere l'articolo,
+3. prendere la question
+4.comporre un nuovo JSON e mandarlo all'LLM perchè possa rispondere con contesto.
+*/
+
 const Article = require("../models/Article");
 const llmService = require("../services/llmService");
 
@@ -22,6 +29,7 @@ const explainPricing = async (req, res) => {
         });
     }
 
+    // Fallback: se il frontend non passa una domanda, uso un prompt di default
     const question = req.query.question || "Spiega questo pricing";
     
     try {
@@ -32,7 +40,6 @@ const explainPricing = async (req, res) => {
         });
         return res.status(200).json(explaination);
     } catch (err) {
-        console.error("🔥 LLM explain error:", err);
     
         return res.status(500).json ({message: err.message});
     }
