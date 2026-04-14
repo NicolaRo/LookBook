@@ -24,8 +24,8 @@ const articleRoutes= require('./routes/articleRoutes');
 const explainRoutes= require('./routes/explainRoutes');
 
 app.use(cors({
-    origin:'http://localhost:5173'
-}));
+    origin: 'https://ailookbook.netlify.app'
+  }));
 
 app.use(express.json({limit: '10mb'}));//Imposto limite immagini a 10MB
 app.use('/api/sessions', sessionRoutes);
