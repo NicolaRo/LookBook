@@ -48,4 +48,6 @@ body {
   min-height: 100vh; // corpo sempre alto quanto l'intera finestra
   display: flex; // Lo imposto qua così a cascata tutti i "figli" otterranno la struttura flessibile
   flex-direction: column; // best practice per layout verticali 
+  max-width: 600px;
+  margin: 0 auto; 
 }
