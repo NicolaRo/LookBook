@@ -1,3 +1,4 @@
+<img width="1440" height="900" alt="Screenshot LookBook" src="https://github.com/user-attachments/assets/88263008-94b8-4969-b7e8-18eef58b8328" />
 📦 AI Pricing Assistant
 Applicazione web che sfrutta l’intelligenza artificiale per suggerire il prezzo ottimale di capi d’abbigliamento destinati alla vendita online, migliorando velocità e probabilità di vendita.
 
