@@ -60,7 +60,7 @@ export const getArticlePricing = async (articleId) => {
 
 export const explainPricing = async (articleId, question) => {
     const res = await fetch(
-        `http://localhost:3000/api/articles/${articleId}/explain?question=${encodeURIComponent(question)}`
+        `${BASE_URL}/api/articles/${articleId}/explain?question=${encodeURIComponent(question)}`
     );
 
     const data = await res.json();
