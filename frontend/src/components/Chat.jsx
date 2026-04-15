@@ -15,7 +15,7 @@ Renderizza:
 //Importo:
 //useSelector per leggere i Redux
 //useState per cambiamenti di stato
-//useRef per per referenziare l'ultimo messaggio e quindi scrollare la chat per visualizzare sempre l'ultimo messaggio 
+//useRef per per referenziare l'ultimo messaggio e quindi scrollare la chat per visualizzare sempre l'ultimo messaggio
 //useEffect per applicare un effetto stilato nel css
 //useDispatch per consentire aggiornamento di stato globale
 
@@ -39,12 +39,11 @@ function Chat() {
   const articleId = useSelector((state) => state.article.articleId);
   const bottomRef = useRef(null);
 
-  useEffect(()=>{
-    bottomRef.current?.scrollIntoView({behavior: "smooth"});
-  },[messages]);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const dispatch = useDispatch();
-
 
   const [question, setQuestion] = useState("");
 
@@ -53,27 +52,30 @@ function Chat() {
     console.log("STEP 1 - click ok");
 
     if (!articleId) {
-        console.log("NO ARTICLE ID");
+      console.log("NO ARTICLE ID");
       alert("Article ID mancante");
       return;
     }
 
     //Salvo il messaggio dell'utente
-    dispatch(addMessage({
-      role:"user",
-      content: question
-    }));
-    
+    dispatch(
+      addMessage({
+        role: "user",
+        content: question,
+      })
+    );
+
     //Mostro messaggio di loading
-    dispatch(addMessage({
+    dispatch(
+      addMessage({
         role: "assistant",
-        content: "Elaboro risposta..."
-    }));
+        content: "Elaboro risposta...",
+      })
+    );
 
     //Chiamata API
     const res = await explainPricing(articleId, question);
     console.log("STEP 2 - response:", res);
-
 
     //Sostituisco messaggio di loading con la risposta e richiamo le lettere di
     //risposta ogni 0,2sec
@@ -82,63 +84,87 @@ function Chat() {
     for (let i = 0; i < fullText.length; i++) {
       setTimeout(() => {
         currentText += fullText[i];
-        dispatch(updateLastMessage({content: currentText}));
-      }, i*20);
+        dispatch(updateLastMessage({ content: currentText }));
+      }, i * 20);
     }
-    dispatch(updateLastMessage({
-        content: res.explaination
-    }));
+    dispatch(
+      updateLastMessage({
+        content: res.explaination,
+      })
+    );
     setQuestion("");
-
   };
 
   return (
     <div className="assistente-AI-container">
-      
       <h1 className="chat-title">LookBook</h1>
-      <div className ="image-container">
-      <img className="img-AI-assistent" src="LookBook-AI-agent.png" alt="Illustrazione assistente artificiale fashion"/>
-      <h1 className="chat-title">Il tuo Assistente AI di vendita</h1>
+      <div className="image-container">
+        <img
+          className="img-AI-assistent"
+          src="LookBook-AI-agent.png"
+          alt="Illustrazione assistente artificiale fashion"
+        />
+        <h1 className="chat-title">Il tuo Assistente AI di vendita</h1>
       </div>
-      
-  {status === "PRICING_LOADING" &&  <p>Valutando l'articolo...</p>}
-  {status === "PRICING_LOADING" && (
-    <div className="spinner"></div>
-  )}
-  {status === "PRICED" && <PricingResult/>}
+
+      {status === "PRICING_LOADING" && <p>Valutando l'articolo...</p>}
+      {status === "PRICING_LOADING" && <div className="spinner"></div>}
+      {status === "PRICED" && <PricingResult />}
       {/* CHAT */}
       {messages.length > 0 && (
         <div className="display-chat">
-        {messages.map((msg, index) => (
-          <Message key={index} role={msg.role} content={msg.content} />
-        ))}
-        <div ref={bottomRef} />
-      </div>
+          {messages.map((msg, index) => (
+            <Message key={index} role={msg.role} content={msg.content} />
+          ))}
+          <div ref={bottomRef} />
+        </div>
       )}
-      
+
       {/* FORM */}
       {status === "IDLE" && <ArticleForm />}
 
       {/* EXPLAIN INPUT */}
       <div className="container-textarea">
-         <textarea className="chat-textarea"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Hai una domanda sulla valutazione ricevuta?"
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && !e.shiftKey){
-            e.preventDefault();
-            handleExplain()
-          }
-        }}
-      />
-      <button className="button-send" onClick={handleExplain} type="button">
-        ➤
-      </button>
+        <textarea
+          className="chat-textarea"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Hai una domanda sulla valutazione ricevuta?"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleExplain();
+            }
+          }}
+        />
+        <button className="button-send" onClick={handleExplain} type="button">
+          ➤
+        </button>
       </div>
-     
+      <div className="footer">
+        <p className="ft-signature">
+          Disegnato e sviluppato da <strong>NicoDesign®</strong>
+        </p>
+        <div className="container-socials">
+          <a href="https://nicolaro.github.io/" target="_blank" rel="noopener noreferrer">
+            <img
+              src="Portfolio-Nicola-Logo.png"
+              className="social-icon"
+              id="portfolio-logo" 
+              alt="Nicola Rossi DevPortfolio"/>
+          </a>
+          <a href="https://github.com/NicolaRo" target="_blank" rel="noopener noreferrer">
+            <img
+              src="Github-Logo-Black.png"
+              className="social-icon" 
+              id="github-logo" 
+              alt="Nicola Rossi GitHub profile"/>
+          </a>
+          
+        </div>
     </div>
-  );  
+    </div>
+  );
 }
 
 export default Chat;

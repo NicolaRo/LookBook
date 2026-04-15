@@ -45,12 +45,15 @@
 }
 
 .upload-foto-container {
-  margin: 1rem;
-  background-color: $color-accent;
-  padding: $space-md;
-  border-radius: $radius;
-  border: $border;
-  color: $color-text;
+  margin: 0.5rem;
+  background-color: #5f9ea0;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid #ff72ff;
+  color: #2c2424;
+  width: calc(100% - 1rem);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .container-brand {
@@ -88,5 +91,6 @@
   border-radius: $radius;
   padding: $space-sm;
   margin-top:$space-sm;
+  width: 100%;
 }
 

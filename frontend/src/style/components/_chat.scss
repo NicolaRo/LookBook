@@ -64,10 +64,12 @@ li.active::before {
 .chat-textarea {
   display: flex;
   justify-content: center;
-  border: $border;
-  border-radius: $radius;
-  padding: $space-sm;
-  width: 90%;
+  border: 2px solid #ff72ff;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .modal-overlay {
   position: fixed;
@@ -107,4 +109,19 @@ li.active::before {
 .message--user{
   background-color: rgba(127, 163, 255, 0.701);
   align-self: end;
+}
+
+.container-socials {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  position: relative;
+  display: flex;
+  margin: $space-xs;
+  width: auto;
+  height: 20px;
+  display: flex;
+  justify-content: center;
 }
