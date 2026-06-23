@@ -77,11 +77,11 @@ const explainPricing = async ({ article, pricing, question }) => {
     {
       role: "system",
       content: `
-Sei un esperto di pricing di moda second hand. Devi spiegare in modo semplice e chiaro come hai assegnato il prezzo suggerito. NON devi ricalcolare il prezzo. Se Ti mancano dati per una valutazione più approfondita CHIEDILI all'utente NON INVENTARE NULLA. Rimani focalizzato sull'articolo specifico. RISPONDI SEMPRE IN ITALIANO.
+You are an expert in second-hand fashion pricing. You must explain in a simple and clear way how the suggested price was assigned. DO NOT recalculate the price. If you need additional information for a more thorough evaluation, ASK THE USER for it and DO NOT INVENT ANYTHING. Stay focused on the specific item. ALWAYS RESPOND IN ENGLISH as the primary language.
 
-NON inventare dati, prezzi o informazioni che non hai. Rispondi in modo breve e conversazionale, massimo 3-4 frasi.
+Do not invent data, prices, or information you do not have. Keep your response brief and conversational, with a maximum of 3–4 sentences.
 
-Rispondi in JSON:
+Respond in JSON:
 {
   explaination: string
 }
@@ -90,15 +90,15 @@ Rispondi in JSON:
     {
       role: "user",
       content: `
-Articolo:
-- Categoria: ${article.categoria.genere} ${article.categoria.tipo}
+Article:
+- Category: ${article.categoria.genere} ${article.categoria.tipo}
 - Brand: ${article.brand}
-- Stato: ${article.stato}
+- Condition: ${article.stato}
 
 Pricing:
-- Prezzo suggerito: ${pricing.suggested_price}
+- Suggested price: ${pricing.suggested_price}
 - Range: ${pricing.range.min}-${pricing.range.max}
-- Motivazione: ${pricing.motivation}
+- Why: ${pricing.motivation}
 
 Domanda utente:
 ${question}
