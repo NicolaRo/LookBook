@@ -34,7 +34,7 @@ const callLLM = async ({ categoria, brand, stato, foto, messages }) => {
     {
       role: "system",
       content:
-        "You are an expert in second-hand fashion. Your task is to evaluate clothing items and provide a market-consistent price estimate. Respond ONLY with a valid JSON object, with no additional text, no markdown, and no backticks. The structure must be exactly as follows: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}",
+        "You are an expert in second-hand fashion. Your task is to evaluate clothing items and provide a market-consistent price estimate. Respond ONLY with a valid JSON object, with no additional text, no markdown, and no backticks. The structure must be exactly as follows: { suggested_price: <numero>, range: { min: <numero>, max: <numero> }, motivation: <stringa>, selling_tips: [<stringa>, <stringa>]}, use english as main language",
     },
     {
       role: "user",

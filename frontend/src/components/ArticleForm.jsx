@@ -76,7 +76,7 @@ function ArticleForm() {
 
         {categoriaOpen && (
           <div className="container-tags-genere">
-            <h4 className="titolo-categorie">Categorie:</h4>
+            <h4 className="titolo-categorie">Categories:</h4>
             <div className="tags-genere">
             <button
               className={`tag-genere ${openGenere === "uomo" ? "active" : ""}`}
