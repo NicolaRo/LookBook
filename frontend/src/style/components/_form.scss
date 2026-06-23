@@ -3,11 +3,9 @@
 .assistente-AI-container {
   width: auto;
   margin: $space-md auto;
-  border: $border;
-  border-radius: $radius;
+  border-radius: $radius-w;
   padding: $space-md;
   background-color: #d5ebfe;
-
 }
 
 .chat-title {
@@ -26,34 +24,48 @@
   align-self: center;
 }
 
+.container-indicazioni-foto{
+  margin-bottom: 1rem;
+}
+
+.titolo-indicazioni-foto{
+  margin: 1rem 0;
+}
+
+.indicazioni-foto{
+  height: 5rem;
+  overflow-x: scroll;
+}
+
 .categoria-genere-container {
   border-radius: $radius;
   padding: $space-md;
-  background: $linear-gradient;
+  background: transparent;
     &active{
       border-radius: 6px 6px 0 0;
     }
   }
 
 .container-tags-genere{
-  background-color: blueviolet;
   display: flex;
   flex-direction: column;
-  padding: $space-md;
   justify-content: space-evenly;
   border-radius: $radius;
 }
 
+.titolo-categorie{
+  margin: 1rem 0;
+}
+
 .upload-foto-container {
-  margin: 0.5rem;
-  background-color: #5f9ea0;
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 2px solid #ff72ff;
+  margin: 1rem 0 1rem 0;
+  background-color: #c3d8ea;
+  padding: 1.5rem;
+  border-radius: 20px;
   color: #2c2424;
-  width: calc(100% - 1rem);
   box-sizing: border-box;
   overflow: hidden;
+  border: none;
 }
 
 .container-brand {
@@ -68,7 +80,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: $radius;
+  border-radius: 0 0 20px 20px;
   margin-top: $space-sm;
 }
 
@@ -81,15 +93,15 @@
 .container-tags-categoria {
   padding: $space-md;
   background: $transparent-container;
-  border-radius: 0 0 $radius $radius;
+  border-radius: 0 0 20px 20px;
 }
 
 .input-textarea{
   display: flex;
   justify-content: center;
-  border:$border;
+  border:none;
   border-radius: $radius;
-  padding: $space-sm;
+  padding: $space-md;
   margin-top:$space-sm;
   width: 100%;
 }

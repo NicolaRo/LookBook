@@ -64,9 +64,6 @@ function ArticleForm() {
       {/* CATEGORIE */}
       <div className="categoria-genere-container">
         <h3>Scegli la categoria articolo</h3>
-
-
-
         {/* Quando cliccato, il bottone apre il contenitore catagoria (setCategoriaOpen)*/}
         <button
           className={`button ${categoriaOpen ? "active" : ""}`}
@@ -75,8 +72,11 @@ function ArticleForm() {
           Categorie
         </button>
 
+        
+
         {categoriaOpen && (
           <div className="container-tags-genere">
+            <h4 className="titolo-categorie">Categorie:</h4>
             <div className="tags-genere">
             <button
               className={`tag-genere ${openGenere === "uomo" ? "active" : ""}`}
@@ -218,6 +218,15 @@ function ArticleForm() {
           
         )}
         {/* FOTO */}
+        <div className="container-indicazioni-foto">
+        <h3 className="titolo-indicazioni-foto">Quale foto carico?</h3>
+          <div className="indicazioni-foto">
+          <p>Per consentirmi di effettuare una valutazione accurata, fotografa l'indumento su <strong>sfondo neutro ed uniforme</strong>.</p>
+          <p>Assicurati che la <strong>foto</strong> sia <strong>luminosa</strong> e che i colori ottenuti in foto rispecchino quelli reali.</p>
+          <p>Infine controlla che la messa a fuoco restituisca una <strong>foto ben dettagliata</strong>.</p>
+          <p>Per maggiori indicazioni utilizza la chat.</p>
+          </div>
+        </div>
       <div className="upload-foto-container">
         <input
           type="file"

@@ -1,10 +1,11 @@
 @use '../base/variables' as *;
 .button {
-    padding: 0.25rem;
-    border: $border;
-    border-radius: $radius;
-    background-color: aliceblue;
-    margin-top: $space-md;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 20px;
+  background-color: white;
+  margin-top: 1rem;
+  box-shadow: 1px 1px 10px 10px #00000005;
     &.active {
         opacity: 0.70;
         transform: translateY(2px);
@@ -12,24 +13,25 @@
 }
 
 .tag-genere {
-    margin: 5px;
-    border: $border;
+    margin: 1rem;
+    border: none;
     border-radius: $radius;
-    padding: 3px;
+    padding: 0.5rem;
+    background-color: white;
     &.active {
-        opacity: 0.70;
+        opacity: 0.50;
         transform: translateY(2px);
     }
 }
 
 .tag-categoria {
     margin: 5px;
-  border: $border;
-  border-radius: $radius;
-  padding: 3px;
-  background-color: antiquewhite;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    background-color: white;
   &.active {
-    opacity: 0.70;
+    opacity: 0.50;
     transform: translateY(2px);
 }
 }
@@ -40,18 +42,18 @@
     justify-content: end;
 }
 .button-valuta {
-  padding: $space-md;
-  border: $border;
-  border-radius: $radius;
-  background-color:$color-accent;
-  margin-top: $space-md;
-  max-width: 13rem;
-  display: flex;
-  flex-direction: row-reverse;
-  font-size: large;
-  font-weight: bold;
-  color: white;
-  
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: $radius-w;
+    background-color: #5f9ea0;
+    margin-top: 1rem;
+    max-width: 13rem;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    box-shadow: 1px 1px 15px 5px white;
 }
 
 .button-red{
@@ -62,13 +64,14 @@
     border-color: white;
 }
 .button-send{
-    background-color: #0093ff;
-  border: $border;
+  background-color: #0093ff;
+  border: none;
   font-size: 2rem;
   padding: $space-sm;
   border-radius: 50%;
   height: 3.5rem;
-  width: 3.5rem;
+  width: 4rem;
   margin: 0.5rem;
   color: white;
+  box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.15);
 }

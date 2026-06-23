@@ -8,7 +8,7 @@ $xl: 1440px; //Extra large: desktop
 
 /* _-_-_ PALETTE COLORI _-_-_ */
 $color-primary: #62c370;
-$transparent-container: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.552));
+$transparent-container: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 $color-accent: #5f9ea0;
 $linear-gradient: linear-gradient(135deg, rgba(66, 59, 255, 0.99), rgb(228, 51, 255));
 $blur-backdrop: blur (4px);
@@ -25,7 +25,8 @@ $glass-primary:#17b52e7e;
 $glass-bg: rgba(255,255,255,0.14);   // sfondo vetro
 $border: 2px solid #ff72ff;
 $glass-shadow: 0 6px 24px rgba(8, 30, 10, 0.12);
-$radius: 8px;
+$radius: 20px;
+$radius-w: 34px;
 $box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
 
 /* _-_-_ SPACING _-_-_ */
