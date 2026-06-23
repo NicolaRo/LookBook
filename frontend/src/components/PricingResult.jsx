@@ -42,22 +42,23 @@ function PricingResult() {
 
     //Controllo la presenza di un pricing, se non ancora disponibile restituisco un messaggio
     if(!pricingResult || !pricingResult.article?.pricing) {
-        return <p>Valutando l'articolo...</p>
+        return <p>Checking your article...</p>
     }
     const {suggested_price, range, motivation, selling_tips} = pricingResult.article.pricing;
     
     return (
         <>
         <div className="container-pricing-result">
-            <button className="button-red" onClick ={() => setShowModal (true)}>❮ Torna al form</button>
-            <h2 className="pricing-result-title">Ecco la tua valutazione di vendita</h2>
+            <button className="button-red" onClick ={() => setShowModal (true)}>❮ Back to form</button>
+            
             <div className="pricing-result-content">
-                <p><strong>💰 Prezzo suggerito: </strong>€{suggested_price}</p>
+            <h2 className="pricing-result-title">Here is the article pricing</h2>
+                <p><strong>💰 Selling price: </strong>€{suggested_price}</p>
                 <p><strong>🧭 Range: </strong>€{range.min} - €{range.max}</p>
-                <p><strong>🕵🏻‍♂️ Motivazione: </strong>{motivation}</p>
+                <p><strong>🕵🏻‍♂️ Reason: </strong>{motivation}</p>
                 {selling_tips && selling_tips.length > 0 && (
                     <>
-                    <p><strong>Consigli per la vendita 💬</strong></p>
+                    <p><strong>Selling tips 💬</strong></p>
                     <ul>
                         {selling_tips.map((tip, index) => (
                             <li key={index}>{tip}</li>

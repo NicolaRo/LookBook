@@ -63,13 +63,13 @@ function ArticleForm() {
     <>
       {/* CATEGORIE */}
       <div className="categoria-genere-container">
-        <h3>Scegli la categoria articolo</h3>
+        <h3>Choose the category</h3>
         {/* Quando cliccato, il bottone apre il contenitore catagoria (setCategoriaOpen)*/}
         <button
           className={`button ${categoriaOpen ? "active" : ""}`}
           onClick={() => setCategoriaOpen(!categoriaOpen)}
         >
-          Categorie
+          Category
         </button>
 
         
@@ -90,7 +90,7 @@ function ArticleForm() {
                 });
               }}
             >
-              🕺 Uomo
+              🕺 Man
             </button>
 
             <button
@@ -105,7 +105,7 @@ function ArticleForm() {
                 });
               }}
             >
-              💃 Donna
+              💃 Woman
             </button>
 
             <button
@@ -120,7 +120,7 @@ function ArticleForm() {
                 });
               }}
             >
-              👦🏻 Bambino
+              👦🏻 Boy
             </button>
 
             <button
@@ -135,7 +135,7 @@ function ArticleForm() {
                 });
               }}
             >
-             👧 Bambina
+             👧 Girl
             </button>
             </div>
             
@@ -151,7 +151,7 @@ function ArticleForm() {
                 setCategoria({ ...categoria, tipo: "Pantaloni" })
               }
             >
-              👖 Pantaloni
+              👖 Trousers
             </button>
 
             <button
@@ -178,7 +178,7 @@ function ArticleForm() {
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Abito" })}
             >
-             👗 Abito
+             👗 Dress
             </button>
 
             <button
@@ -187,7 +187,7 @@ function ArticleForm() {
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Giacca" })}
             >
-             🧥 Giacca
+             🧥 Jacket
             </button>
 
             <button
@@ -198,7 +198,7 @@ function ArticleForm() {
                 setCategoria({ ...categoria, tipo: "Calzature" })
               }
             >
-             👞 Calzature
+             👞 Shoes
             </button>
 
             <button
@@ -209,7 +209,7 @@ function ArticleForm() {
                 setCategoria({ ...categoria, tipo: "Accessori" })
               }
             >
-             👜 Accessori
+             👜 Accessories
             </button>
           </div>
         )}
@@ -219,12 +219,12 @@ function ArticleForm() {
         )}
         {/* FOTO */}
         <div className="container-indicazioni-foto">
-        <h3 className="titolo-indicazioni-foto">Quale foto carico?</h3>
+        <h3 className="titolo-indicazioni-foto">Which picture should I upload?</h3>
           <div className="indicazioni-foto">
-          <p>Per consentirmi di effettuare una valutazione accurata, fotografa l'indumento su <strong>sfondo neutro ed uniforme</strong>.</p>
-          <p>Assicurati che la <strong>foto</strong> sia <strong>luminosa</strong> e che i colori ottenuti in foto rispecchino quelli reali.</p>
-          <p>Infine controlla che la messa a fuoco restituisca una <strong>foto ben dettagliata</strong>.</p>
-          <p>Per maggiori indicazioni utilizza la chat.</p>
+          <p>To allow me to make an accurate assessment, photograph the garment on a <strong>neutral and uniform background</strong>.</p>
+          <p>Make sure the <strong>photo</strong> is <strong>well-lit</strong> and that the colors captured reflect the actual ones.</p>
+          <p>Finally, check that the focus produces a <strong>sharp, detailed photo</strong>.</p>
+          <p>For further guidance, use the chat.</p>
           </div>
         </div>
       <div className="upload-foto-container">
@@ -236,18 +236,18 @@ function ArticleForm() {
       </div>
       {/* BRAND */}
       <div className="container-brand">
-        <h3>Indica il brand dell'articolo:</h3>
+        <h3>Indicate the brand:</h3>
         <input
           className="input-textarea"
           type="text"
           value={brand}
           onChange={(e) => setBrand(e.target.value)}
-          placeholder="Es. Zara, Nike..."
+          placeholder="Ie. Zara, Nike..."
         />
       </div>
 
       {/* STATO */}
-      <h3>Indica lo stato:</h3>
+      <h3>Select the condition:</h3>
       <div className="container-stato">
       <div className="container-tag-stato">
   <button
@@ -258,7 +258,7 @@ function ArticleForm() {
       setStato(newState ? "Nuovo" : "");
     }}
   >
-    Nuovo
+    Brand new
   </button>
 
   <button
@@ -269,7 +269,7 @@ function ArticleForm() {
       setStato(newState ? "Buono" : "");
     }}
   >
-    Buono
+    Good conditions
   </button>
 
   <button
@@ -280,13 +280,13 @@ function ArticleForm() {
       setStato(newState ? "Usato" : "");
     }}
   >
-    Usato
+    Used
   </button>
 </div>
       </div>
       <div className="container-button-valuta">
       <button className="button-valuta" onClick={handleSubmit}>
-          Valuta articolo
+          Estimate value
         </button>
       </div>
       </div>

@@ -1,4 +1,5 @@
 @use '../base/variables' as *;
+@use '../base/mixins' as *;
 
 .assistente-AI-container {
   width: auto;
@@ -16,6 +17,7 @@
 .image-container{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .img-AI-assistent{
@@ -51,6 +53,10 @@
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: $radius;
+  @include respond(md) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .titolo-categorie{
@@ -74,14 +80,13 @@
 }
 
 .container-stato {
-  margin-bottom: $space-md;
-  background: linear-gradient(to bottom, rgba(11, 3, 251, 0), $color-accent);
-  padding: $space-sm 0 $space-md 0;
+  margin-bottom: 1rem;
+  background: linear-gradient(to bottom, rgba(11, 3, 251, 0), #5f9ea0);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0 0 20px 20px;
-  margin-top: $space-sm;
 }
 
 .container-tag-stato {

@@ -1,14 +1,16 @@
 @use '../base/variables' as *;
+@use '../base//mixins' as *;
 
 .pricing-result-content {
-    background-color: #f9cdff;
+  background-color: #ffffff;
   margin-bottom: $space-md;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   gap: $space-md;
-  padding: 0.5rem;
+  padding:1rem;
   border-radius: $radius;
+  box-shadow: 1px 1px 10px 5px #00000017;
 }
 
 li.active::before {
@@ -95,13 +97,19 @@ li.active::before {
 }
 
 .modal{
-  background-color: #c59bf7bd;
-  padding: $space-md;
+  background-color: $color-primary;
+  padding: 4rem;
   border-radius: $radius;
-  border: $border;
+  border: none;
   backdrop-filter: $blur-backdrop;
+  font-size: x-large;
+  @include respond (md) {
+    font-size:medium;
+    padding: 2rem;
+    margin: 1rem;
+  }
 }
-/* background-color: rgba(236, 127, 255, 0.71); */
+
 .message--assistant, .message--user {
   color: white;
   background-color: rgba(236, 127, 255, 0.71);
@@ -117,6 +125,11 @@ li.active::before {
   align-self: end;
 }
 
+.ft-signature{
+  display: flex;
+  justify-content: center;
+  color: #9387f682;
+}
 .container-socials {
   display: flex;
   justify-content: center;
@@ -130,4 +143,5 @@ li.active::before {
   height: 20px;
   display: flex;
   justify-content: center;
+  opacity: 0.2;
 }

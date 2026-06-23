@@ -53,7 +53,7 @@ function Chat() {
 
     if (!articleId) {
       console.log("NO ARTICLE ID");
-      alert("Article ID mancante");
+      alert("Missing ID Article");
       return;
     }
 
@@ -69,7 +69,7 @@ function Chat() {
     dispatch(
       addMessage({
         role: "assistant",
-        content: "Elaboro risposta...",
+        content: "Evaluating your article...",
       })
     );
 
@@ -104,11 +104,13 @@ function Chat() {
           src="LookBook-AI-agent.png"
           alt="Illustrazione assistente artificiale fashion"
         />
-        <h1 className="chat-title">Il tuo Assistente AI di vendita</h1>
+        <h1 className="chat-title">AI Fashion assistant</h1>
+      
+      {status === "PRICING_LOADING" && <p>Evaluating article...</p>}
+      {status === "PRICING_LOADING" && <div className="spinner"></div>}
       </div>
 
-      {status === "PRICING_LOADING" && <p>Valutando l'articolo...</p>}
-      {status === "PRICING_LOADING" && <div className="spinner"></div>}
+      
       {status === "PRICED" && <PricingResult />}
       {/* CHAT */}
       {messages.length > 0 && (
@@ -129,7 +131,7 @@ function Chat() {
           className="chat-textarea"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          placeholder="Hai una domanda sulla valutazione ricevuta?"
+          placeholder="Ask me about the pricing or for selling tips..."
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
