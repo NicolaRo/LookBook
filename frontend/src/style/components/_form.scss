@@ -3,17 +3,17 @@
 
 .assistente-AI-container {
   width: auto;
-  margin: $space-md auto;
-  border-radius: $radius-w;
+  border-radius: $radius-lg;
   padding: $space-md;
-  background-color: #d5ebfe;
+  background-color: $color-surface;
 }
 
 .chat-title {
   text-align: center;
-  color: $color-accent; 
-
+  color: $color-text-primary; 
+  margin: $space-md;
 }
+
 .image-container{
   display: flex;
   flex-direction: column;
@@ -21,9 +21,13 @@
 }
 
 .img-AI-assistent{
-  height: 15rem;
-  width: 13rem;
+  height: 25rem;
   align-self: center;
+}
+
+.category-btn-container{
+  display: grid;
+  align-items: center;
 }
 
 .container-indicazioni-foto{
@@ -35,15 +39,14 @@
 }
 
 .indicazioni-foto{
-  height: 5rem;
-  overflow-x: scroll;
+  height: fit-content; 
 }
 
 .categoria-genere-container {
-  border-radius: $radius;
+  border-radius: $radius-lg;
   padding: $space-md;
   background: transparent;
-    &active{
+    &.active{
       border-radius: 6px 6px 0 0;
     }
   }
@@ -52,10 +55,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   @include respond(md) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
   }
 }
 
@@ -68,7 +70,7 @@
   background-color: #c3d8ea;
   padding: 1.5rem;
   border-radius: 20px;
-  color: #2c2424;
+  color: $color-text-primary;
   box-sizing: border-box;
   overflow: hidden;
   border: none;
@@ -81,7 +83,7 @@
 
 .container-stato {
   margin-bottom: 1rem;
-  background: linear-gradient(to bottom, rgba(11, 3, 251, 0), #5f9ea0);
+  background: $gradient-overlay;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -97,15 +99,15 @@
 
 .container-tags-categoria {
   padding: $space-md;
-  background: $transparent-container;
-  border-radius: 0 0 20px 20px;
+  background: $gradient-overlay;
+  border-radius: 0 0 $radius-lg $radius-lg;
 }
 
 .input-textarea{
   display: flex;
   justify-content: center;
-  border:none;
-  border-radius: $radius;
+  border:1px solid $color-border;
+  border-radius: $radius-lg;
   padding: $space-md;
   margin-top:$space-sm;
   width: 100%;

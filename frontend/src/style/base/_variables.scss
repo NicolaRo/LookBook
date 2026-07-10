@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 /* _-_-_ BREAKPOINTS - taglie dello schermo _-_-_ */
 
 $xs: 320px; // Extra small: smartphone vecchio <350px
@@ -7,27 +9,28 @@ $lg: 1024px; // Large: laptop
 $xl: 1440px; //Extra large: desktop
 
 /* _-_-_ PALETTE COLORI _-_-_ */
-$color-primary: #62c370;
-$transparent-container: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-$color-accent: #5f9ea0;
-$linear-gradient: linear-gradient(135deg, rgba(66, 59, 255, 0.99), rgb(228, 51, 255));
-$blur-backdrop: blur (4px);
-$color-text: #2c2424;
+$color-primary: #6F5A7E;
+$color-light: #F6F1E8;
+$accent: #4E3D39;
 
-// Palette bottoni
-$button-text: #ffff;
-$color-close:#f78181fd;
-$color-open: rgba(98, 195, 113, 0.5803921569);
-$glass-primary:#17b52e7e;
+/* _-_-_ DERIVATED COLOR PALETTE _-_-_ */
+$color-primary-light: color.adjust($color-primary, $lightness: 14%);
+$color-primary-dark:  color.adjust($color-primary, $lightness: -10%);
 
-// Glassmorphism (stile Apple)
+$color-surface: #FFFDF9;
+$color-border:  rgba($accent, 0.12);
 
-$glass-bg: rgba(255,255,255,0.14);   // sfondo vetro
-$border: 2px solid #ff72ff;
-$glass-shadow: 0 6px 24px rgba(8, 30, 10, 0.12);
-$radius: 20px;
-$radius-w: 34px;
-$box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+$color-text-primary:    $accent;
+$color-text-secondary:  color.adjust($accent, $lightness: 28%);
+$color-text-on-primary: $color-light;
+
+$color-success:    #7C9473;
+$color-error:      #B5615A;
+$color-error-dark: color.adjust($color-error, $lightness: -8%);
+$color-warning:    #C9A468;
+
+/* _-_-_ TYPOGRAPHY _-_-_ */
+$font-family-base: 'Newsreader', Georgia, 'Times New Roman', serif;
 
 /* _-_-_ SPACING _-_-_ */
 $space-xs: 0.25rem;
@@ -35,3 +38,26 @@ $space-sm: 0.5rem;
 $space-md: 1rem;
 $space-lg: 2rem;
 $space-xl: 4rem;
+
+/* _-_-_ RADIUS _-_-_ */
+$radius-sm:   8px;
+$radius-md:   16px;
+$radius-lg:   24px;
+$radius-pill: 999px;
+
+/* _-_-_ ELEVATION / SHADOW _-_-_ */
+$shadow-sm: 0 1px 3px rgba($accent, 0.08);
+$shadow-md: 0 4px 16px rgba($accent, 0.10);
+$shadow-lg: 0 12px 32px rgba($accent, 0.14);
+
+/* _-_-_ MOTION _-_-_ */
+$transition-base: 0.2s ease;
+$transition-slow: 0.4s ease;
+
+/* _-_-_ GLASS PANEL (versione soft) _-_-_ */
+$glass-bg:     rgba($color-light, 0.6);
+$glass-border: 1px solid rgba($color-primary, 0.18);
+$glass-blur:   blur(12px);
+
+/* _-_-_ OVERLAY GRADIENT _-_-_ */
+$gradient-overlay: linear-gradient(to bottom, rgba($accent, 0), rgba($accent, 0.25));

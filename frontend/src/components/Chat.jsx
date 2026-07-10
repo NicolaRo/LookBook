@@ -104,7 +104,7 @@ function Chat() {
           src="LookBook-AI-agent.png"
           alt="Illustrazione assistente artificiale fashion"
         />
-        <h1 className="chat-title">AI Fashion assistant</h1>
+        <h2 className="chat-title">AI Fashion assistant</h2>
       
       {status === "PRICING_LOADING" && <p>Evaluating article...</p>}
       {status === "PRICING_LOADING" && <div className="spinner"></div>}

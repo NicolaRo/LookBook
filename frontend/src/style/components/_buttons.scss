@@ -21,7 +21,7 @@
 .tag-genere {
     margin: 1rem;
     border: none;
-    border-radius: $radius;
+    border-radius: $radius-lg;
     padding: 0.5rem;
     background-color: white;
     &.active {
@@ -50,7 +50,7 @@
 .button-valuta {
     padding: 1rem 1.5rem;
     border: none;
-    border-radius: $radius-w;
+    border-radius: $radius-lg;
     background-color: #5f9ea0;
     margin-top: 1rem;
     max-width: 13rem;

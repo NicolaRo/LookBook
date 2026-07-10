@@ -1,4 +1,4 @@
-/* -_-_- IMPORT MODULI DI BASE -_-_- */
+/* -_-_- IMPORT BASE MODULES -_-_- */
 @use 'normalize.css';
 @use './base/_reset';
 @use './base/_variables'as *;
@@ -7,9 +7,11 @@
 @use './components/chat' as *;
 @use './components/buttons' as *;
 @use './base/states' as *;
-/* -_-_- STILE DI BASE DELL'APP -_-_-  */
+@use './base/typography' as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* -_-_- APP STYLE BASE -_-_-  */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -22,32 +24,44 @@ ul {
   padding: 0;
 }
 
-.App { // base mobile-first (sotto 480px)
+.App { // base mobile-first (under 480px width)
   display:flex;
   flex-direction: column;
   align-items: center;
   gap: $space-sm;
-  width: 100vw;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   overflow-x: hidden;
-  @include respond (xs) {}// larghezza minima (≥350px)
-  @include respond (sm) {}// larghezza minima (≥480)
-  @include respond(md) {}// larghezza minima (≥780px)
-  @include respond (lg) {}// larghezza minima (≥1024px)
-  @include respond (xl){} // larghezza minima (≥1440px)
+  padding: 0 $space-sm;
+
+  @include respond(xs) {}
+  @include respond(sm) {
+    padding: 0 $space-md;
   }
+  @include respond(md) {
+    max-width: 680px;
+    gap: $space-md;
+  }
+  @include respond(lg) {
+    max-width: 780px;
+    gap: $space-lg;
+    padding: 0 $space-lg;
+  }
+  @include respond(xl) {
+    max-width: 860px;
+  }
+}
   
 
 html {
   font-size: 16px; // 1rem = 16px
-  scroll-behavior: smooth; // transizioni "smooth" durante lo scroll 
+  scroll-behavior: smooth; // "smooth" transition during scroll 
 }
 
 body {
-  font-family: 'Poppins', sans-;
-  color: $color-text;
-  min-height: 100vh; // corpo sempre alto quanto l'intera finestra
-  display: flex; // Lo imposto qua così a cascata tutti i "figli" otterranno la struttura flessibile
-  flex-direction: column; // best practice per layout verticali 
-  max-width: 600px;
-  margin: 0 auto; 
+  color: $color-text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

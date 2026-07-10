@@ -63,14 +63,17 @@ function ArticleForm() {
     <>
       {/* CATEGORIE */}
       <div className="categoria-genere-container">
-        <h3>Choose the category</h3>
+        <div className="category-btn-container">
+        <h3>Which apparel are you selling?</h3>
         {/* Quando cliccato, il bottone apre il contenitore catagoria (setCategoriaOpen)*/}
         <button
           className={`button ${categoriaOpen ? "active" : ""}`}
           onClick={() => setCategoriaOpen(!categoriaOpen)}
         >
-          Category
+          <h3>Category </h3>
         </button>
+        </div>
+        
 
         
 
