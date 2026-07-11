@@ -224,13 +224,13 @@ function ArticleForm() {
         <div className="container-indicazioni-foto">
         <h3 className="titolo-indicazioni-foto">Which picture should I upload?</h3>
           <div className="indicazioni-foto">
-          <p>To allow me to make an accurate assessment, photograph the garment on a <strong>neutral and uniform background</strong>.</p>
-          <p>Make sure the <strong>photo</strong> is <strong>well-lit</strong> and that the colors captured reflect the actual ones.</p>
-          <p>Finally, check that the focus produces a <strong>sharp, detailed photo</strong>.</p>
-          <p>For further guidance, use the chat.</p>
+          <p className="UI-text">To allow me to make an accurate assessment, photograph the garment on a <strong>neutral and uniform background</strong>.</p>
+          <p className="UI-text">Make sure the <strong>photo</strong> is <strong>well-lit</strong> and that the colors captured reflect the actual ones.</p>
+          <p className="UI-text">Finally, check that the focus produces a <strong>sharp, detailed photo</strong>.</p>
+          <p className="UI-text">For further guidance, use the chat.</p>
           </div>
         </div>
-      <div className="upload-foto-container">
+      <div className="upload-foto-container UI-text">
         <input
           type="file"
           onChange={(e) => handleFotoChange(e.target.files[0])}
@@ -241,7 +241,7 @@ function ArticleForm() {
       <div className="container-brand">
         <h3>Indicate the brand:</h3>
         <input
-          className="input-textarea"
+          className="input-textarea UI-text"
           type="text"
           value={brand}
           onChange={(e) => setBrand(e.target.value)}

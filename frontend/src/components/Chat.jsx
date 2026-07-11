@@ -98,7 +98,7 @@ function Chat() {
         />
         <h2 className="chat-title">AI Fashion assistant</h2>
       
-      {status === "PRICING_LOADING" && <p>Evaluating article...</p>}
+      {status === "PRICING_LOADING" && <p className="UI-text"> Evaluating article...</p>}
       {status === "PRICING_LOADING" && <div className="spinner"></div>}
       </div>
 

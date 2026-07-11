@@ -8,6 +8,7 @@
 }
 
 .chat-title {
+  font-family: $font-family-ui;
   text-align: center;
   color: $color-text-primary; 
   margin: $space-md;
@@ -31,6 +32,11 @@
 
 .container-indicazioni-foto{
   margin-bottom: $space-md;
+}
+
+.UI-text {
+  font-family: $font-family-ui;
+  color: $color-text-secondary;
 }
 
 .titolo-indicazioni-foto{
@@ -62,6 +68,12 @@
 
 .titolo-categorie{
   margin: $space-md 0;
+}
+
+.tags-genere {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
 }
 
 .upload-foto-container {
@@ -99,15 +111,5 @@
   padding: $space-md;
   background: $gradient-overlay;
   border-radius: 0 0 $radius-lg $radius-lg;
-}
-
-.input-textarea{
-  display: flex;
-  justify-content: center;
-  border: none;
-  border-radius: $radius-lg;
-  padding: $space-md;
-  margin-top:$space-sm;
-  width: 100%;
 }
 

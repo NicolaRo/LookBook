@@ -3,6 +3,7 @@
 @use '../base/typography' as *;
 
 .button {
+  font-family: $font-family-ui;
   padding: $space-sm;
   border: none;
   border-radius: $radius-lg;
@@ -21,6 +22,7 @@
 }
 
 .tag-genere {
+    font-family: $font-family-ui;
     margin: $space-md;
     border: none;
     border-radius: $radius-lg;
@@ -33,6 +35,7 @@
 }
 
 .tag-categoria {
+    font-family: $font-family-ui;
     margin: 5px;
     border: none;
     border-radius: $radius-lg;
@@ -50,6 +53,7 @@
     justify-content: end;
 }
 .button-valuta {
+    font-family: $font-family-ui;
     padding: $space-md 1.5rem;
     border: none;
     border-radius: $radius-lg;
@@ -65,6 +69,7 @@
 }
 
 .button-red{
+    font-family: $font-family-ui;
     background-color: $color-error;
     border: none;
     border-radius: $radius-lg;
@@ -74,6 +79,7 @@
     font-weight: $fw-semibold;
 }
 .button-send{
+  font-family: $font-family-ui;
   background-color:$color-primary;
   border: none;
   font-size: 2rem;

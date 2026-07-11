@@ -52,26 +52,28 @@ function PricingResult() {
             <button className="button-red" onClick ={() => setShowModal (true)}>❮ Back to form</button>
             
             <div className="pricing-result-content">
-            <h2 className="pricing-result-title">Here is the article pricing</h2>
-                <p><strong>💰 Selling price: </strong>€{suggested_price}</p>
-                <p><strong>🧭 Range: </strong>€{range.min} - €{range.max}</p>
-                <p><strong>🕵🏻‍♂️ Reason: </strong>{motivation}</p>
-                {selling_tips && selling_tips.length > 0 && (
-                    <>
-                    <p><strong>Selling tips 💬</strong></p>
-                    <ul>
+                <h2 className="pricing-result-title">Here is the article pricing</h2>
+                    <p>Selling price: € </p> <p className = "price-hero">{suggested_price}</p>
+                    <p>Range: €</p> <p className = "UI-text">{range.min} - €{range.max}</p>
+                    <p>Reason: </p>  <p className = "UI-text">{motivation}</p>
+                    {selling_tips && selling_tips.length > 0 && (
+                        <>
+                        <p>Selling tips:</p> 
+                        <ul>
                         {selling_tips.map((tip, index) => (
-                            <li key={index}>{tip}</li>
-                        ))}
-                    </ul>
-                    </>
-                )}
+                                <li key={index}>
+                                    <p className = "UI-text"> {tip}</p>
+                                    </li>
+                            ))}
+                        </ul>
+                        </>
+                    )}
             </div>
         </div>
         {showModal && (
             <div className= "modal-overlay">
                 <div className = "modal">
-                    <p>⚠️ Tornando al form perderai la valutazione ricevuta. Continuare?</p>
+                    <p>Received price will be lost, continue?</p>
                     <button className = "button" onClick = {handleReset}>Si, torna al form</button>
                     <button className="button-red" onClick = {() => setShowModal(false)}>Annulla</button>
                 </div>

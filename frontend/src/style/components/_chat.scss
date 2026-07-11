@@ -2,6 +2,13 @@
 @use '../base//mixins' as *;
 @use '../base/typography' as *; 
 
+.container-pricing-result {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  width: 100%;
+}
+
 .pricing-result-content {
   background-color: $color-white;
   margin-bottom: $space-md;
@@ -12,6 +19,12 @@
   padding:$space-md;
   border-radius: $radius-lg;
   box-shadow: $shadow-sm;
+}
+
+.price-hero {
+  font-size: $fs-h2;
+  font-weight: $fw-semibold;
+  color: $color-warning;
 }
 
 li.active::before {
@@ -101,12 +114,12 @@ li.active::before {
   font-size: $fs-h3;
 }
 
-.message--assistant, .message--user {
+.message {
   color: $color-white;
   background-color: $color-primary;
   padding: $space-md 5rem $space-md $space-md;
   max-width: 80%;
-  align-self:start;
+  align-self: start;
   border-radius: $radius-lg;
   box-shadow: $shadow-lg;
 }
