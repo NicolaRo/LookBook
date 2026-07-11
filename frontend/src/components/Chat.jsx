@@ -49,10 +49,8 @@ function Chat() {
 
   //Funzione per gestire la risposta dell'LLM
   const handleExplain = async () => {
-    console.log("STEP 1 - click ok");
 
     if (!articleId) {
-      console.log("NO ARTICLE ID");
       alert("Missing ID Article");
       return;
     }
@@ -75,7 +73,6 @@ function Chat() {
 
     //Chiamata API
     const res = await explainPricing(articleId, question);
-    console.log("STEP 2 - response:", res);
 
     //Sostituisco messaggio di loading con la risposta e richiamo le lettere di
     //risposta ogni 0,2sec

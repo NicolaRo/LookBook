@@ -17,5 +17,4 @@ function App() {
     </div>
   );
 }
-console.log(ChatAI);
 export default App
