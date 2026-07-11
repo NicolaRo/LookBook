@@ -5,7 +5,6 @@
   width: auto;
   border-radius: $radius-lg;
   padding: $space-md;
-  background-color: $color-surface;
 }
 
 .chat-title {
@@ -31,11 +30,11 @@
 }
 
 .container-indicazioni-foto{
-  margin-bottom: 1rem;
+  margin-bottom: $space-md;
 }
 
 .titolo-indicazioni-foto{
-  margin: 1rem 0;
+  margin: $space-md 0;
 }
 
 .indicazioni-foto{
@@ -47,7 +46,7 @@
   padding: $space-md;
   background: transparent;
     &.active{
-      border-radius: 6px 6px 0 0;
+      border-radius: $radius-sm $radius-sm 0 0;
     }
   }
 
@@ -62,16 +61,15 @@
 }
 
 .titolo-categorie{
-  margin: 1rem 0;
+  margin: $space-md 0;
 }
 
 .upload-foto-container {
-  margin: 1rem 0 1rem 0;
-  background-color: #c3d8ea;
-  padding: 1.5rem;
-  border-radius: 20px;
+  margin: $space-md 0 $space-md 0;
+  background-color: $color-primary-light;
+  padding: $space-md;
+  border-radius: $radius-lg;
   color: $color-text-primary;
-  box-sizing: border-box;
   overflow: hidden;
   border: none;
 }
@@ -82,13 +80,13 @@
 }
 
 .container-stato {
-  margin-bottom: 1rem;
+  margin-bottom: $space-md;
   background: $gradient-overlay;
-  padding: 1rem;
+  padding: $space-md;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 $radius-lg $radius-lg;
 }
 
 .container-tag-stato {
@@ -106,7 +104,7 @@
 .input-textarea{
   display: flex;
   justify-content: center;
-  border:1px solid $color-border;
+  border: none;
   border-radius: $radius-lg;
   padding: $space-md;
   margin-top:$space-sm;

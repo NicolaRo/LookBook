@@ -1,14 +1,15 @@
 @use '../base/variables' as *;
 @use '../base//mixins' as *;
+@use '../base/typography' as *; 
 
 .pricing-result-content {
-  background-color: #ffffff;
+  background-color: $color-white;
   margin-bottom: $space-md;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   gap: $space-md;
-  padding:1rem;
+  padding:$space-md;
   border-radius: $radius-lg;
   box-shadow: $shadow-sm;
 }
@@ -34,15 +35,15 @@ li.active::before {
   }
 
   .spinner {
-    width: 40px;
+  width: 40px;
   height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #333;
+  border: 4px solid $color-white;
+  border-top: 4px solid $accent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   display: flex;
   flex-direction: row;
-  margin: 2rem 0;
+  margin: $space-lg 0;
 }
 
 @keyframes spin {
@@ -55,7 +56,6 @@ li.active::before {
   max-height: 25rem;
   overflow-x: scroll;
   border-radius: $radius-lg;
-  background-image: $color-surface;
   display: flex;
   flex-direction: column;
   gap: $space-md;
@@ -70,22 +70,21 @@ li.active::before {
   display: flex;
   justify-content: center;
   border: none;
-  border-radius: 20px;
-  padding: 1rem;
-  margin: 1rem;
+  border-radius: $radius-lg;
+  padding: $space-md;
+  margin: $space-md;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: $shadow-lg;
 }
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($accent, 0.5);
   backdrop-filter: blur(6px);
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,22 +94,21 @@ li.active::before {
 
 .modal{
   background-color: $color-primary;
-  padding: 4rem;
+  padding: $space-xl;
   border-radius: $radius-lg;
   border: none;
-  backdrop-filter: $glass-blur;
-  font-size: x-large;
-  @include text(h4);
+  backdrop-filter: blur(2px);
+  font-size: $fs-h3;
 }
 
 .message--assistant, .message--user {
-  color: white;
+  color: $color-white;
   background-color: $color-primary;
   padding: $space-md 5rem $space-md $space-md;
   max-width: 80%;
   align-self:start;
   border-radius: $radius-lg;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+  box-shadow: $shadow-lg;
 }
 
 .message--user{

@@ -36,11 +36,3 @@
     align-items: center;
     justify-content: center;
 }
-
-@mixin text($level) {
-    font-family: $font-family-base;
-    font-size: type-value($level, size);
-    line-height: type-value($level, line-height);
-    letter-spacing: type-value($level, spacing);
-    font-weight: fw(type-value($level, weight));
-  }

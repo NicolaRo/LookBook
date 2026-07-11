@@ -1,84 +1,75 @@
-@use './variables' as* ;
+@use './variables' as *;
 
 // -----------------------------------------------------------
-// 2. WIDTHS 
+// FONT WEIGHTS
 // -----------------------------------------------------------
-$font-weights: (
-  light:    300,
-  regular:  400,
-  medium:   500,
-  semibold: 600,
-  bold:     700,
-);
-
-@function fw($key) {
-  @return map-get($font-weights, $key);
-}
+$fw-regular:  400;
+$fw-medium:   500;
+$fw-semibold: 600;
 
 // -----------------------------------------------------------
-// 3. TYPOGRAPHY SCALE
+// DIMENSIONS
 // -----------------------------------------------------------
-$type-scale: (
-  display:  ( size: 4.209rem, line-height: 1.05, spacing: -0.02em,  weight: light    ),
-  h1:       ( size: 3.157rem, line-height: 1.1,  spacing: -0.015em, weight: light    ),
-  h2:       ( size: 2.369rem, line-height: 1.15, spacing: -0.01em,  weight: regular  ),
-  h3:       ( size: 1.777rem, line-height: 1.25, spacing: -0.005em, weight: regular  ),
-  h4:       ( size: 1.333rem, line-height: 1.35, spacing: 0,        weight: medium   ),
-  h5:       ( size: 1.125rem, line-height: 1.4,  spacing: 0,        weight: medium   ),
-  h6:       ( size: 1rem,     line-height: 1.45, spacing: 0.01em,   weight: semibold ),
-  body-lg:  ( size: 1.125rem, line-height: 1.6,  spacing: 0,        weight: regular  ),
-  body:     ( size: 1rem,     line-height: 1.6,  spacing: 0,        weight: regular  ),
-  body-sm:  ( size: 0.889rem, line-height: 1.55, spacing: 0,        weight: regular  ),
-  caption:  ( size: 0.79rem,  line-height: 1.5,  spacing: 0.01em,   weight: regular  ),
-  overline: ( size: 0.75rem,  line-height: 1.4,  spacing: 0.12em,   weight: semibold ),
-);
-
-@function type-value($level, $prop) {
-  @return map-get(map-get($type-scale, $level), $prop);
-}
+$fs-h1: 2.75rem;
+$fs-h2: 2rem;
+$fs-h3: 1.5rem;
+$fs-body: 1rem;
+$fs-small: 0.875rem;
+$fs-overline: 0.75rem;
 
 // -----------------------------------------------------------
-// 4. MIXIN FOR APPLICATION
+// LETTER-SPACING 
 // -----------------------------------------------------------
-@mixin text($level) {
-  font-family: $font-family-base;
-  font-size: type($level, size);
-  line-height: type($level, line-height);
-  letter-spacing: type($level, spacing);
-  font-weight: fw(type($level, weight));
-}
+$ls-tight: -0.01em; // titoli grandi
+$ls-wide: 0.08em;   // overline / label maiuscole
 
 // -----------------------------------------------------------
-// 5. BASE ELEMENTS
+// LINE-HEIGHT
+// -----------------------------------------------------------
+$lh-heading: 1.2;
+$lh-body: 1.6;
+
+// -----------------------------------------------------------
+// BASE ELEMENTS
 // -----------------------------------------------------------
 body {
   font-family: $font-family-base;
-  @include text(body);
+  font-size: $fs-body;
+  line-height: $lh-body;
+  font-weight: $fw-regular;
+  color: $color-text-primary;
 }
 
-h1 { @include text(h1); }
-h2 { @include text(h2); }
-h3 { @include text(h3); }
-h4 { @include text(h4); }
-h5 { @include text(h5); }
-h6 { @include text(h6); }
+h1 {
+  font-size: $fs-h1;
+  line-height: $lh-heading;
+  letter-spacing: $ls-tight;
+  font-weight: $fw-medium;
+}
+
+h2 {
+  font-size: $fs-h2;
+  line-height: $lh-heading;
+  letter-spacing: $ls-tight;
+  font-weight: $fw-medium;
+}
+
+h3 {
+  font-size: $fs-h3;
+  line-height: $lh-heading;
+  font-weight: $fw-medium;
+}
 
 // -----------------------------------------------------------
-// 6. CLASS UTILITY
+// UTILITY
 // -----------------------------------------------------------
-.text-display { @include text(display); }
-.text-body-lg { @include text(body-lg); }
-.text-body    { @include text(body); }
-.text-body-sm { @include text(body-sm); }
-.text-caption { @include text(caption); }
-
+.text-small {
+  font-size: $fs-small;
+}
 
 .text-overline {
-  @include text(overline);
+  font-size: $fs-overline;
+  letter-spacing: $ls-wide;
+  font-weight: $fw-semibold;
   text-transform: uppercase;
-}
-
-
-.text-italic {
-  font-style: italic;
 }

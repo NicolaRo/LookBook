@@ -17,8 +17,7 @@ $accent: #4E3D39;
 $color-primary-light: color.adjust($color-primary, $lightness: 14%);
 $color-primary-dark:  color.adjust($color-primary, $lightness: -10%);
 
-$color-surface: #FFFDF9;
-$color-border:  rgba($accent, 0.12);
+$color-white: #FFFDF9;
 
 $color-text-primary:    $accent;
 $color-text-secondary:  color.adjust($accent, $lightness: 28%);
@@ -50,14 +49,7 @@ $shadow-sm: 0 1px 3px rgba($accent, 0.08);
 $shadow-md: 0 4px 16px rgba($accent, 0.10);
 $shadow-lg: 0 12px 32px rgba($accent, 0.14);
 
-/* _-_-_ MOTION _-_-_ */
-$transition-base: 0.2s ease;
-$transition-slow: 0.4s ease;
 
-/* _-_-_ GLASS PANEL (versione soft) _-_-_ */
-$glass-bg:     rgba($color-light, 0.6);
-$glass-border: 1px solid rgba($color-primary, 0.18);
-$glass-blur:   blur(12px);
 
 /* _-_-_ OVERLAY GRADIENT _-_-_ */
 $gradient-overlay: linear-gradient(to bottom, rgba($accent, 0), rgba($accent, 0.25));
