@@ -11,8 +11,6 @@ function App() {
   return (
     <div>
       <ChatAI
-        form={true}
-        pricing={true}
       />
     </div>
   );
