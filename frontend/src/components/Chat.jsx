@@ -87,11 +87,6 @@ function Chat() {
         dispatch(updateLastMessage({ content: currentText }));
       }, i * 20);
     }
-    dispatch(
-      updateLastMessage({
-        content: res.explaination,
-      })
-    );
     setQuestion("");
   };
 
