@@ -39,6 +39,8 @@
     border-radius: $radius-lg;
     padding: $space-sm;
     background-color: $color-white;
+    display: flex;
+    align-items: center;
     &.active {
         opacity: 0.50;
         transform: translateY(2px);
@@ -52,10 +54,19 @@
     border-radius: $radius-lg;
     padding: $space-sm;
     background-color: $color-white;
+    display: flex;
+    align-items: center;
+    min-width: fit-content;
+
   &.active {
     opacity: 0.50;
     transform: translateY(2px);
 }
+}
+
+.button--category {
+    font-size: larger;
+    margin: $space-md 0;
 }
 
 .container-button-valuta{

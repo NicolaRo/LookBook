@@ -16,6 +16,20 @@ import fileToBase64 from "../../services/utils/fileToBase64";
 import { submitArticleAndPrice } from "../features/article/articleSlice";
 import { useDispatch } from "react-redux";
 
+import ManLogo from '../assets/icons/Man-logo.png';
+import BoyLogo from '../assets/icons/Boy-logo.png';
+import WomanLogo from '../assets/icons/Women-logo.png';
+import GirlLogo from '../assets/icons/Girl-logo.png';
+
+import ShoesLogo from '../assets/icons/Shoes-logo.png';
+import DressLogo from '../assets/icons/Dress-logo.png';
+import TshirtLogo from '../assets/icons/T-shirt-logo.png';
+import TrousersLogo from '../assets/icons/Trousers-logo.png';
+import JacketLogo from '../assets/icons/Jacket-logo.png';
+import AccessoriesLogo from '../assets/icons/Accessories-logo.png';
+import JeansLogo from '../assets/icons/Jeans-logo.png';
+
+
 
 //Funzione principale del componente
 function ArticleForm() {
@@ -25,6 +39,8 @@ function ArticleForm() {
   const [categoria, setCategoria] = useState({ genere: "", tipo: "" });
   const [stato, setStato] = useState("");
   const [foto, setFoto] = useState(null);
+
+  const [fileName, setFileName] = useState("");
 
   const [categoriaOpen, setCategoriaOpen] = useState(false);
   const [openGenere, setOpenGenere] = useState(null);
@@ -41,6 +57,7 @@ function ArticleForm() {
     setLoadingFoto(true);
     const base64 = await fileToBase64(file);
     setFoto(base64);
+    setFileName(file.name);
     setLoadingFoto(false);
   };
 
@@ -70,7 +87,7 @@ function ArticleForm() {
           className={`button button--category ${categoriaOpen ? "active" : ""}`}
           onClick={() => setCategoriaOpen(!categoriaOpen)}
         >
-          Category 
+          <h3 className ="btn-category-text">Category</h3>
         </button>
         </div>
         
@@ -93,7 +110,8 @@ function ArticleForm() {
                 });
               }}
             >
-              🕺 Man
+             <img className = "gender-category-icons" src={ManLogo} alt="Man icon" />
+             Man
             </button>
 
             <button
@@ -108,7 +126,8 @@ function ArticleForm() {
                 });
               }}
             >
-              💃 Woman
+              <img className = "gender-category-icons" src={WomanLogo} alt="Woman icon" />
+            Woman
             </button>
 
             <button
@@ -123,7 +142,8 @@ function ArticleForm() {
                 });
               }}
             >
-              👦🏻 Boy
+              <img className = "gender-category-icons" src={BoyLogo} alt="Boy icon" />
+           Boy
             </button>
 
             <button
@@ -138,7 +158,8 @@ function ArticleForm() {
                 });
               }}
             >
-             👧 Girl
+              <img className = "gender-category-icons" src={GirlLogo} alt="Girl icon" />
+             Girl
             </button>
             </div>
             
@@ -153,8 +174,8 @@ function ArticleForm() {
               onClick={() =>
                 setCategoria({ ...categoria, tipo: "Pantaloni" })
               }
-            >
-              👖 Trousers
+            ><img className = "product-category-icons" src={TrousersLogo} alt="Trousers icon" />
+              Trousers
             </button>
 
             <button
@@ -162,8 +183,8 @@ function ArticleForm() {
                 categoria.tipo === "Jeans" ? "active" : ""
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Jeans" })}
-            >
-              👖 Jeans
+            ><img className = "product-category-icons" src={JeansLogo} alt="Jeans icon" />
+            Jeans
             </button>
 
             <button
@@ -171,8 +192,8 @@ function ArticleForm() {
                 categoria.tipo === "T-Shirt" ? "active" : ""
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "T-Shirt" })}
-            >
-             👕 T-Shirt
+            ><img className = "product-category-icons" src={TshirtLogo} alt="T-shirt icon" />
+              T-Shirt
             </button>
 
             <button
@@ -180,8 +201,8 @@ function ArticleForm() {
                 categoria.tipo === "Abito" ? "active" : ""
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Abito" })}
-            >
-             👗 Dress
+            ><img className = "product-category-icons" src={DressLogo} alt="Dress icon" />
+              Dress
             </button>
 
             <button
@@ -189,8 +210,8 @@ function ArticleForm() {
                 categoria.tipo === "Giacca" ? "active" : ""
               }`}
               onClick={() => setCategoria({ ...categoria, tipo: "Giacca" })}
-            >
-             🧥 Jacket
+            ><img className = "product-category-icons" src={JacketLogo} alt="Jacket icon" />
+              Jacket
             </button>
 
             <button
@@ -200,8 +221,8 @@ function ArticleForm() {
               onClick={() =>
                 setCategoria({ ...categoria, tipo: "Calzature" })
               }
-            >
-             👞 Shoes
+            ><img className = "product-category-icons" src={ShoesLogo} alt="Shoes icon" />
+              Shoes
             </button>
 
             <button
@@ -211,8 +232,8 @@ function ArticleForm() {
               onClick={() =>
                 setCategoria({ ...categoria, tipo: "Accessori" })
               }
-            >
-             👜 Accessories
+            ><img className = "product-category-icons" src={AccessoriesLogo} alt="Accessories icon" />
+              Accessories
             </button>
           </div>
         )}
@@ -230,11 +251,17 @@ function ArticleForm() {
           <p className="UI-text">For further guidance, use the chat.</p>
           </div>
         </div>
-      <div className="upload-foto-container UI-text">
-        <input className = "picture-title-placeholder"
+        <div className="upload-foto-container UI-text">
+        <label className="file-upload-label" htmlFor="foto-upload">
+          Choose photo
+        </label>
+        <input
+          id="foto-upload"
           type="file"
+          className="file-upload-input"
           onChange={(e) => handleFotoChange(e.target.files[0])}
         />
+        <span className="UI-text-light">{fileName || "No file selected"}</span>
         {errore && <p>{errore}</p>}
       </div>
       {/* BRAND */}

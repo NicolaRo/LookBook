@@ -42,6 +42,10 @@
   color: $color-text-secondary;
 }
 
+.UI-text-light{
+  color: $color-light;
+}
+
 .titolo-indicazioni-foto{
   margin: $space-md 0;
 }
@@ -92,6 +96,14 @@
   gap: $space-sm;
 }
 
+.gender-category-icons, .product-category-icons{
+  width: 30px;
+  margin: $space-sm;
+  :active {
+    width: 30px;
+  }
+}
+
 .picture-title-placeholder{
   color: $color-light;
 }
@@ -103,6 +115,9 @@
   color: $color-text-primary;
   overflow: hidden;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: $space-md;
 }
 
 .container-brand {
@@ -128,5 +143,27 @@
   padding: $space-md;
   background: $gradient-overlay;
   border-radius: 0 0 $radius-lg $radius-lg;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+  gap: $space-sm;
 }
 
+.file-upload-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.file-upload-label {
+  display: inline-block;
+  font-family: $font-family-ui;
+  background-color: $color-primary;
+  color: $color-white;
+  padding: $space-sm $space-md;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  font-weight: $fw-semibold;
+}
