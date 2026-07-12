@@ -64,13 +64,13 @@ function ArticleForm() {
       {/* CATEGORIE */}
       <div className="categoria-genere-container">
         <div className="category-btn-container">
-        <h3>Which apparel are you selling?</h3>
+        <h2>Which apparel are you selling?</h2>
         {/* Quando cliccato, il bottone apre il contenitore catagoria (setCategoriaOpen)*/}
         <button
-          className={`button ${categoriaOpen ? "active" : ""}`}
+          className={`button button--category ${categoriaOpen ? "active" : ""}`}
           onClick={() => setCategoriaOpen(!categoriaOpen)}
         >
-          <h3>Category </h3>
+          Category 
         </button>
         </div>
         
@@ -79,7 +79,7 @@ function ArticleForm() {
 
         {categoriaOpen && (
           <div className="container-tags-genere">
-            <h4 className="titolo-categorie">Categories:</h4>
+            <h3 className="titolo-categorie">Categories:</h3>
             <div className="tags-genere">
             <button
               className={`tag-genere ${openGenere === "uomo" ? "active" : ""}`}
@@ -231,7 +231,7 @@ function ArticleForm() {
           </div>
         </div>
       <div className="upload-foto-container UI-text">
-        <input
+        <input className = "picture-title-placeholder"
           type="file"
           onChange={(e) => handleFotoChange(e.target.files[0])}
         />
@@ -241,7 +241,7 @@ function ArticleForm() {
       <div className="container-brand">
         <h3>Indicate the brand:</h3>
         <input
-          className="input-textarea UI-text"
+          className="input-textarea"
           type="text"
           value={brand}
           onChange={(e) => setBrand(e.target.value)}

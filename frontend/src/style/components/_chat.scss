@@ -89,7 +89,9 @@ li.active::before {
   width: 100%;
   box-sizing: border-box;
   box-shadow: $shadow-lg;
+  font-size: $fs-body;
 }
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -101,7 +103,6 @@ li.active::before {
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 9999;
 }
 
@@ -112,6 +113,11 @@ li.active::before {
   border: none;
   backdrop-filter: blur(2px);
   font-size: $fs-h3;
+  color: $color-light;
+}
+
+.modal-buttons-container{
+  display: flex;
 }
 
 .message {

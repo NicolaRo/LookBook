@@ -10,6 +10,8 @@
   background-color: $color-white;
   margin-top: $space-md;
   box-shadow: $shadow-lg;
+  display: flex;
+  justify-content: center;
     &.active {
         opacity: 0.70;
         transform: translateY(2px);
@@ -20,6 +22,15 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.button--category {
+    display: flex;
+    justify-content: center;
+
+    @include respond(lg) {
+      max-width: 18.75rem;
+    }
+  }
 
 .tag-genere {
     font-family: $font-family-ui;
@@ -68,6 +79,17 @@
     box-shadow: $shadow-md;
 }
 
+.button-confirm {
+    font-family: $font-family-ui;
+    background-color: $color-white;
+    border: none;
+    border-radius: $radius-lg;
+    margin: $space-md;
+    padding: $space-sm $space-md;
+    color: $color-text-primary;
+    font-weight: $fw-semibold;
+}
+
 .button-red{
     font-family: $font-family-ui;
     background-color: $color-error;
@@ -77,7 +99,9 @@
     padding: $space-sm $space-md;
     color:$color-white;
     font-weight: $fw-semibold;
+    width: fit-content;
 }
+
 .button-send{
   font-family: $font-family-ui;
   background-color:$color-primary;
@@ -90,4 +114,8 @@
   margin: $space-sm;
   color: $color-white;
   box-shadow: $shadow-lg;
+}
+
+.input {
+    color: $color-primary-light;
 }

@@ -1,5 +1,6 @@
 @use '../base/variables' as *;
 @use '../base/mixins' as *;
+@use '../base/typography' as *;
 
 .assistente-AI-container {
   width: auto;
@@ -12,6 +13,7 @@
   text-align: center;
   color: $color-text-primary; 
   margin: $space-md;
+  color: $color-text-secondary;
 }
 
 .image-container{
@@ -28,6 +30,7 @@
 .category-btn-container{
   display: grid;
   align-items: center;
+  margin: $space-lg 0;
 }
 
 .container-indicazioni-foto{
@@ -47,10 +50,23 @@
   height: fit-content; 
 }
 
+
+.input-textarea{
+  width: 100%;
+  margin: $space-sm 0;
+  height:$space-xl;
+  font-family: $font-family-ui;
+  font-size: $fs-body;
+  border: none;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  padding: 0 $space-md;
+}
 .categoria-genere-container {
   border-radius: $radius-lg;
   padding: $space-md;
   background: transparent;
+  margin: $space-md 0;
     &.active{
       border-radius: $radius-sm $radius-sm 0 0;
     }
@@ -76,6 +92,9 @@
   gap: $space-sm;
 }
 
+.picture-title-placeholder{
+  color: $color-light;
+}
 .upload-foto-container {
   margin: $space-md 0 $space-md 0;
   background-color: $color-primary-light;
@@ -93,11 +112,9 @@
 
 .container-stato {
   margin-bottom: $space-md;
-  background: $gradient-overlay;
   padding: $space-md;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-radius: 0 0 $radius-lg $radius-lg;
 }
 

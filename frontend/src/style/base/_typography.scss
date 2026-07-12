@@ -45,6 +45,8 @@ h1 {
   line-height: $lh-heading;
   letter-spacing: $ls-tight;
   font-weight: $fw-medium;
+  display: flex;
+  justify-content: center;
 }
 
 h2 {
@@ -57,7 +59,7 @@ h2 {
 h3 {
   font-size: $fs-h3;
   line-height: $lh-heading;
-  font-weight: $fw-medium;
+  font-weight: $fw-semibold;
 }
 
 // -----------------------------------------------------------

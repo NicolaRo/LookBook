@@ -53,12 +53,12 @@ function PricingResult() {
             
             <div className="pricing-result-content">
                 <h2 className="pricing-result-title">Here is the article pricing</h2>
-                    <p>Selling price: € </p> <p className = "price-hero">{suggested_price}</p>
-                    <p>Range: €</p> <p className = "UI-text">{range.min} - €{range.max}</p>
-                    <p>Reason: </p>  <p className = "UI-text">{motivation}</p>
+                    <h3>Selling price: € </h3> <p className = "price-hero">{suggested_price}</p>
+                    <h3>Range: €</h3> <p className = "UI-text">{range.min} - €{range.max}</p>
+                    <h3>Reason: </h3>  <p className = "UI-text">{motivation}</p>
                     {selling_tips && selling_tips.length > 0 && (
                         <>
-                        <p>Selling tips:</p> 
+                        <h3>Selling tips:</h3> 
                         <ul>
                         {selling_tips.map((tip, index) => (
                                 <li key={index}>
@@ -73,9 +73,12 @@ function PricingResult() {
         {showModal && (
             <div className= "modal-overlay">
                 <div className = "modal">
-                    <p>Received price will be lost, continue?</p>
-                    <button className = "button" onClick = {handleReset}>Si, torna al form</button>
-                    <button className="button-red" onClick = {() => setShowModal(false)}>Annulla</button>
+                    <h4 className = "modal-text">Received price will be lost, continue?</h4>
+                    <div className = "modal-buttons-container">
+                    <button className = "button-confirm" onClick = {handleReset}>Yes, go back</button>
+                    <button className="button-red" onClick = {() => setShowModal(false)}>Cancel</button>
+                    </div>
+                    
                 </div>
             </div>
         )}
