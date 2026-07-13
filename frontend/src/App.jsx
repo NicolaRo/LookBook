@@ -9,7 +9,7 @@ import ChatAI from './components/Chat';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <ChatAI
       />
     </div>
