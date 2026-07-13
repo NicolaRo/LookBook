@@ -137,7 +137,7 @@ function Chat() {
       </div>
       <div className="footer">
         <p className="ft-signature">
-          Disegnato e sviluppato da <strong>NicoDesign®</strong>
+          Design and and tailored by NicoDesign®
         </p>
         <div className="container-socials">
           <a href="https://nicolaro.github.io/" target="_blank" rel="noopener noreferrer">
