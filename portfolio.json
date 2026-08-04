@@ -1,0 +1,9 @@
+{
+  "title": "LookBook",
+  "tags": ["Base64", "React"],
+  "demo": {
+    "type": "live",
+    "url": "https://ailookbook.netlify.app/"
+  },
+  "logo": "lookbook.png"
+}
