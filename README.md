@@ -1,70 +1,104 @@
+# LookBook
 
-📦 AI Pricing Assistant
-Applicazione web che sfrutta l’intelligenza artificiale per suggerire il prezzo ottimale di capi d’abbigliamento destinati alla vendita online, migliorando velocità e probabilità di vendita.
+An AI-powered fashion valuation agent that analyzes second-hand clothing items and provides pricing recommendations through OpenAI API integration.
 
-🚀 Panoramica
-L’app analizza diversi fattori relativi a un prodotto e restituisce:
-un prezzo consigliato
-un range realistico (min/max)
-una spiegazione del risultato
-suggerimenti pratici per ottimizzare la vendita
+The application helps users estimate the market value of used clothing by evaluating product characteristics, generating price ranges, explaining valuation decisions, and suggesting strategies to improve selling performance.
 
-L’obiettivo è supportare l’utente nel prendere decisioni più consapevoli e rapide durante la pubblicazione di un annuncio.
+Built to demonstrate AI integration, frontend architecture, state management, and secure backend communication.
 
-🧠 Funzionalità principali
-📊 Valutazione intelligente del prezzo
-Basata su categoria, brand, condizioni, stagione, rarità e domanda
+---
 
-💬 Motivazione del prezzo
-L’AI spiega in modo chiaro e strutturato il risultato
-⚡ Consigli per vendere più velocemente
-Miglioramento delle foto
-Ottimizzazione del prezzo
-Timing di pubblicazione
+## Features
 
-🧩 Gestione dello stato con Redux Toolkit
-Stato globale centralizzato e organizzato in slice
-Flusso dei dati prevedibile e facilmente tracciabile
+- 🤖 AI-powered clothing valuation
+- 💰 Recommended selling price generation
+- 📊 Estimated price range analysis
+- 🧠 AI-generated explanation behind pricing decisions
+- 📸 Selling optimization recommendations
+- ⏱️ Suggestions for improving listing performance
+- 🔄 Centralized application state management with Redux Toolkit
+- 🔐 Secure handling of AI-related configurations
 
-🛠️ Tech Stack
-Frontend: React + Vite
-Backend: NodeJS + Express
-State Management: Redux Toolkit + React-Redux
-AI Integration: (OpenAI API)
+---
 
-🧱 Architettura
-Redux Store
-Stato globale gestito tramite slice modulari
+## Application Workflow
 
-Provider 
-Espone lo store a tutta l’applicazione
+```text
+User Product Input
+        │
+        ▼
+Frontend Application
+        │
+        ▼
+Backend Request Handling
+        │
+        ▼
+OpenAI API
+        │
+        ▼
+AI Valuation Response
+        │
+        ├──────────────► Price Recommendation
+        │
+        ├──────────────► Valuation Explanation
+        │
+        └──────────────► Selling Insights
+```
 
-Componenti React
-Consumano lo stato e dispatchano azioni
+---
 
-🔐 Note sulla gestione dei dati
-L’app utilizza una gestione centralizzata dello stato per garantire coerenza e controllo del flusso dei dati.
-Le configurazioni sensibili e la logica AI sono isolate e non modificabili direttamente dall’interfaccia utente.
+## Tech Stack
 
-## 📸 Screenshot
+### Frontend
 
-<img width="1440" height="900" alt="Screenshot LookBook" src="https://github.com/user-attachments/assets/88263008-94b8-4969-b7e8-18eef58b8328" />
+- React
+- Vite
+- Redux Toolkit
+- React-Redux
 
-Link all'App - LookBook - Assistente AI moda
+### Backend
+
+- Node.js
+- Express
+
+### AI Integration
+
+- OpenAI API
+
+---
+
+## Architecture
+
+The application uses Redux Toolkit to manage global state through a modular store architecture.
+
+The frontend communicates with the backend layer, which securely handles AI-related operations and manages sensitive configuration data before interacting with the OpenAI API.
+
+This approach keeps business logic and external service communication separated from the user interface.
+
+---
+
+## Use Case
+
+LookBook demonstrates how AI can support decision-making in online resale workflows.
+
+Instead of manually estimating a product value, users can receive a structured evaluation based on relevant clothing attributes, together with practical recommendations to improve the selling process.
+
+---
+
+## Highlights
+
+- AI-powered decision support
+- LLM API integration
+- Frontend and backend separation
+- Global state management
+- Secure API communication
+- Modular application architecture
+
+---
+
+## Demo
+
 https://ailookbook.netlify.app/
 
-▶️ Utilizzo
-Inserisci le informazioni del capo (categoria, brand, condizioni)
-Carica una foto dell'articolo in vendita
-Avvia l’analisi
-Visualizza:
-prezzo suggerito
-range
-spiegazione
-consigli
-Chatta con l'assistente per ottenere più dettagli o ulteriori consigli
+<img width="1552" height="982" alt="Screenshot 2026-08-04 alle 15 26 56" src="https://github.com/user-attachments/assets/e33ca498-827a-44a0-b6ad-6c1f85c49923" />
 
-🎯 Obiettivi del progetto
-Migliorare la user experience nella vendita online
-Ridurre l’incertezza nella definizione del prezzo
-Applicare AI in un contesto reale e pratico
