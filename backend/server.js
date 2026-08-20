@@ -27,7 +27,7 @@ app.use(cors({
     origin: ['https://ailookbook.netlify.app', 'http://localhost:5173']
   }));
 
-app.use(express.json({limit: '10mb'}));//Imposto limite immagini a 10MB
+app.use(express.json({limit: '15mb'}));//Imposto limite immagini a 10MB
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/articles', articleRoutes);
 app.use('/api/articles', explainRoutes);
