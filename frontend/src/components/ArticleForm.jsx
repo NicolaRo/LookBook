@@ -15,6 +15,7 @@ import { useState } from "react";
 import fileToBase64 from "../../services/utils/fileToBase64";
 import { submitArticleAndPrice } from "../features/article/articleSlice";
 import { useDispatch } from "react-redux";
+import processImage from "../../services/utils/processImage";
 
 import ManLogo from '../assets/icons/Man-logo.png';
 import BoyLogo from '../assets/icons/Boy-logo.png';
@@ -55,10 +56,17 @@ function ArticleForm() {
   //Qui ottengo il file caricato in formato base64 per passarlo all'LLM
   const handleFotoChange = async (file) => {
     setLoadingFoto(true);
-    const base64 = await fileToBase64(file);
-    setFoto(base64);
-    setFileName(file.name);
-    setLoadingFoto(false);
+    try {
+      const processedFile = await processImage(file);
+      const base64 = await fileToBase64(processedFile);
+      setFoto(base64);
+      setFileName(file.name);
+    } catch (error) {
+      setErrore("Errore nell'elaborazione della foto, riprova");
+      console.error(error);
+    } finally {
+      setLoadingFoto(false);
+    }
   };
 
   //Carico le informazioni dell'articolo
